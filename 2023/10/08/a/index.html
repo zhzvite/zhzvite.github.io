@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>bfs和dfs | vite的避难所</title>
+    <title>a | vite的避难所</title>
     <meta name="author" content="Zhz-Vite" />
     <meta name="description" content="认真做好每件事" />
     <meta name="keywords" content="" />
@@ -150,7 +150,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>bfs和dfs</h1>
+        <h1>a</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -161,27 +161,10 @@
         </span>
         
         
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
-            </span>
-            
-        </span>
-        
     </div>
     
     <div class="content" v-pre>
-        <p>&#96;<br>&#x2F;*<br>&#x2F;&#x2F;简单学习下如何写dfs深度优先搜索(递归<br>有 n 件物品，每件物品的重量为 w[i] ，价值为 c[i] 。<br>现在需要选出若干件物品放入一个容量为 V 的背包中，使得在选入背包的物品<br>重量和不超过容量 V 的前提下，让背包中物品的价值之和最大，求最大价值。（1≤n≤20）<br>&#x2F;&#x2F;思路分析,确定岔路口和死胡同分别为选与不选和超过条件<br>#include<iostream><br>using namespace std;<br>const int maxn &#x3D; 30;<br>int w[maxn], c[maxn],n,maxvalue&#x3D;0,v;<br>void dfs(int idx, int sumw, int sumc)&#x2F;&#x2F;idx表示物品编号<br>{<br>    if (idx &#x3D;&#x3D; n) {<br>        if (sumw&lt;&#x3D;v &amp;&amp; sumc&gt;maxvalue)maxvalue &#x3D; sumc;&#x2F;&#x2F;这种递归特别简单,没有回溯步骤就是一步一部遍历<br>        return;<br>    }<br>    dfs(idx+1, sumw, sumc);<br>    dfs(idx+1, sumw + w[idx], sumc + c[idx]);&#x2F;&#x2F;暴力枚举，枚举所有的可能<br>}<br>int main() {<br>    cin &gt;&gt; n&gt;&gt;v;<br>    for (int i &#x3D; 0; i &lt; n; i++)cin &gt;&gt; w[i];<br>    for (int i &#x3D; 0; i &lt; n; i++)cin &gt;&gt; c[i];<br>    dfs(0, 0, 0);<br>    cout &lt;&lt; maxvalue &lt;&lt; endl;<br>}</p>
-<p>5 8<br>3 5 1 2 2<br>4 5 2 1 3</p>
-<p>*&#x2F;<br>&#x2F;&#x2F;全排列问题<br>#include<iostream><br>using namespace std;<br>const int  N &#x3D; 10;<br>int n;<br>int p[N];<br>bool st[N];<br>void dfs(int u) {<br>    if (u &#x3D;&#x3D; n)&#x2F;&#x2F;即跑完了，撞墙了输出<br>    {<br>        for (int i &#x3D; 0; i &lt; n; i++)cout &lt;&lt; p[i] &lt;&lt; “ “;<br>        cout &lt;&lt; endl;<br>    }<br>    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) {<br>        if (!st[i]) {<br>            p[u] &#x3D; i;<br>            st[i] &#x3D; true;&#x2F;&#x2F;做标记，防止后面再用<br>            dfs(u + 1);&#x2F;&#x2F;往后搜索<br>            st[i] &#x3D; false;&#x2F;&#x2F;从递归中回来要恢复<br>        }<br>    }<br>    }<br>int main() {<br>    cin &gt;&gt; n;<br>    dfs(0);<br>    return 0;<br>}</p>
-<p>&#96;</p>
-
+        
     </div>
     
     
