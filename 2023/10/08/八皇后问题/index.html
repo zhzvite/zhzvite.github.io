@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>八皇后问题 | vite的避难所</title>
+    <title>dfs和bfs | vite的避难所</title>
     <meta name="author" content="Zhz-Vite" />
     <meta name="description" content="认真做好每件事" />
     <meta name="keywords" content="" />
@@ -150,7 +150,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>八皇后问题</h1>
+        <h1>dfs和bfs</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -169,7 +169,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #ff7d73">洛谷题</a>
+                <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #00a596">洛谷题</a>
             </span>
             
         </span>
@@ -214,6 +214,63 @@ int main() &#123;
     memset(g, -1, sizeof g);
     dfs(0);
     cout &lt;&lt; a;
+&#125;```
+</code></pre>
+<p><strong>p1162填色问题</strong><br>这道题花了两个小时,代码量可以很少,本题思路是把边框联通的0全部标记,将剩下的0变为2<br>以下是完整的代码块</p>
+<pre><code class="#include&lt;iostream&gt;">#include&lt;cstring&gt;
+using namespace std;
+int n;
+const int N = 35;
+int g[N][N];
+int vis[N][N];
+
+void dfs(int x,int y) &#123;
+    int dx[5] = &#123; 0,-1,0,1,0 &#125;, dy[5] = &#123; 0,0,1,0,-1 &#125;;
+    for (int i = 1; i &lt;= 4; i++) &#123;
+        int x1 = x + dx[i], y1 = y + dy[i];
+        if (x1&lt;1 || x1&gt;n || y1&lt;1 || y1&gt;n || vis[x1][y1] == 0||g[x1][y1]==1)continue;
+        else &#123;
+        //	cout &lt;&lt; x1 &lt;&lt; &quot; &quot; &lt;&lt; y1 &lt;&lt; endl;
+            vis[x1][y1] = 0;
+            dfs(x1, y1);
+        &#125;
+
+    &#125;
+    
+
+&#125;
+int main() &#123;
+    memset(vis, -1,sizeof vis );
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) &#123;
+        for (int j = 1; j &lt;= n; j++)cin &gt;&gt; g[i][j];
+    &#125;
+    //分别在左右上下的边框进行遍历并且打标记
+    for (int i = 1; i &lt;= n; i++) &#123;
+            if (g[1][i] != 1 &amp;&amp; vis[1][i] ==-1) &#123;
+                dfs(1, i);
+            &#125;
+            if (g[n][i] != 1 &amp;&amp; vis[n][i] == -1) &#123;
+                dfs(n, i);
+            &#125;
+            if (g[i][1] != 1 &amp;&amp; vis[i][1] == -1) &#123;
+                dfs(i, 1);
+            &#125;
+            if (g[i][n] != 1 &amp;&amp; vis[i][n] == -1) &#123;
+                dfs(i, n);
+            &#125;
+    &#125;
+    for (int i = 1; i &lt;= n; i++) &#123;
+        for (int j = 1; j &lt;= n; j++) &#123;
+            if (vis[i][j] == -1 &amp;&amp; g[i][j] == 1)cout &lt;&lt; 1&lt;&lt;&quot; &quot;;
+            if (vis[i][j] == 0 &amp;&amp; g[i][j] == 0)cout &lt;&lt; 0&lt;&lt;&quot; &quot;;
+            if (vis[i][j] == -1 &amp;&amp; g[i][j] == 0)cout &lt;&lt; 2 &lt;&lt;&quot; &quot;;
+            //针对标记进行输出的更改~冗长~
+        &#125;cout &lt;&lt; endl;
+    &#125;
+
+
+    return 0;
 &#125;
 </code></pre>
 
