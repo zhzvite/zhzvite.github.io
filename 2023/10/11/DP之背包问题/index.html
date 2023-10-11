@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Tags: 洛谷题 | vite的避难所</title>
+    <title>DP之背包问题 | vite的避难所</title>
     <meta name="author" content="Zhz-Vite" />
     <meta name="description" content="认真做好每件事" />
     <meta name="keywords" content="" />
@@ -31,6 +31,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -144,63 +148,90 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                学习笔记
-            </a>
+            <div class="article">
+    <div>
+        <h1>DP之背包问题</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/11
         </span>
         
         
-        
-        <span>
-            <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                洛谷题
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">学习笔记</a>
+            </span>
+            
         </span>
-        
-        
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/10/8</div>
-            <a href="/2023/10/08/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">
-                <h3>dfs和bfs</h3>
-            </a>
-            <div class="info">
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #03a9f4">洛谷题</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p><strong>DP-背包的基础入门</strong><br>#01背包<br>题意：有n个物品，每个物品的质量为w[i]，每个物品的价值为v[i],背包的容积最多为j，求最大价值</p>
+<p><strong>思路分析</strong><br>设dp[i][j]为考虑i种情况下，体积为j的情况下最大的经济效益。<br>抓住状态转移方程式d[i][j]&#x3D;max(d[i-1][j],d[i-1][j-w]+v)<br>附上代码</p>
+<pre><code class="for">for (int i = 1; i &lt;= n; i++) &#123;
+    for (int j = 0; j &lt;=m; j++) &#123;
+        f[i][j] = f[i - 1][j];
+        if (j &gt;= v[i])f[i][j] = max(f[i][j], f[i - 1][j - v[i]] + w[i]);
+    &#125;
+&#125;cout &lt;&lt; f[n][m];`
+</code></pre>
+<p>注意上述背包只利用了i-1和i两个数组下标，故可以对其进行优化，使用滚动数组<br><strong>注意降维时选用的dp[i-1][j]是在dp[i][j]前面，为防止覆盖，应对二次循环倒序遍历</strong><br>故代码为:</p>
+<pre><code class="for">    for (int i = 1; i &lt;= n; i++) &#123;
+        for (int j = m; j &gt;=v[i]; j--) &#123;
+            f[j] = max([j], f[j - v[i]] + w[i]);
+        &#125;
+    &#125;cout &lt;&lt; f[m];
+</code></pre>
+<pre><code>
+#完全背包
+题意与01背包类似,但选用的物品有无数件
+**思路分析**
+没啥区别上代码块
+```for (int i = 1; i &lt;= n; i++) &#123;
+    for (int j = 0; j &lt;= m; j++) &#123;	
+        for (int k = 0;k*w[i]&lt;=j; k++)	&#123;
+            if (k * w[i] &lt;= k)dp[i][j] = max(dp[i][j], dp[i - 1][j - k * w[i]] +k * v[i]);
+           &#125;
+       &#125;     
+    &#125;
+```
+```
+**代码优化**
+可以通过数学知识运算将内层循环删掉，变成下列代码
+```  
+    dp[i][j] = dp[i - 1][j];
+    if(j&gt;=w[i])dp[i][j] = max(dp[i - 1][j], dp[i ][j - w[i]] + v[i]);//数学上的化简```
+</code></pre>
+<p>如此将dp[i][j]的前一次递归放到了dp[i][j-w]+v,这样再优化成一维时就不用内层循环逆序了<br>及如此</p>
+<pre><code class="for">    for (int j = w[i]; j &lt;= m; j++) &#123;
+        dp[j] = max(dp[j], dp[j - w[i]] + v[i]);//数学上的化简
+    &#125;
+&#125;
+cout &lt;&lt; dp[m] &lt;&lt; endl;```
+</code></pre>
+<pre><code>以上是背包问题关于01和完全背包的思路及优化
+不得不说，~~动态规划真是一门高深的学问~~
+
+</code></pre>
+
     </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -232,6 +263,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 </html>

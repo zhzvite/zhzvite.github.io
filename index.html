@@ -167,6 +167,92 @@
         
 
 <div class="post">
+    <a href="/2023/10/11/DP%E4%B9%8B%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">DP之背包问题</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/11
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><strong>DP-背包的基础入门</strong><br>#01背包<br>题意：有n个物品，每个物品的质量为w[i]，每个物品的价值为v[i],背包的容积最多为j，求最大价值</p>
+<p><strong>思路分析</strong><br>设dp[i][j]为考虑i种情况下，体积为j的情况下最大的经济效益。<br>抓住状态转移方程式d[i][j]&#x3D;max(d[i-1][j],d[i-1][j-w]+v)<br>附上代码</p>
+<pre><code class="for">for (int i = 1; i &lt;= n; i++) &#123;
+    for (int j = 0; j &lt;=m; j++) &#123;
+        f[i][j] = f[i - 1][j];
+        if (j &gt;= v[i])f[i][j] = max(f[i][j], f[i - 1][j - v[i]] + w[i]);
+    &#125;
+&#125;cout &lt;&lt; f[n][m];`
+</code></pre>
+<p>注意上述背包只利用了i-1和i两个数组下标，故可以对其进行优化，使用滚动数组<br><strong>注意降维时选用的dp[i-1][j]是在dp[i][j]前面，为防止覆盖，应对二次循环倒序遍历</strong><br>故代码为:</p>
+<pre><code class="for">    for (int i = 1; i &lt;= n; i++) &#123;
+        for (int j = m; j &gt;=v[i]; j--) &#123;
+            f[j] = max([j], f[j - v[i]] + w[i]);
+        &#125;
+    &#125;cout &lt;&lt; f[m];
+</code></pre>
+<pre><code>
+#完全背包
+题意与01背包类似,但选用的物品有无数件
+**思路分析**
+没啥区别上代码块
+```for (int i = 1; i &lt;= n; i++) &#123;
+    for (int j = 0; j &lt;= m; j++) &#123;	
+        for (int k = 0;k*w[i]&lt;=j; k++)	&#123;
+            if (k * w[i] &lt;= k)dp[i][j] = max(dp[i][j], dp[i - 1][j - k * w[i]] +k * v[i]);
+           &#125;
+       &#125;     
+    &#125;
+```
+```
+**代码优化**
+可以通过数学知识运算将内层循环删掉，变成下列代码
+```  
+    dp[i][j] = dp[i - 1][j];
+    if(j&gt;=w[i])dp[i][j] = max(dp[i - 1][j], dp[i ][j - w[i]] + v[i]);//数学上的化简```
+</code></pre>
+<p>如此将dp[i][j]的前一次递归放到了dp[i][j-w]+v,这样再优化成一维时就不用内层循环逆序了<br>及如此</p>
+<pre><code class="for">    for (int j = w[i]; j &lt;= m; j++) &#123;
+        dp[j] = max(dp[j], dp[j - w[i]] + v[i]);//数学上的化简
+    &#125;
+&#125;
+cout &lt;&lt; dp[m] &lt;&lt; endl;```
+</code></pre>
+<pre><code>以上是背包问题关于01和完全背包的思路及优化
+不得不说，~~动态规划真是一门高深的学问~~
+
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">学习笔记</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/11/DP%E4%B9%8B%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/10/09/%E5%89%8D%E7%BC%80%E5%92%8C%E5%B7%AE%E5%88%86/">
         <h2 class="post-title">前缀和差分</h2>
     </a>
@@ -229,7 +315,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #ff7d73">洛谷题</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #00a596">洛谷题</a>
         </span>
         
     </div>
