@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>q | vite的避难所</title>
+    <title>前缀和差分 | vite的避难所</title>
     <meta name="author" content="Zhz-Vite" />
     <meta name="description" content="认真做好每件事" />
     <meta name="keywords" content="" />
@@ -150,7 +150,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>q</h1>
+        <h1>前缀和差分</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -161,10 +161,48 @@
         </span>
         
         
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #00a596">洛谷题</a>
+            </span>
+            
+        </span>
+        
     </div>
     
     <div class="content" v-pre>
-        
+        <p><strong>p3131前缀和问题</strong><br>此题用暴力算法算前缀和会部分tle,故针对其mod7进行优化,重点掌握一个小结论<br><strong>两个前缀和mod的余数相减为0的话,那么他们之间的项的和能被该数整除</strong><br>代码实现–</p>
+<pre><code class="//求前缀和">#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+using namespace std;
+const int N = 50010;
+int a[N], s[N],q[N];
+int n;
+int maxn = 0;
+int main() &#123;
+    
+    cin &gt;&gt; n;
+    s[0] = 0;
+    for (int i = 1; i &lt;= n; i++)cin &gt;&gt; a[i];
+    //求前缀和s
+    for (int i = 1; i &lt;= n; i++) &#123;
+        q[i] = -1;
+        s[i] = (s[i - 1] + a[i])%7;
+    &#125;
+    for (int i = 1; i &lt;= n;i++) &#123;
+        if (q[s[i]] == -1)q[s[i]] = i;
+        maxn = max( maxn,i - q[s[i]] );
+    &#125;
+    cout &lt;&lt; maxn;
+&#125;```
+</code></pre>
+
     </div>
     
     
