@@ -169,7 +169,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">学习笔记</a>
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">学习笔记</a>
             </span>
             
         </span>
@@ -192,39 +192,31 @@
         for (int j = m; j &gt;=v[i]; j--) &#123;
             f[j] = max([j], f[j - v[i]] + w[i]);
         &#125;
-    &#125;cout &lt;&lt; f[m];
+    &#125;cout &lt;&lt; f[m];//返回的是体的最积最大为m时的最大价值
 </code></pre>
-<pre><code>
-#完全背包
-题意与01背包类似,但选用的物品有无数件
-**思路分析**
-没啥区别上代码块
-```for (int i = 1; i &lt;= n; i++) &#123;
-    for (int j = 0; j &lt;= m; j++) &#123;	
+<p>#完全背包<br>题意与01背包类似,但选用的物品有无数件</p>
+<p><strong>思路分析</strong><br>没啥区别上代码块</p>
+<pre><code class="for">    for (int j = 0; j &lt;= m; j++) &#123;	
         for (int k = 0;k*w[i]&lt;=j; k++)	&#123;
             if (k * w[i] &lt;= k)dp[i][j] = max(dp[i][j], dp[i - 1][j - k * w[i]] +k * v[i]);
            &#125;
        &#125;     
     &#125;
-```
-```
-**代码优化**
-可以通过数学知识运算将内层循环删掉，变成下列代码
-```  
-    dp[i][j] = dp[i - 1][j];
+</code></pre>
+<p>&#96;&#96;<br><strong>代码优化</strong><br>可以通过数学知识运算将内层循环删掉，变成下列代码</p>
+<pre><code>    dp[i][j] = dp[i - 1][j];
     if(j&gt;=w[i])dp[i][j] = max(dp[i - 1][j], dp[i ][j - w[i]] + v[i]);//数学上的化简```
 </code></pre>
-<p>如此将dp[i][j]的前一次递归放到了dp[i][j-w]+v,这样再优化成一维时就不用内层循环逆序了<br>及如此</p>
+<p>如此将dp[i][j]的前一次递归放到了dp[i][j-w]+v,这样再优化成一维时就不用内层循环逆序了<del>当然要是闲的慌,或者是懒得分就全部内层写反就好了</del><br>及如此</p>
+<p>&#96;&#96;</p>
 <pre><code class="for">    for (int j = w[i]; j &lt;= m; j++) &#123;
         dp[j] = max(dp[j], dp[j - w[i]] + v[i]);//数学上的化简
     &#125;
 &#125;
 cout &lt;&lt; dp[m] &lt;&lt; endl;```
 </code></pre>
-<pre><code>以上是背包问题关于01和完全背包的思路及优化
-不得不说，~~动态规划真是一门高深的学问~~
-
-</code></pre>
+<p>&#96;</p>
+<p>以上是背包问题关于01和完全背包的思路及优化<br>不得不说，<del>动态规划真是一门高深的学问</del></p>
 
     </div>
     

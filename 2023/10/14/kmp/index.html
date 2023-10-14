@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Tags: 学习笔记 | vite的避难所</title>
+    <title>kmp | vite的避难所</title>
     <meta name="author" content="Zhz-Vite" />
     <meta name="description" content="认真做好每件事" />
     <meta name="keywords" content="" />
@@ -31,6 +31,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -144,101 +148,71 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                学习笔记
-            </a>
+            <div class="article">
+    <div>
+        <h1>kmp</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/14
         </span>
         
         
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                洛谷题
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">学习笔记</a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/tags/daily/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                daily
-            </a>
-        </span>
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/10/14</div>
-            <a href="/2023/10/14/kmp/">
-                <h3>kmp</h3>
-            </a>
-            <div class="info">
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">学习笔记</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p>昨天,在CSDN上看见了一篇高质量的blog专讲kmp的,他的讲法比较好懂,但个人觉得他的模板没有y总的简洁,易背诵<br>先看下y总的模板</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+const int N = 10010, M = 100010;
+int n, m;
+char p[N], s[M];//p是模式串,s是模板串
+int ne[N];
+int main() &#123;
+    cin &gt;&gt; n &gt;&gt; p + 1 &gt;&gt; m &gt;&gt; s + 1;//p+1是指从第一位开始存
+    //求next的过程,模板串
+    for (int i = 2, j = 0; i &lt;= n; i++) &#123;//这里的ne【i】指的是前1-i项构成的序列中前缀和后缀相同的长度
+        while (j &amp;&amp; p[i] != p[j + 1])j = ne[j];
+        if (p[i] == p[j + 1])j++;
+        ne[i] = j;
+    &#125;
+    //kmp 匹配过程
+    for (int i = 1, j = 0; i &lt;= m; i++) &#123;
+        while (j &amp;&amp; s[i] != p[j + 1])j = ne[j];
+        if (s[i] == p[j + 1])j++;
+        if (j == n) &#123;
+            cout &lt;&lt; i - n&lt;&lt;&quot; &quot;;
+            j = ne[j];//匹配成功
+        &#125;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>y总的模板求模板串的next数组和匹配过程类似,j都要初始化为0,当j&gt;0时才证明已经匹配成功一个字符了,之后再不成功才有j&#x3D;ne[j],进行退回操作.</p>
+
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/10/11</div>
-            <a href="/2023/10/11/DP%E4%B9%8B%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
-                <h3>DP之背包问题</h3>
-            </a>
-            <div class="info">
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #00a596">学习笔记</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
-    </div>
+    
+    
+    
+    
+    
     
 </div>
 
@@ -270,6 +244,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 </html>
