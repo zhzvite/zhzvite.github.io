@@ -169,7 +169,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">学习笔记</a>
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">学习笔记</a>
             </span>
             
         </span>
@@ -177,7 +177,22 @@
     </div>
     
     <div class="content" v-pre>
-        <p>快速排序</p>
+        <p>快读</p>
+<pre><code>int read()
+&#123;
+    int x = 0;
+    char c = getchar();
+    while(!sidigit(c))
+        c = getchar();
+    while(isdigit(c))
+    &#123;
+        x = x * 10 + (c ^ 48);
+        c = getchar();
+    &#125;
+    return x;
+&#125;
+</code></pre>
+<p>快速排序</p>
 <pre><code>//l=第一个存放的位置,r=最后一个存放的位置
 void quick_sort(long long int a[], int l, int r) &#123;
     int x = a[(r+l)/2];
@@ -193,6 +208,38 @@ void quick_sort(long long int a[], int l, int r) &#123;
     &#125;quick_sort(a, l, j);
     quick_sort(a, j+1, r);
     
+&#125;
+</code></pre>
+<p>归并排序</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+const int N = 100000;
+int n;
+int q[N], tmp[N];
+void merge_sort(int q[], int l, int r)
+&#123;
+    if(l &gt;= r) return;
+    int mid = l + r &gt;&gt;1;
+    merge_sort(q, l, mid);
+    merge_sort(q, mid+1, r);
+    int k = 0, i = l, j = mid+1;
+    while(i &lt;= mid &amp;&amp; j &lt;= r)
+    &#123;
+        if(q[i] &lt;= q[j]) tmp[k++] = q[i++];
+        else tmp[k++] = q[j++];
+    &#125;
+    while(i &lt;= mid) tmp[k++] = q[i++];
+    while(j &lt;= r) tmp[k++] = q[j++];
+    for(i = l, j = 0; i &lt;= r; i++, j++) q[i] = tmp[j];
+&#125;
+int main()
+&#123;
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 0; i &lt; n; i++) scanf(&quot;%d&quot;, &amp;q[i]);
+    merge_sort(q, 0, n-1);
+    for(int i = 0; i &lt;n ; i++) printf(&quot;%d&quot;, q[i]);
+    return 0;
 &#125;
 </code></pre>
 <p>二分法(整数二分)</p>
@@ -214,29 +261,109 @@ while (i+1!=j) &#123;
 &#125;
 </code></pre>
 <p>高精度</p>
-<pre><code>string a, b;//前面的通用，倒着放进去
-cin &gt;&gt; a &gt;&gt; b;
-vector&lt;int&gt;A, B;
-for (int i = a.size() - 1; i &gt;= 0; i--)A.push_back(a[i] - &#39;0&#39;);
-for (int i = b.size() - 1; i &gt;= 0; i--)B.push_back(b[i] - &#39;0&#39;);
-for (int i = 0; i &lt; A.size(); i++)&#123;//加法
-    t += A[i];
-    if (i &lt; B.size()) t += B[i];
-    C.push_back(t % 10);
-    t /= 10;
+<pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+bool cmp(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
+&#123;
+    if(A.size() != B.size()) return A.size() &gt; B.size();
+    for(int i = A.size() -1; i &gt;= 0; i--)
+        if(A[i] != B[i])
+            return A[i] &gt; B[i];
+    return true;
+&#125;//比较大小
+vector&lt;int&gt; div1(vector&lt;int&gt; &amp;A, int b, int&amp; r)
+&#123;
+    vector&lt;int&gt; C;
+    r = 0;
+    for(int i = A.size() - 1; i &gt;= 0; i--)
+    &#123;
+        r = r * 10 + A[i];
+        C.push_back(r / b);
+        r %= b; 
+    &#125;
+    reverse(C.begin(), C.end());
+    while(C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back() ;
+    return C;
 &#125;
-if (t)C.push_back(1);
-return C;
-//减法
-vector&lt;int&gt; C;
-for (int i = 0, t = 0; i &lt; A.size() ; i++) &#123;
-    t = A[i] - t;
-    if (i &lt; B.size())t -= B[i];
-    C.push_back((t + 10) % 10);
-    if (t &lt; 0)t = 1;
-    else	t =0;
-&#125;while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();//注意这里的while
-return C;
+vector&lt;int&gt; mul1(vector&lt;int&gt; &amp;A, int b)
+&#123;
+    vector&lt;int&gt; C;
+    int t = 0;
+    for(int i = 0; i &lt; A.size() || t; i++)
+    &#123;
+         if(i &lt; A.size()) t += A[i] * b;
+        C.push_back(t % 10);
+        t /= 10; 
+    &#125;
+    return C;
+&#125;
+vector&lt;int&gt; sub(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
+&#123;
+    vector&lt;int&gt; C;
+    for(int i = 0, t = 0; i &lt; A.size(); i++)
+    &#123;
+        t = A[i] - t;
+        if(i &lt; B.size()) t -= B[i];
+        C.push_back((t + 10) % 10);
+        if(t &lt; 0) t = 1;
+        else t = 0;  
+    &#125;
+    while(C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+    return C;
+&#125;
+vector&lt;int&gt; add(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
+&#123;
+    vector&lt;int&gt; C;
+    int t = 0;
+    for(int i = 0; i &lt; A.size() || i &lt; B.size(); i++)
+    &#123;
+        if(i &lt; A.size()) t += A[i];
+        if(i &lt; B.size()) t += B[i];
+        C.push_back(t % 10);
+        t /= 10;  
+    &#125;
+    if(t) C.push_back(1);
+    return C;
+&#125;
+int main()
+&#123;
+    string a, b;
+    vector&lt;int&gt; A, B;
+    cin &gt;&gt; a &gt;&gt; b;
+    //scanf(&quot;%s%s&quot;, &amp;a, &amp;b);
+    for(int i = a.size() - 1; i &gt;= 0; i--) A.push_back(a[i] - &#39;0&#39;);
+    for(int i = b.size() - 1; i &gt;= 0; i--) B.push_back(b[i] - &#39;0&#39;);
+    
+    vector&lt;int&gt; Ca = add(A, B);
+    for(int i = Ca.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Ca[i]);//+
+    printf(&quot;\n&quot;);
+    
+    if(cmp(A, B))&#123;
+        vector&lt;int&gt; Cb = sub(A, B);
+        for(int i = Cb.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cb[i]);
+    &#125; else&#123;
+        vector&lt;int&gt; Cb = sub(B, A);
+        printf(&quot;-&quot;);
+        for(int i = Cb.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cb[i]);//-
+        printf(&quot;\n&quot;);
+    &#125; 
+    
+    int n = 0;
+    scanf(&quot;%d&quot;, &amp;n);
+    vector&lt;int&gt; Cc = mul1(A, n);
+    for(int i = Cc.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cc[i]);//*
+    printf(&quot;\n&quot;);
+    
+    int m = 0, r = 0;
+    scanf(&quot;%d&quot;, &amp;m);
+    vector&lt;int&gt; Cd = div1(A, m, r);
+    for(int i = Cd.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cd[i]);///
+    printf(&quot; %d\n&quot;, r);
+    return 0;
+&#125;
 </code></pre>
 <p>二维前缀和差分</p>
 <pre><code>//要有开始，要有结尾
@@ -1204,6 +1331,64 @@ int main() &#123;
         &#125;
     &#125;
     cout &lt;&lt; dp[m] &lt;&lt; endl;
+&#125;
+</code></pre>
+<p>最长上升子序列</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 100010;
+int n;
+int f[N], a[N];
+int main()
+&#123;
+    cin &gt;&gt; n;
+    for(int i = 1; i &lt;= n; i++)
+    &#123;
+        cin &gt;&gt; a[i];
+    &#125;
+    int len = 0;
+    f[0] = -2e9;
+    for(int i = 1; i &lt;= n; i++)
+    &#123;
+        int l = 0, r = len;
+        while(l &lt; r)
+        &#123;
+            int mid = l + r + 1 &gt;&gt; 1;
+            if(f[mid] &lt; a[i])
+                l = mid;
+            else
+                r = mid - 1;
+        &#125;
+        len = max(len, r + 1);
+        f[r + 1] = a[i];
+    &#125;
+    cout &lt;&lt; len &lt;&lt; endl;
+    return 0;
+&#125; 
+</code></pre>
+<p>最长公共子序列（非优化）</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 1010;
+int n, m;
+int a[N], b[N];
+int f[N][N];
+int main()
+&#123;
+    scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+    scanf(&quot;%s %s&quot;, a+1, b+1);
+    for(int i = 1; i &lt;= n; i++)
+        for(int j = 1; j &lt;= m; j++)
+        &#123;
+            f[i][j] = max(f[i-1][j], f[i][j-1]);
+            if(a[i] == b[j]) f[i][j] = max(f[i][j], f[i-1][j-1] + 1);
+        &#125;
+    cout &lt;&lt; f[n][m];
+    return 0;
 &#125;
 </code></pre>
 <p>数学快速幂</p>
