@@ -169,7 +169,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #00a596">学习笔记</a>
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">学习笔记</a>
             </span>
             
         </span>
@@ -177,19 +177,30 @@
     </div>
     
     <div class="content" v-pre>
-        <p>快读</p>
-<pre><code>int read()
-&#123;
-    int x = 0;
+        <p>懒狗</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;iomanip&gt;
+#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+#include&lt;ctime&gt;
+#include&lt;stack&gt;
+using namespace std;
+#define N 100010;
+template&lt;typename T&gt;
+inline void read(T&amp; x) &#123;//这玩意是快读,能读正负整数
+    x = 0;
+    bool flg = 0;
     char c = getchar();
-    while(!sidigit(c))
-        c = getchar();
-    while(isdigit(c))
-    &#123;
-        x = x * 10 + (c ^ 48);
-        c = getchar();
-    &#125;
-    return x;
+    for (; !isdigit(c); c = getchar())
+        if (c == &#39;-&#39;)flg = 1;
+    for (; isdigit(c); c = getchar())x = x * 10 + (c ^ 48);
+    if (flg)x = -x;
 &#125;
 </code></pre>
 <p>快速排序</p>
