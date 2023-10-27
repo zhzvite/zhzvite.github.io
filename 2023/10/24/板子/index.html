@@ -177,7 +177,7 @@
     </div>
     
     <div class="content" v-pre>
-        <p>懒狗</p>
+        <p>##缺省源</p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;vector&gt;
@@ -193,7 +193,7 @@
 using namespace std;
 #define N 100010;
 template&lt;typename T&gt;
-inline void read(T&amp; x) &#123;//这玩意是快读,能读正负整数
+inline void read(T&amp; x) &#123;
     x = 0;
     bool flg = 0;
     char c = getchar();
@@ -203,7 +203,7 @@ inline void read(T&amp; x) &#123;//这玩意是快读,能读正负整数
     if (flg)x = -x;
 &#125;
 </code></pre>
-<p>快速排序</p>
+<p>##快速排序</p>
 <pre><code>//l=第一个存放的位置,r=最后一个存放的位置
 void quick_sort(long long int a[], int l, int r) &#123;
     int x = a[(r+l)/2];
@@ -221,7 +221,7 @@ void quick_sort(long long int a[], int l, int r) &#123;
     
 &#125;
 </code></pre>
-<p>归并排序</p>
+<p>##归并排序</p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 using namespace std;
@@ -253,7 +253,7 @@ int main()
     return 0;
 &#125;
 </code></pre>
-<p>二分法(整数二分)</p>
+<p>##二分法(整数二分)</p>
 <pre><code>sort(a, a + n, less&lt;int&gt;());//进行升序排序
 sort(a, a + n, greater&lt;int&gt;());//降序排序
 int i = -1, j = n;//这是重点,把起点放在数组外面
@@ -271,7 +271,7 @@ while (i+1!=j) &#123;
     if (k &gt; a[x])i = x;
 &#125;
 </code></pre>
-<p>高精度</p>
+<p>##高精度</p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;cstdio&gt;
@@ -351,7 +351,7 @@ int main()
     vector&lt;int&gt; Ca = add(A, B);
     for(int i = Ca.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Ca[i]);//+
     printf(&quot;\n&quot;);
-    
+
     if(cmp(A, B))&#123;
         vector&lt;int&gt; Cb = sub(A, B);
         for(int i = Cb.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cb[i]);
@@ -361,13 +361,11 @@ int main()
         for(int i = Cb.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cb[i]);//-
         printf(&quot;\n&quot;);
     &#125; 
-    
     int n = 0;
     scanf(&quot;%d&quot;, &amp;n);
     vector&lt;int&gt; Cc = mul1(A, n);
     for(int i = Cc.size() - 1; i &gt;= 0; i--) printf(&quot;%d&quot;, Cc[i]);//*
     printf(&quot;\n&quot;);
-    
     int m = 0, r = 0;
     scanf(&quot;%d&quot;, &amp;m);
     vector&lt;int&gt; Cd = div1(A, m, r);
@@ -376,7 +374,7 @@ int main()
     return 0;
 &#125;
 </code></pre>
-<p>二维前缀和差分</p>
+<p>##二维前缀和差分</p>
 <pre><code>//要有开始，要有结尾
 void insert(int x1, int y1, int x2, int y2, int c) &#123;
     b[x1][y1] += c;
@@ -418,7 +416,7 @@ int main() &#123;
     &#125;
 &#125;
 </code></pre>
-<p>最长连续不重复子序列</p>
+<p>##最长连续不重复子序列</p>
 <pre><code>//用两个指针，降低暴力枚举的O(n^2)的时间复杂度
 //解决重复数字，输出不重复数字的总数
 int main() &#123;
@@ -438,7 +436,7 @@ int main() &#123;
     &#125;cout &lt;&lt; res &lt;&lt; &quot; &quot;;
 &#125;
 </code></pre>
-<p>位运算</p>
+<p>##位运算</p>
 <pre><code>//这里重点记录以下位运算的基本和应用
 int lowbit(int x) &#123;
      return x &amp; (-x);
@@ -456,7 +454,7 @@ cout &lt;&lt; (x &lt;&lt; i)&lt;&lt;endl;//将x左移i位,即以2倍式递增&#1
         cout &lt;&lt; res &lt;&lt; &quot; &quot;;//利用此段程序，算出录入的每个数字的二进制一有多少个
 &#125;
 </code></pre>
-<p>离散化(适用于至于很大,数据量很小)</p>
+<p>##离散化(适用于值域很大,数据量很小)</p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
@@ -497,7 +495,6 @@ int main() &#123;
     for (auto item : add) &#123;//对add中的每个元素进行迭代
         int x = find(item.first);
         a[x] += item.second;
-
     &#125;
     //预处理前缀和 
     for (int i = 1; i &lt;= alls.size(); i++)s[i] = s[i - 1] + a[i];//位置寄托在alls中，数寄托在a【i】中
@@ -508,7 +505,7 @@ int main() &#123;
     &#125;
 &#125;
 </code></pre>
-<p>区间合并</p>
+<p>##区间合并</p>
 <pre><code>typedef pair &lt;int, int &gt;  pii;
 const int N = 100010;
 int n;
@@ -539,7 +536,7 @@ int main() &#123;
     cout &lt;&lt; segs.size() &lt;&lt; endl;
 &#125;
 </code></pre>
-<p>单调队列之滑动窗口</p>
+<p>##单调队列之滑动窗口</p>
 <pre><code>int a[N], q[N];//a[N]表示数的存放集合,q[N]表示数的下标的集合
 int main() &#123;
     int hh = 0;//hh判断队列长度，hh是队尾
@@ -553,7 +550,7 @@ int main() &#123;
     &#125;
 &#125;
 </code></pre>
-<p>单链表</p>
+<p>##单链表</p>
 <pre><code>//这里努力写个程序实现静态链表（以数组构成链表
 //还是要画图理解
 #include&lt;iostream&gt;
@@ -580,7 +577,7 @@ void remove(int k) &#123;
     ne[k] = ne[ne[k]];//链表是一个递归，可以理解为ne记录的是下一个数据的idx
 &#125;
 </code></pre>
-<p>双链表</p>
+<p>##双链表</p>
 <pre><code>int m,k,x;
 int e[N], l[N], r[N], idx;
 //类似单链表进行初始化
@@ -605,7 +602,7 @@ void remove(int k) &#123;
     l[r[k]] = l[k];
 &#125;
 </code></pre>
-<p>kmp算法</p>
+<p>##kmp算法</p>
 <pre><code>//p是模板串,s是长文本
 char p[N], s[M];
 int ne[N];
@@ -629,7 +626,7 @@ int main() &#123;
     return 0;
 &#125;									
 </code></pre>
-<p>trie树</p>
+<p>##trie字典树</p>
 <pre><code>//高效存储和查询字符串集合的数据结构
 //通过一颗多分枝的树来高效存储,每一个分支都是一个字符串
 int son[N][26],cnt[N],idx;//下标是0的点,既是空节点,又是根节点
@@ -666,8 +663,9 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<p>并查集</p>
-<pre><code>//并查集巧妙地利用了递归，每次更新后都会形成新的集合，同时用递归对路迳进行了压缩
+<p>##并查集</p>
+<pre><code>//反集,将a和n+b,n+a和b分别合并
+//并查集巧妙地利用了递归，每次更新后都会形成新的集合，同时用递归对路迳进行了压缩
 int n, m;
 int p[N];
 int find(int x) &#123;//返回x的祖宗节点,同时对路径进行压缩
@@ -690,7 +688,7 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<p>size的维护</p>
+<p>##size的维护</p>
 <pre><code>//p[]存每个点的祖宗节点，size[]只有祖宗节点的有意义，表示祖宗节点所在集合中点的数量
 int p[N],size[N];
 //返回x的祖宗节点
@@ -707,8 +705,59 @@ for(int i=1;i&lt;=n;i++)&#123;
 size[find(b)]+=size[find(a)];
 p[find(a)]=find(b);
 </code></pre>
-<p>堆</p>
-<pre><code>int h[N], ph[N], hp[N], s;
+<p>##堆</p>
+<pre><code>//堆排序
+/*
+1.插入一个数heap[++size]=x;up(size);
+2.求集合中最小值 heap(1);heap从零开始则左右子树不一致，不太方便
+3.删除最小值     heapp[1]=heap[size];size--;down(1);	
+4.删除任意一个元素 heap[k]=heap[size];size--;down(k)/up(k
+5.修改任意一个元素heap(k)=x；down(k)/up(k)
+小根堆：每个点都满足小于等于左右两边的son
+存储方式：用一个一维数组来存，一号点为根节点
+*/
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 100010;
+int h[N], s,m,n;
+void down(int u) &#123;
+    int t = u;
+    if (u * 2 &lt;= s &amp;&amp; h[u * 2] &lt; h[t])t = u * 2;
+    if (u * 2 + 1 &lt;= s &amp;&amp; h[u * 2 + 1] &lt; h[t])t = u * 2 + 1;
+    if (t != u) &#123;
+        swap(h[t], h[u]);
+        down(t);
+    &#125;
+&#125;
+void  up(int u) &#123;
+    while (u / 2 &amp;&amp; h[u / 2] &gt; h[u])
+    &#123;
+        swap(h[u / 2], h[u]);
+        u /= 2;   
+    &#125;
+&#125;
+int main() &#123;
+    cin &gt;&gt; n&gt;&gt;m;
+    for (int i = 1; i &lt;= n; i++)cin &gt;&gt; h[i];
+    s = n;
+    for (int i = n/2 ; i; i--)down(i);// 用n/2是为了因为降低时间复杂度，因为最后一层二叉树占接近全部的一半
+    while (m--) &#123;
+        cout &lt;&lt; h[1];
+        h[1]=h[s];
+        s--;
+        down(1);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>##堆模拟</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 100010;
+int  m;
+int h[N], ph[N], hp[N], s;
 void hswap(int a, int b) &#123;
     swap(ph[hp[a]], ph[hp[b]]);
     swap(hp[a], hp[b]);
@@ -730,7 +779,13 @@ void up(int u) &#123;
         u /= 2;
     &#125;
 &#125;
-            //插入操作
+int main() &#123;
+    int n,k,x;
+    cin &gt;&gt; n;
+    while (n--) &#123;
+        char op[3];
+        cin &gt;&gt; op;
+        if (op[0] == &#39;I&#39;) &#123;
             cin &gt;&gt; x;
             s++;//在堆中的位置
             m++;//在次序中的位置
@@ -738,26 +793,31 @@ void up(int u) &#123;
             hp[s] = m;//两者类似反函数，互相映射
             h[s] = x;
             up(s);//最末尾往上up
-
-            cout&lt;&lt; h[1];//输出集合中最小值
+        &#125;
+        else if (op[0] == &#39;P&#39; &amp;&amp; op[1] == &#39;M&#39;) cout &lt;&lt; h[1];//输出集合中最小值
+        else if (op[0] == &#39;D&#39; &amp;&amp; op[1] == &#39;M&#39;) &#123;//删除集合中最小值
             hswap(1, s);
             s--;
-            down(1);//删除集合中最小值
-
-            cin &gt;&gt; k; //删除第k个插入的数
+            down(1);
+        &#125;
+        else if (op[0] == &#39;D&#39;) &#123;//删除第k个插入的数
+            cin &gt;&gt; k;
             k = ph[k];//新的位置
             hswap(k, s);
             s--;
             down(k), up(k);
-         //修改第k个插入的数,改为x
+        &#125;
+        else &#123;// C  修改第k个插入的数
             cin &gt;&gt; k &gt;&gt; x;
             k = ph[k];
             h[k] = x;
-            down(k), up(k);		
+            down(k), up(k);
+        &#125;
+    &#125;
+&#125;
 </code></pre>
-<p>一般哈希</p>
-<pre><code>//拉链法
-const int N = 100003;//一般mol的数要选择一个质数
+<p>##一般哈希<br><strong>拉链法</strong></p>
+<pre><code>const int N = 100003;//一般mol的数要选择一个质数
 int h[N],e[N],ne[N],idx;
 void insert(int x) &#123;
     //将x映射到哈希函数上
@@ -788,7 +848,7 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<p>开放寻址法</p>
+<p><strong>开放寻址法</strong></p>
 <pre><code>const int N = 200003, null = 0x3f3f3f3f;//null是数据取不到的，开了两倍的坑位
 int h[N];
 int find(int x) &#123;//上厕所法，返回要存放的位置或者是他在的地方
@@ -809,16 +869,14 @@ int main() &#123;
         cin &gt;&gt; op&gt;&gt;x;
         int k = find(x);
         if (op[0] == &#39;I&#39;)h[k] = x;
-        else &#123;
-            if (h[k] != null)cout &lt;&lt; &quot;yes&quot; &lt;&lt; endl;
+        else &#123;if (h[k] != null)cout &lt;&lt; &quot;yes&quot; &lt;&lt; endl;
             else cout &lt;&lt; &quot;No&quot; &lt;&lt; endl;
         &#125;
     &#125;
 &#125;
 </code></pre>
-<p>字符串哈希</p>
-<pre><code>//思路。存放str，同时进行m次询问，
-//利用前缀和预处理，进行p进制转换
+<p>##字符串哈希</p>
+<pre><code>//思路:存放str，同时进行m次询问，利用前缀和预处理，进行p进制转换
 const int N = 100010,t=131;//将字母转化为t进制的数，将字符串的哈希值进行比较
 typedef unsigned long long ull;//用ull则溢出的话就认为是取模于2的64次方
 int n, m;
@@ -843,7 +901,7 @@ int main() &#123;
     &#125;
 &#125;
 </code></pre>
-<p>bfs</p>
+<p>##bfs</p>
 <pre><code>const int N = 110;
 typedef pair&lt;int, int&gt; pii;
 int n, m;
@@ -882,10 +940,9 @@ int main() &#123;
         for (int j = 0; j &lt; m; j++)cin &gt;&gt; g[i][j];
     &#125;
     cout&lt;&lt;bfs()&lt;&lt;endl;
-
 &#125;
 </code></pre>
-<p>图的拓扑排序(有向无环图一定有拓扑序列)</p>
+<p>##图的拓扑排序(有向无环图一定有拓扑序列)</p>
 <pre><code>int n, m;
 int h[N], e[N], ne[N], idx;
 int q[N], d[N];//q[N]为队列，d[N]是入度
@@ -908,7 +965,7 @@ bool topsort() &#123;//队列中hh是对头，tt是队尾
     return tt == n - 1;//判断它是不是有向无环图
 &#125;//q中存的就是拓扑排好的序列,d存的是每个点的入度
 </code></pre>
-<p>朴素dijkstra算法，单源求最短路</p>
+<p>##朴素dijkstra算法，单源求最短路</p>
 <pre><code>int g[N][N];
 int dist[N];
 bool st[N];
@@ -943,9 +1000,8 @@ int main() &#123;
     cout &lt;&lt; t;
 &#125;
 </code></pre>
-<p>堆优化版本的dijkstra</p>
+<p>##堆优化版本的dijkstra</p>
 <pre><code>//有向图求最短路
-//dijkstra算法
 using namespace std;
 const int N = 510;
 int n, m;
@@ -978,7 +1034,7 @@ int dijkstra() &#123;
      else return dist[n];
     &#125;
 </code></pre>
-<p>spfa算法</p>
+<p>##spfa算法&#x2F;&#x2F;求单源最短路迳，可以有负环</p>
 <pre><code>//spfa算法
 #include&lt;iostream&gt;
 #include&lt;queue&gt;
@@ -1031,7 +1087,7 @@ int main() &#123;
     else cout &lt;&lt; t;
 &#125;
 </code></pre>
-<p>有边数限制的最短路</p>
+<p>##有边数限制的最短路bell-man ford算法</p>
 <pre><code>//在边数限定条件的最短路
 using namespace std;
 const int  N = 10010;
@@ -1065,13 +1121,8 @@ int main() &#123;
     else cout &lt;&lt; t;
 &#125;
 </code></pre>
-<p>floyd算法求多源最短路</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;cmath&gt;
-using namespace std;
-const int N = 210,inf=0x3f3f3f3f;
+<p>##floyd算法求多源最短路</p>
+<pre><code>const int N = 210,inf=0x3f3f3f3f;
 int n, m, q;
 int dist[N][N];
 void floyd() &#123;//基于动态规划的算法的k次前k-1次的点有关
@@ -1105,11 +1156,8 @@ int main() &#123;
     &#125;	
 &#125;
 </code></pre>
-<p>kruskal求最小生成树</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-const int N = 200010;
+<p>##kruskal求最小生成树</p>
+<pre><code>const int N = 200010;
 int p[N];
 int n, m;
 struct Edge &#123;
@@ -1146,8 +1194,8 @@ int main() &#123;
     else cout &lt;&lt; res;
 &#125;
 </code></pre>
-<p>prim求最小生成树</p>
-<pre><code>//在最小生成树中无所为边的权重是正还是负
+<p>##prim求最小生成树</p>
+<pre><code>//在最小生成树中无所谓边的权重是正还是负
 const int N = 510,inf=0x3f3f3f3f;
 int n, m;  
 int g[N][N];
@@ -1182,7 +1230,7 @@ int main() &#123;
    else cout &lt;&lt; t;
 &#125;
 </code></pre>
-<p>染色法判定二分图</p>
+<p>##染色法判定二分图</p>
 <pre><code>void add(int a, int b) &#123;
     e[idx] = b, ne[idx] = h[a], h[a] =idx++;//链表
 &#125;
@@ -1214,7 +1262,7 @@ int main() &#123;//以邻接表的形式存储
     else cout &lt;&lt; &quot;no&quot;;
 &#125;
 </code></pre>
-<p>二分图的最大匹配</p>
+<p>##二分图的最大匹配</p>
 <pre><code>void add(int a, int b) &#123;
     e[idx] = a, ne[idx] = h[a], h[a] = idx++;
 &#125;
@@ -1246,7 +1294,7 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<p>动态规划<br>01背包</p>
+<p>##动态规划<br><strong>01背包</strong></p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 using namespace std;
@@ -1264,7 +1312,7 @@ int main() &#123;
     &#125;cout &lt;&lt; f[m];//返回的是体的最积最大为m时的最大价值
 &#125;
 </code></pre>
-<p>多重背包</p>
+<p><strong>多重背包</strong></p>
 <pre><code>//多重背包问题，多重背包是单重背包的变式，同时是完全背包问题加了部分约束
 //这里是暴力做法加上一点维数优化
 const int N = 1e4+10;
@@ -1287,9 +1335,9 @@ int main() &#123;
     if (f[x])cout &lt;&lt; &quot;Yes&quot;;
     else cout &lt;&lt; &quot;No&quot;;
 &#125;
-//优化思路，例如有s=200，可以把他降成多个2的几次幂和加上一个差的数，从而将较大的数转化成要不要选较少的几个选项及01背包变式,即二进制优化
-//多重背包的优化,是将这么多件商品进行二进制化,, 每个件数都可以表示为多个2的不同次幂加上最后一个小于2^k+1的c值,将新的件数,放进质量和体积中,成为一个新的整体
-const int N = 25000;
+</code></pre>
+<p>优化思路，例如有s&#x3D;200，可以把他降成多个2的几次幂和加上一个差的数，从而将较大的数转化成要不要选较少的几个选项及01背包变式,即二进制优化<br>多重背包的优化,是将这么多件商品进行二进制化,, 每个件数都可以表示为多个2的不同次幂加上最后一个小于2^k+1的c值,将新的件数,放进质量和体积中,成为一个新的整体<br><em><strong>多重背包二进制优化版本</strong></em></p>
+<pre><code>const int N = 25000;
 int n, m;
 int v[N], w[N];//以v[i]表示体积,另一个表示权重即价值
 int dp[N];
@@ -1320,7 +1368,7 @@ int main() &#123;
     return 0;
 &#125; 
 </code></pre>
-<p>完全背包</p>
+<p><strong>完全背包</strong></p>
 <pre><code>//一维优化
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
@@ -1344,7 +1392,7 @@ int main() &#123;
     cout &lt;&lt; dp[m] &lt;&lt; endl;
 &#125;
 </code></pre>
-<p>最长上升子序列</p>
+<p>##最长上升子序列</p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 #include&lt;algorithm&gt;
@@ -1379,7 +1427,7 @@ int main()
     return 0;
 &#125; 
 </code></pre>
-<p>最长公共子序列（非优化）</p>
+<p><strong>最长公共子序列（非优化）</strong></p>
 <pre><code>#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 #include&lt;algorithm&gt;
@@ -1402,7 +1450,7 @@ int main()
     return 0;
 &#125;
 </code></pre>
-<p>数学快速幂</p>
+<p>##数学快速幂</p>
 <pre><code>#include&lt;iostream&gt;
 using namespace std;
 int a, b;
@@ -1421,7 +1469,7 @@ int main() &#123;
     cout &lt;&lt; qpow(a, b);
 &#125;
 </code></pre>
-<p>筛质数</p>
+<p>##筛质数</p>
 <pre><code>int p[N], cnt;
 bool st[N];
 void get_primes(int n) &#123;//埃氏筛
@@ -1442,12 +1490,12 @@ void get_primes1(int n) &#123;//线性筛
     &#125;
 &#125;
 </code></pre>
-<p>最大公约数欧几里得</p>
-<pre><code>int gcd(int a, int b) &#123;
-    return b ? (b, a % b) : a;//如果b不是0，返回(b, a % b)，如果b是0，返回a
+<p>##最大公约数欧几里得</p>
+<pre><code>int gcd(int a, int b) &#123;//输入时,b&gt;a
+    return b ? gcd(b, a % b) : a;//如果b不是0，返回(b, a % b)，如果b是0，返回a
 &#125;
 </code></pre>
-<p>求约数个数，求约数之和</p>
+<p>##求约数个数，求约数之和</p>
 <pre><code>//给定n个正整数，输出这些数字乘积的约数个数，答案对1e9+7取模
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
