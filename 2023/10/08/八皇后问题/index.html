@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>dfs和bfs | vite的避难所</title>
+    <meta name="author" content="Zhz-Vite" />
+    <meta name="description" content="认真做好每件事" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>VITE的避难所</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;VITE的避难所</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>dfs和bfs</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/8
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%B4%9B%E8%B0%B7%E9%A2%98/" style="color: #03a9f4">洛谷题</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><strong>洛谷p1219八皇后</strong><br>采用按行枚举的方式进行深度搜索<br>&#x2F;&#x2F;这是一道典型的八皇后问题，我要输出前三个解，创建几个数组</p>
+<pre><code class="#include&lt;cstring&gt;">#include&lt;iostream&gt;
+using namespace std;
+const int N = 110;
+int n,idx,a;
+int g[N];
+bool dg[N], udg[N], col[N];//col表示列，dg表示对角线，udg表示副对角线，g表示地图
+void  dfs(int u)
+&#123;
+    if (u == n) &#123;
+        if (idx &lt; 3) &#123;
+            for (int i = 0; i &lt; n; i++) &#123;
+                if (g[i] != -1)cout &lt;&lt; g[i]+1 &lt;&lt; &quot; &quot;;
+            &#125;
+            cout &lt;&lt; endl;
+            idx++;
+        &#125;
+    a++;
+    return;
+    &#125;
+    for (int i = 0; i &lt; n; i++) &#123;
+        if (!col[i] &amp;&amp; !dg[u + i] &amp;&amp; !udg[n - u + i]) &#123;
+            g[u] = i;
+            col[i] = dg[u + i] = udg[n - u + i] = true;
+            dfs(u + 1);
+
+            col[i] = dg[u + i] = udg[n - u + i] = false;
+            g[u] = -1;
+        &#125;
+    &#125;
+&#125;
+int main() &#123;
+    cin &gt;&gt; n;
+    idx = 0;
+    memset(g, -1, sizeof g);
+    dfs(0);
+    cout &lt;&lt; a;
+&#125;```
+</code></pre>
+<p><strong>p1162填色问题</strong><br>这道题花了两个小时,代码量可以很少,本题思路是把边框联通的0全部标记,将剩下的0变为2<br>以下是完整的代码块</p>
+<pre><code class="#include&lt;iostream&gt;">#include&lt;cstring&gt;
+using namespace std;
+int n;
+const int N = 35;
+int g[N][N];
+int vis[N][N];
+
+void dfs(int x,int y) &#123;
+    int dx[5] = &#123; 0,-1,0,1,0 &#125;, dy[5] = &#123; 0,0,1,0,-1 &#125;;
+    for (int i = 1; i &lt;= 4; i++) &#123;
+        int x1 = x + dx[i], y1 = y + dy[i];
+        if (x1&lt;1 || x1&gt;n || y1&lt;1 || y1&gt;n || vis[x1][y1] == 0||g[x1][y1]==1)continue;
+        else &#123;
+        //	cout &lt;&lt; x1 &lt;&lt; &quot; &quot; &lt;&lt; y1 &lt;&lt; endl;
+            vis[x1][y1] = 0;
+            dfs(x1, y1);
+        &#125;
+
+    &#125;
+    
+
+&#125;
+int main() &#123;
+    memset(vis, -1,sizeof vis );
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) &#123;
+        for (int j = 1; j &lt;= n; j++)cin &gt;&gt; g[i][j];
+    &#125;
+    //分别在左右上下的边框进行遍历并且打标记
+    for (int i = 1; i &lt;= n; i++) &#123;
+            if (g[1][i] != 1 &amp;&amp; vis[1][i] ==-1) &#123;
+                dfs(1, i);
+            &#125;
+            if (g[n][i] != 1 &amp;&amp; vis[n][i] == -1) &#123;
+                dfs(n, i);
+            &#125;
+            if (g[i][1] != 1 &amp;&amp; vis[i][1] == -1) &#123;
+                dfs(i, 1);
+            &#125;
+            if (g[i][n] != 1 &amp;&amp; vis[i][n] == -1) &#123;
+                dfs(i, n);
+            &#125;
+    &#125;
+    for (int i = 1; i &lt;= n; i++) &#123;
+        for (int j = 1; j &lt;= n; j++) &#123;
+            if (vis[i][j] == -1 &amp;&amp; g[i][j] == 1)cout &lt;&lt; 1&lt;&lt;&quot; &quot;;
+            if (vis[i][j] == 0 &amp;&amp; g[i][j] == 0)cout &lt;&lt; 0&lt;&lt;&quot; &quot;;
+            if (vis[i][j] == -1 &amp;&amp; g[i][j] == 0)cout &lt;&lt; 2 &lt;&lt;&quot; &quot;;
+            //针对标记进行输出的更改~冗长~
+        &#125;cout &lt;&lt; endl;
+    &#125;
+
+
+    return 0;
+&#125;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 vite的避难所
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Zhz-Vite
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
