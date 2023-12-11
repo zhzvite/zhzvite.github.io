@@ -16,22 +16,25 @@
   <meta name="author" content="zhz_vite">
   <meta name="keywords" content="">
   
-    <meta name="description" content="xv6基本环境配置,搜集各大资料,又快有稳的配好">
+    <meta name="description" content="这是一场和计算机的邂逅.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu配置xv6的可行性措施">
-<meta property="og:url" content="http://example.com/2023/12/05/%E9%85%8D%E7%BD%AExv6%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E6%8B%BC%E5%87%91%E7%89%88%E6%9C%AC/index.html">
+<meta property="og:title" content="Csapp的一环境配置和基本使用">
+<meta property="og:url" content="http://example.com/2023/12/09/ubuntu%E9%85%8D%E7%BD%AEcsapp%E7%9A%84lab%E7%8E%AF%E5%A2%83%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Vite的避难所">
-<meta property="og:description" content="xv6基本环境配置,搜集各大资料,又快有稳的配好">
+<meta property="og:description" content="这是一场和计算机的邂逅.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-05T15:45:42.000Z">
-<meta property="article:modified_time" content="2023-12-06T05:48:41.991Z">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-aaba849ce64a1d5def8211be4765a932_720w.webp">
+<meta property="article:published_time" content="2023-12-09T04:18:00.000Z">
+<meta property="article:modified_time" content="2023-12-11T08:01:19.304Z">
 <meta property="article:author" content="zhz_vite">
 <meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-aaba849ce64a1d5def8211be4765a932_720w.webp">
   
   
   
-  <title>ubuntu配置xv6的可行性措施 - Vite的避难所</title>
+  <title>Csapp的一环境配置和基本使用 - Vite的避难所</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -224,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ubuntu配置xv6的可行性措施"></span>
+            <span id="subtitle" data-typed-text="Csapp的一环境配置和基本使用"></span>
           
         </div>
 
@@ -235,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-05 23:45" pubdate>
-          2023年12月5日 晚上
+        <time datetime="2023-12-09 12:18" pubdate>
+          2023年12月9日 中午
         </time>
       </span>
     
@@ -247,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2k 字
         
       </span>
     
@@ -258,7 +261,7 @@
         
         
         
-          23 分钟
+          17 分钟
         
       </span>
     
@@ -295,69 +298,57 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ubuntu配置xv6的可行性措施</h1>
+            <h1 id="seo-header">Csapp的一环境配置和基本使用</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="这篇文章已经失去时效性了"><a href="#这篇文章已经失去时效性了" class="headerlink" title="这篇文章已经失去时效性了"></a>这篇文章已经失去时效性了</h1><h1 id="前言-这是师傅经过彻夜的摸索总结的一条坎坷道路"><a href="#前言-这是师傅经过彻夜的摸索总结的一条坎坷道路" class="headerlink" title="前言:这是师傅经过彻夜的摸索总结的一条坎坷道路"></a><strong>前言:这是师傅经过彻夜的摸索总结的一条坎坷道路</strong></h1><h2 id="配置xv6的运行环境"><a href="#配置xv6的运行环境" class="headerlink" title="配置xv6的运行环境"></a>配置xv6的运行环境</h2><h3 id="安装-GCC-binutils"><a href="#安装-GCC-binutils" class="headerlink" title="安装 GCC&#x2F;binutils"></a>安装 GCC&#x2F;binutils</h3><p>如果没有提前搭建好运行环境，执行 <code>make qemu</code> 就会报错。</p>
-<blockquote>
-<p>Error: Couldn’t find a riscv64 version of GCC&#x2F;binutils.</p>
+                <blockquote>
+<p>该文章转载至<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/505497911">CSAPP一键环境配置、完成8个lab总结 - 知乎 (zhihu.com)</a></p>
 </blockquote>
-<p>根据报错信息，可以知道我们需要 riscv64 版本的 binutils。使用 <code>apt search</code> 命令搜索相关 packages。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">apt search binutils  |grep binutils-riscv64<br></code></pre></td></tr></table></figure>
+<p>他写的贼好,附带全套lab讲解,我是为初学者配上一点点我自己踩过的坑,加上一点总结,和避坑指南</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>我记得其实我第一次学的时候，就是因为配不好环境而没有做，所以我现在写了一个脚本，和构建了一个完整的 docker 环境，让配置环境只需要几行命令就搞定，这样大家就不会因为环境而被劝退了。</p>
+<p>首先是 Linux环境 ：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/466001838">Windows10&#x2F;11 三步安装wsl2 Ubuntu20.04（任意盘） - 知乎 (zhihu.com)</a></li>
+<li>虚拟机 安装 Ubuntu20.04，这个比较简单，找一篇博客就行，<strong>不过记得用 VMware pro 16，很方便 ssh，如果电脑配置不高，记得 Ubuntu 用 server版本。而不是 desktop</strong></li>
+</ol>
+<p><strong>在这两种方式中 WSL 安装配置比较简单，也比较高效，但是有可能会有问题，特别是在 Win11 上。Win10 上使用我没有碰到什么问题，并且安装也比较简单，如果你是Win10 我还是强烈建议使用 WSL的</strong></p>
+<p>下面是 CSAPP 环境配置，首先如果你用的是 Ubuntu20.04 及以下，那么你可以直接运行下面的脚本，就可以安装好，当然你也可以使用第二种方法 Docker。 操作都很简单，就几行命令而已，Docker 方法适用性更加广，目前大多数操作系统都支持。</p>
+<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><p>这个脚本是 20.04 及以下都可以完全配置好的，并且有附带的 PDF，如果是 Ubuntu 21及 以上需要在 lab4 的时候降低 gcc 版本。</p>
+<p>选择自己想要做项目的文件夹,cd到文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://gitee.com/lin-xi-269/csapplab/raw/origin/installAll.sh <span class="hljs-comment"># 下载脚本</span><br>bash installAll.sh <span class="hljs-comment"># 运行脚本</span><br></code></pre></td></tr></table></figure>
 
-<p>找到 3 个相关的 packages.</p>
-<ul>
-<li>binutils-riscv64-linux-gnu</li>
-<li>binutils-riscv64-linux-gnu-dbg</li>
-<li>binutils-riscv64-unknown-elf</li>
-</ul>
-<p>使用 <code>apt install</code> 命令安装上面三个 packages。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo apt install binutils-riscv64-linux-gnu<br>sudo apt install binutils-riscv64-linux-gnu-dbg<br>sudo apt install binutils-riscv64-unknown-elf<br></code></pre></td></tr></table></figure>
+<p>运行完 这个脚本之后，<strong>会在 当前目录下创建一个 csapp 文件夹，里面包含 8个 lab 按照 PDF 开始做即可以开始做了。</strong></p>
+<h4 id="PS"><a href="#PS" class="headerlink" title="PS:"></a>PS:</h4><p>我是按照脚本的方法快速下载完成的,make的方法</p>
+<ol>
+<li><p>重一下terminal</p>
+</li>
+<li><p>例如在datalab里面,需要在terminal中进入到handout文件夹再进行make,然后依据官方文档操作(自己犯蠢,浪费了一个多小时,原作者早就搞好了)</p>
+<p>不过在这里再次感谢原作者对后人的帮助</p>
+</li>
+</ol>
+<h3 id="Docker-一键环境配置（支持大多数主流操作系统）"><a href="#Docker-一键环境配置（支持大多数主流操作系统）" class="headerlink" title="Docker 一键环境配置（支持大多数主流操作系统）"></a>Docker 一键环境配置（支持大多数主流操作系统）</h3><ol>
+<li>首先是安装 docker</li>
+</ol>
+<p>下面是我在 Ubuntu 上 使用的 <strong>命令</strong>，来自 docker 官网，其他发行版可以参考官网：<a href="https://link.zhihu.com/?target=https://docs.docker.com/engine/install/">安装 Docker 引擎|Docker 文档</a></p>
+<p>（注意：wsl 不能用这个脚本，去<a href="https://link.zhihu.com/?target=https://docs.docker.com/desktop/windows/wsl/">Docker Desktop WSL 2 后端</a> 下载 Docker Desktop 即可。还有一种方法是在 vscode 安装 <a href="https://link.zhihu.com/?target=https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Docker - Visual Studio Marketplace</a> 插件，安装好点击 弹窗出的 install 即可自动安装好）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 官网提供的 Ubuntu 下的 sh 脚本安装方法（不建议将脚本用于生产环境 ) https://docs.docker.com/engine/install/ubuntu/#installation-methods</span><br>curl -fsSL https://get.docker.com -o get-docker.sh<br>sudo sh get-docker.sh<br></code></pre></td></tr></table></figure>
 
-<p>安装成功后，执行 <code>make qemu</code> 命令，提示如下报错。</p>
-<blockquote>
-<p>make: riscv64-unknown-elf-gcc: Command not found</p>
-</blockquote>
-<p><code>riscv64-unknown-elf-gcc</code> 可以当作是 gcc，但是是 riscv64 版本的。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo apt install gcc-10-riscv64-linux-gnu<br></code></pre></td></tr></table></figure>
+<p>（wsl可跳过这一步）接下来可以把 docker 加入到用户组，这样以后使用 docker 就不需要 sudo，否则需要 sudo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># sudo</span><br>sudo groupadd  docker<br>sudo usermod -aG docker <span class="hljs-variable">$USER</span><br>newgrp - docker<br><span class="hljs-comment"># sudo reboot  # 如果执行完上面还是不能 不sudo 使用 docker 就重启，我的是重启后才生效,</span><br></code></pre></td></tr></table></figure>
 
-<p>安装之后得到 <code>riscv64-linux-gnu-gcc-10</code> 文件，进入 &#x2F;usr&#x2F;bin 目录，建立软连接。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo ln -s riscv64-linux-gnu-gcc-10 riscv64-unknown-elf-gcc<br></code></pre></td></tr></table></figure>
+<p>然后开始部署环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 下载镜像</span><br>docker pull linxi177229/csapp:latest<br><span class="hljs-comment"># 查看</span><br>docker images<br><span class="hljs-comment"># 启动容器（里面有配置好的环境 和 PDF 资料）</span><br>docker run --name csapp -itd linxi177229/csapp <br><span class="hljs-comment"># 进入容器 </span><br>docker attach csapp<br><br><span class="hljs-comment"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="hljs-comment"># 进入 lab1 进行一个简单的测试</span><br><span class="hljs-built_in">cd</span> ~<br><span class="hljs-built_in">ls</span><br><span class="hljs-built_in">cd</span> csapplab<br><span class="hljs-built_in">cd</span> datalab/datalab-handout<br>make clean &amp;&amp; make &amp;&amp; ./btest<br></code></pre></td></tr></table></figure>
 
-<p>链接[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/509296983">xv6] xv6 的运行环境搭建 - 知乎 (zhihu.com)</a></p>
-<h3 id="qemu"><a href="#qemu" class="headerlink" title="qemu"></a><strong>qemu</strong></h3><p>按官网所说，下载qemu 5.1.0并解压缩</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">wget https://download.qemu.org/qemu-5.1.0.tar.xz <br>tar xf qemu-5.1.0.tar.xz<br></code></pre></td></tr></table></figure>
 
-<p>执行一系列指令</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">cd qemu-5.1.0 <br>./configure --disable-kvm --disable-werror --prefix=/usr/local --target-list=&quot;riscv64-softmmu&quot; <br>make <br>sudo make install <br>cd ..<br></code></pre></td></tr></table></figure>
 
-<p>其中最长的那行命令可能出问题，如果报这个错误:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">ERROR: glib-2.48 gthread-2.0 is required to compile QEMU<br></code></pre></td></tr></table></figure>
-
-<p>解决方法为<code>sudo apt install libglib2.0-dev</code></p>
-<p>还可能报这个错误：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">ERROR: pixman &gt;= 0.21.8 not present.<br>       Please install the pixman devel package.<br></code></pre></td></tr></table></figure>
-
-<p>解决方法为<code>sudo apt install libpixman-1-dev</code></p>
-<p>一切正常的话, 输出的最后是</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">default devices   yes<br>plugin support    no<br>fuzzing support   no<br>gdb               /usr/bin/gdb<br>rng-none          no<br>Linux keyring     yes<br>cross containers  no<br></code></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="xv6操作系统源码"><a href="#xv6操作系统源码" class="headerlink" title="xv6操作系统源码"></a><strong>xv6操作系统源码</strong></h2><p>直接clone吧，虽然速度慢，好在文件不大</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">git clone git://g.csail.mit.edu/xv6-labs-2020<br></code></pre></td></tr></table></figure>
-
-<p>你可能会发现clone下来的这个文件夹是空的，别担心，git就是这样的，运行这两条指令</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">cd xv6-labs-2020<br>git checkout util<br></code></pre></td></tr></table></figure>
-
-<p>文件夹里就有东西了，很神奇吧</p>
-<p>链接[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/544013654">6.S081] 刷后总结与环境配置 - 知乎 (zhihu.com)</a></p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 按官方指南手册 安装必须的工具链</span><br>$ sudo apt-get install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu <br><span class="hljs-comment"># 单独移除掉qemu的新版本, 因为不知道为什么build时候会卡壳</span><br>$ sudo apt-get remove qemu-system-misc<br><span class="hljs-comment"># 额外安装一个旧版本的qemu</span><br>$ wget https://download.qemu.org/qemu-5.1.0.tar.xz<br>$ tar xf qemu-5.1.0.tar.xz<br>$ <span class="hljs-built_in">cd</span> qemu-5.1.0<br>$ ./configure --disable-kvm --disable-werror --prefix=/usr/local --target-list=<span class="hljs-string">&quot;riscv64-softmmu&quot;</span><br>$ make<br>$ sudo make install<br><br><span class="hljs-comment"># 克隆xv6实验仓库</span><br>$ git <span class="hljs-built_in">clone</span> git://g.csail.mit.edu/xv6-labs-2020<br>$ <span class="hljs-built_in">cd</span> xv6-labs-2020<br>$ git checkout util<br><br><span class="hljs-comment"># 进行编译</span><br>$ make qemu<br><span class="hljs-comment"># 编译成功并进入xv6操作系统的shell</span><br>$ xv6 kernel is booting<br><br>$ hart 2 starting<br>$ hart 1 starting<br>$ init: starting sh<br>$ (shell 等待用户输入...)<br> <br><span class="hljs-comment"># 尝试一下ls指令</span><br>$ <span class="hljs-built_in">ls</span><br>.              1 1 1024<br>..             1 1 1024<br>README         2 2 2226<br>xargstest.sh   2 3 93<br><span class="hljs-built_in">cat</span>            2 4 23680<br><span class="hljs-built_in">echo</span>           2 5 22536<br>forktest       2 6 13256<br>grep           2 7 26904<br>init           2 8 23320<br><span class="hljs-built_in">kill</span>           2 9 22440<br><span class="hljs-built_in">ln</span>             2 10 22312<br><span class="hljs-built_in">ls</span>             2 11 25848<br><span class="hljs-built_in">mkdir</span>          2 12 22552<br><span class="hljs-built_in">rm</span>             2 13 22544<br>sh             2 14 40728<br>stressfs       2 15 23536<br>usertests      2 16 150160<br>grind          2 17 36976<br><span class="hljs-built_in">wc</span>             2 18 24616<br>zombie         2 19 21816<br>console        3 20 0<br></code></pre></td></tr></table></figure>
-
-<p>至此, 实验环境设立完成, 我们成功boot了<strong>xv6</strong>这个简易操作系统.</p>
-<p>本实验中, 因为实现的都是用户侧的函数, 所以比较懒惰的我忽略了不少系统调用的错误返回值检查. 希望大家不要学我.</p>
-<p>链接<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/624091268">MIT 6.S081 Operating System  - 知乎 (zhihu.com)</a></p>
+<p><img src="https://pic3.zhimg.com/80/v2-aaba849ce64a1d5def8211be4765a932_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>docker 演示过程</p>
+<h2 id="Gitee-原作者的gitee"><a href="#Gitee-原作者的gitee" class="headerlink" title="Gitee(原作者的gitee)"></a>Gitee(原作者的gitee)</h2><p><a href="https://link.zhihu.com/?target=https://gitee.com/lin-xi-269/csapplab">csapplab: 实现csapp的所有lab (gitee.com)</a></p>
+<p><a href="https://link.zhihu.com/?target=https://github.com/zhengjiaw/csapplab">zhengjiaw&#x2F;csapplab (github.com)</a></p>
+<p>ps:自我感觉csapp配置环境比xv6的简单好多好多,但是原作者的配置好似没有配置gbd断点调试</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p><strong>Good luck and have fun！！！~</strong></p>
 
                 
               </div>
@@ -376,7 +367,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%B8%A9%E5%9D%91%E4%B8%8E%E5%9F%8B%E5%9D%91/" class="category-chain-item">踩坑与埋坑</a>
+  <a href="/categories/csapp%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9D%9F/" class="category-chain-item">csapp从入门到入坟</a>
   
   
 
@@ -393,6 +384,8 @@
       
         <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="print-no-link">#学习笔记</a>
       
+        <a href="/tags/csapp/" class="print-no-link">#csapp</a>
+      
     </div>
   
 </div>
@@ -403,8 +396,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ubuntu配置xv6的可行性措施</div>
-      <div>http://example.com/2023/12/05/配置xv6运行环境拼凑版本/</div>
+      <div>Csapp的一环境配置和基本使用</div>
+      <div>http://example.com/2023/12/09/ubuntu配置csapp的lab环境超级简单总结/</div>
     </div>
     <div class="license-meta">
       
@@ -416,7 +409,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月5日</div>
+          <div>2023年12月9日</div>
         </div>
       
       
@@ -448,9 +441,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/05/%E5%BD%93%E4%BB%8A%E7%A4%BE%E4%BC%9A,%E9%9D%92%E5%B9%B4%E4%BA%BA%E5%AD%A6%E4%B9%A0%E6%9B%B4%E5%BA%94%E6%B3%A8%E9%87%8D%E5%B9%BF%E5%BA%A6/" title="广度学习辩论稿">
+                      <a href="/2023/12/11/lab1_datalab/" title="Csapp的lab1-datalab的最全详解">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">广度学习辩论稿</span>
+                        <span class="hidden-mobile">Csapp的lab1-datalab的最全详解</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -458,8 +451,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/24/%E6%9D%BF%E5%AD%90/" title="第一个板子">
-                        <span class="hidden-mobile">第一个板子</span>
+                      <a href="/2023/12/09/%E6%97%A5%E5%B8%B8/" title="日常">
+                        <span class="hidden-mobile">日常</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
