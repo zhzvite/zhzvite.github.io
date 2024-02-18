@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":10,"offset":10,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="通过docker快速配置xv6和csapp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置xv6和csapp">
+<meta property="og:url" content="http://example.com/EATPOOP/docker_use/2024/01/14/index.html">
+<meta property="og:site_name" content="Vite">
+<meta property="og:description" content="通过docker快速配置xv6和csapp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315168.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315176.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315190.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315198.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315207.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315215.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315227.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315236.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg">
+<meta property="article:published_time" content="2024-01-14T09:54:00.000Z">
+<meta property="article:modified_time" content="2024-01-17T13:14:00.000Z">
+<meta property="article:author" content="zhz_vite">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp">
+
+<link rel="canonical" href="http://example.com/EATPOOP/docker_use/2024/01/14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>配置xv6和csapp | Vite</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vite</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-study">
+
+    <a href="/study/" rel="section"><i class="fa fa-anchor fa-fw"></i>不周山</a>
+
+  </li>
+        <li class="menu-item menu-item-create">
+
+    <a href="/create/" rel="section"><i class="fa fa-sitemap fa-fw"></i>登天路</a>
+
+  </li>
+        <li class="menu-item menu-item-pure">
+
+    <a href="/pure/" rel="section"><i class="fa fa-calendar fa-fw"></i>彼岸花</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zhzvite" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/EATPOOP/docker_use/2024/01/14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="zhz_vite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vite">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          配置xv6和csapp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-01-14 17:54:00" itemprop="dateCreated datePublished" datetime="2024-01-14T17:54:00+08:00">2024-01-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-17 21:14:00" itemprop="dateModified" datetime="2024-01-17T21:14:00+08:00">2024-01-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/EATPOOP/" itemprop="url" rel="index"><span itemprop="name">EATPOOP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">通过docker快速配置xv6和csapp</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在折腾Mit6.s081的课程实验环境配置和csapp，在网上搜集了大量资料，整理出了以下教程，不得不说Docker真的是个超级无敌伟大的发明</p>
+<h1 id="在WIN10下的WSL2踩坑和安装"><a href="#在WIN10下的WSL2踩坑和安装" class="headerlink" title="在WIN10下的WSL2踩坑和安装"></a>在WIN10下的WSL2踩坑和安装</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7099108145825316894#heading-0">参考文章</a></p>
+</blockquote>
+<p>如果使用的是家庭版win10，先win+R输入winver看看操作系统版本号是不是</p>
+<ul>
+<li>Windows 10 64-bit: 家庭版 or 专业版 21H1 (build 19043)及以上, or 企业版 or 教育版 20H2 (build 19042)及以上. 不是的话本篇文章无效</li>
+</ul>
+<h2 id="1-安装Hyper-V"><a href="#1-安装Hyper-V" class="headerlink" title="1.安装Hyper-V"></a>1.安装Hyper-V</h2><p>这个是Windows10内置的，不用去特地下载安装，这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
+<p>首先右键开始菜单，选择应用与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp" alt="1513668234-4363-20171206211136409-1609350099.png"></p>
+<p>然后点击程序与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315168.awebp" alt="1513668234-4368-20171206211345066-1430601107.png"></p>
+<p>选择启用或关闭Windows功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315176.awebp" alt="1513668234-9748-20171206211435534-1499766232.png"></p>
+<p>这是第一种情况<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315190.awebp" alt="1513668234-6433-20171206211858191-1177002365.png"></p>
+<p>如果你的界面是这样的，且没有下列选项中的Hyper-V，则先选中打钩的下面三个，然后确定，再参考<a href="https://link.juejin.cn/?target=https://blog.csdn.net/lanxingxing666666/article/details/111354089">win10没有Hyper-v的解决方法</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315198.awebp" alt="Snipaste_2022-05-18_00-26-50.png"></p>
+<h2 id="2-将WSL版本升级为WSL2"><a href="#2-将WSL版本升级为WSL2" class="headerlink" title="2.将WSL版本升级为WSL2"></a>2.将WSL版本升级为WSL2</h2><p>首先看看版本号是否为2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码wsl -l -v</span><br></pre></td></tr></table></figure>
+
+<p>若已有发行版且版本为1，使用命令 </p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arduino</span><br><span class="line">复制代码wsl --set-<span class="keyword">default</span>-version <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>发现版本还没改过来</p>
+<p>管理员权限打开终端，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line">复制代码dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p>然后下载Linux的内核更新包并安装 x64：<a href="https://link.juejin.cn/?target=https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">wslstorestorage.blob.core.windows.net&#x2F;wslblob&#x2F;wsl…</a></p>
+<p>仍然是管理员权限下打开终端，先查看更新前的WSL版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码wsl -l -v</span><br></pre></td></tr></table></figure>
+
+<p>输入更新的命令：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arduino</span><br><span class="line">复制代码wsl.exe --set-version Ubuntu <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>更新命令有的用的：<code>wsl --set-version Ubuntu 2</code>，但是在我的电脑上报错：不存在具有提供的名称的分布。 解决方法就是把wsl改成wsl.exe.</p>
+<p>如果未安装Linux发行版，也可以上Microsoft Store上直接安装</p>
+<p>最后看看版本号是否为2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码wsl -l -v</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h1><blockquote>
+<p>建议直接官网下载</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/windows-install/">DOCKER FOR WINDOWS</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/mac-install/">DOCKER FOR LINUX</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/mac-install/">DOCKER FOR MAC</a></p>
+<p><strong>对于mac用户而言，直接去官网上下载docker，注意intel和apple版本</strong></p>
+<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="Docker-Csapp环境安装"><a href="#Docker-Csapp环境安装" class="headerlink" title="Docker+Csapp环境安装"></a>Docker+Csapp环境安装</h2><ol>
+<li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 下载镜像</span><br><span class="line">docker pull linxi177229/csapp:latest</span><br><span class="line"># 查看</span><br><span class="line">docker images</span><br><span class="line"># 启动容器（里面有配置好的环境 和 PDF 资料）</span><br><span class="line">docker run --name csapp -itd linxi177229/csapp</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>打开VScode，在扩展市场安装Docker插件，然后进入，右键对应容器，选择<strong>附加VisualStudioCode</strong>，然后vscode会自动挂载容器，会弹出一个新的窗口。</p>
+</li>
+<li><p>开始愉快的实验吧！</p>
+</li>
+<li><p>测试环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>GDB安装</p>
+</li>
+</ol>
+<p>在这个doker中默认是没有安装gdb的,所以为了在bomblab中进行gdb的使用,我们需要在doker中安装gdb,该doker镜像是基于ubuntu20.04的,故我们直接在终端使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install  gdb</span><br></pre></td></tr></table></figure>
+
+<p>安装好后,cd到bomb的文件夹内,输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb bomb</span><br></pre></td></tr></table></figure>
+
+<p>然后开始实验吧!<del>这个点废了我一个晚上才弄明白</del></p>
+<h2 id="Ubuntu虚拟机安装CSAPP环境"><a href="#Ubuntu虚拟机安装CSAPP环境" class="headerlink" title="Ubuntu虚拟机安装CSAPP环境"></a>Ubuntu虚拟机安装CSAPP环境</h2><ol>
+<li><p>虚拟机 安装 Ubuntu20.04，这个比较简单，找一篇博客就行，<strong>不过记得用 VMware pro 16，很方便 ssh，如果电脑配置不高，记得 Ubuntu 用 server版本。而不是 desktop</strong></p>
+</li>
+<li><p>CSAPP 环境配置，首先如果你用的是 Ubuntu20.04 及以下，那么你可以直接运行下面的脚本，就可以安装好 操作都很简单，就几行命令而已，Docker 方法适用性更加广，目前大多数操作系统都支持。</p>
+</li>
+</ol>
+<p>这个脚本是 20.04 及以下都可以完全配置好的，并且有附带的 PDF，如果是 Ubuntu 21及 以上需要在 lab4 的时候降低 gcc 版本。</p>
+<p>选择自己想要做项目的文件夹,cd到文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://gitee.com/lin-xi-269/csapplab/raw/origin/installAll.sh <span class="comment"># 下载脚本</span></span><br><span class="line">bash installAll.sh <span class="comment"># 运行脚本</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>运行完 这个脚本之后，<strong>会在 当前目录下创建一个 csapp 文件夹，里面包含 8个 lab 按照 PDF 开始做即可以开始做了。</strong></li>
+</ol>
+<p>然后可以用vscode远程链接ubuntu,通过ssh,然后测试环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Docker-XV6环境安装"><a href="#Docker-XV6环境安装" class="headerlink" title="Docker+XV6环境安装"></a>Docker+XV6环境安装</h2><ol>
+<li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。这个 images （400多MB）开箱即用,环境已经配置好了。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#下载镜像</span><br><span class="line">docker pull linxi177229/mit6.s081:latest</span><br><span class="line"># 查看</span><br><span class="line">docker images</span><br><span class="line"># 启动容器（里面有配置好的环境 和 PDF 资料）</span><br><span class="line">docker run --name xv6 -itd linxi177229/mit6.s081:latest</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>打开VScode，在扩展市场安装Docker插件，然后进入，右键对应容器，选择<strong>附加VisualStudioCode</strong>，然后vscode会自动挂载容器，会弹出一个新的窗口。</li>
+<li>开始愉快的实验吧！</li>
+<li>测试环境</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cd xv6-labs-2020</span><br><span class="line"></span><br><span class="line">make qemu # 开启一个 shell 手动运行那些 usr/ 下的程序来测试</span><br><span class="line"></span><br><span class="line"> #看目录下的各级目录</span><br><span class="line"> ls</span><br><span class="line"> </span><br><span class="line"># 自动化测试：make grade 可以获得得分情况</span><br><span class="line">make grade</span><br><span class="line"></span><br><span class="line"># 或者可以使用 进行单个测试</span><br><span class="line">./grade-具体lab名字 part名字</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>退出方式</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在另一个新开的终端执行 </span></span><br><span class="line">pkill -f qemu  </span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>调试方法 GDB</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line"><span class="comment"># 第一次执行 gdb 需要 执行 下面条语句 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;add-auto-load-safe-path <span class="subst">$(pwd)</span>/.gdbinit &quot;</span> &gt;&gt; ~/.gdbinit </span><br><span class="line"><span class="comment"># 第一次执行</span></span><br><span class="line">make CPUS=1 qemu-gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">gdb-multiarch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来就和使用 平常的 gdb 一样了， layout split 是一个很棒的用法</span></span><br><span class="line"><span class="comment"># 在 gdb 中输入 kill 即可 退出</span></span><br><span class="line"><span class="comment"># 或者 在第三个 teminal 中输入 pkill -f qemu 也可以退出</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b3dd871b83018aa931bf.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315207.jpg"></a></p>
+<h2 id="环境安装时的截图"><a href="#环境安装时的截图" class="headerlink" title="环境安装时的截图"></a>环境安装时的截图</h2><h3 id="CMD截图"><a href="#CMD截图" class="headerlink" title="CMD截图"></a>CMD截图</h3><p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b395871b83018aa824cd.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315215.jpg"></a></p>
+<h3 id="Docker截图"><a href="#Docker截图" class="headerlink" title="Docker截图"></a>Docker截图</h3><p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b5d3871b83018aafffff.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315227.jpg"></a></p>
+<h3 id="Vscode截图"><a href="#Vscode截图" class="headerlink" title="Vscode截图"></a>Vscode截图</h3><p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b64c871b83018ab1ab98.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315236.jpg"></a></p>
+<blockquote>
+<p>配置环境主打一个能用就好，不要过多的纠结。</p>
+</blockquote>
+<h1 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h1><blockquote>
+<p>菜就多练，输不起就别玩</p>
+<p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b50a871b83018aad5026.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg"></a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/PLAY/guitar_learn/2024/01/10/" rel="prev" title="guitar_learn">
+      <i class="fa fa-chevron-left"></i> guitar_learn
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/EATPOOP/gdb_use/2024/01/17/" rel="next" title="gdb使用指北">
+      gdb使用指北 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8WIN10%E4%B8%8B%E7%9A%84WSL2%E8%B8%A9%E5%9D%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">在WIN10下的WSL2踩坑和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85Hyper-V"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Hyper-V</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%86WSL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E4%B8%BAWSL2"><span class="nav-number">2.2.</span> <span class="nav-text">2.将WSL版本升级为WSL2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Csapp%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.1.</span> <span class="nav-text">Docker+Csapp环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85CSAPP%E7%8E%AF%E5%A2%83"><span class="nav-number">4.2.</span> <span class="nav-text">Ubuntu虚拟机安装CSAPP环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-XV6%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.3.</span> <span class="nav-text">Docker+XV6环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%97%B6%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.</span> <span class="nav-text">环境安装时的截图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.1.</span> <span class="nav-text">CMD截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.2.</span> <span class="nav-text">Docker截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vscode%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.3.</span> <span class="nav-text">Vscode截图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Good-Luck"><span class="nav-number">5.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zhz_vite"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">zhz_vite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhzvite" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhzvite" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2811215248@qq.com" title="E-Mail → mailto:2811215248@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhz_vite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">229k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:57</span>
+</div>
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已半死不活地运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
