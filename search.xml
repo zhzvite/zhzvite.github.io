@@ -610,7 +610,12 @@
 </blockquote>
 <p>熟悉的陌生人,地缘关系的隔离,因为父母而继承的关系私以为都会在这个网络快速发展之中被不在重视,不在特殊化,年轻一代因为网络能认识到更志同道合的朋友,但因父母而继承的关系能有共同话题的年轻一辈真是太少了,自然会以许多借口缘由而放弃社交,因为社交本身就是一件交易,付出你的价值,换取合理的利益,当交易双方不对等时,做不到一味的付出也就造成了交易的终止.</p>
 <p>当然也不否认一种可能,就是多年后当年轻一辈变成了老一辈,可能会继承老一辈的思想,可能也会无聊,在不常生活的家乡去找寻昔日的年轻一辈主动进行社交,来抵消自己内心中的空虚和对过年走亲访友的一些道德感.</p>
-<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><h3 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h3><blockquote>
+<h1 id="传承"><a href="#传承" class="headerlink" title="传承?"></a>传承?</h1><p>以前的社会关系,社会环境恶劣,养育后代是为了家族的传承接替,需要时刻保证有壮丁能为了一整个部落抛头颅洒热血.但现在呢?似乎已经发生了根本性变化,平静的,发展的世界已经形成了太久太久,其实也没有很久,只需要两三代就可以淡掉一点战争的痛苦,抱着满怀的希望和信心开展新的生活.在平静的时代,传宗接代,血缘关系淡化,部分人开始思考多元的性,彩虹游行时长发生,可以预见,在没有外部压迫,对传承没有什么需求了,或者说哲学的进步,更多的人开始更加独立,思考的更为全面,有人是想摆烂,有人是就像<code>何以为家</code>中的那样不想让孩子生下来一起受罪.思想在当代更为跃动,颠覆了百年前,千年前的封建传统.</p>
+<p>当然也不妨有一个猜测,个人的传承会被集体的传承所替代,有社会统一安排进行生育,以人造子宫,社会抚养中心的方式,中心化传承,不必做到像氪星人那样出生决定一切,那太逻辑了,违背了人性.如此的传承应该是会有更高的效率,更高的上限,或者说是一种容错方式</p>
+<blockquote>
+<p>以上内容纯属无稽之谈</p>
+</blockquote>
+<h3 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h3><blockquote>
 <p>愿汝之体恒满精力，愿汝之心恒葆青春。</p>
 </blockquote>
 ]]></content>
@@ -1411,33 +1416,46 @@ F:\hexo\blog\source\_data\styles.styl
 <h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><blockquote>
 <p>官方文档：<a href="https://ohmyposh.dev/">https://ohmyposh.dev/</a></p>
 </blockquote>
-<p>现在的oh-my-posh可以直接从Microsoft Store下载exe文件安装了，别去折腾命令行的命令了，速度太慢了。<br>安装完成后，如果是windows系统，推荐Windows Terminal（没有的话在Microsoft Store里安装）下启动powershell。</p>
+<p>现在的oh-my-posh可以直接从Microsoft Store下载exe文件安装了，别去折腾命令行的命令了，速度太慢了。<br>安装完成后，如果是windows系统，推荐Windows Terminal（没有的话在Microsoft Store里安装）下启动powershell,推荐在商店中下载安装<code>fluent terminal</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205681.png" alt="image-20240225214958894"></p>
 <h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>配置oh-my-posh过程中比较复杂的点就是Nerd Font和Themes这两点：</p>
 <h3 id="1-Nerd-Font"><a href="#1-Nerd-Font" class="headerlink" title="1.Nerd Font"></a>1.Nerd Font</h3><p>去下面的网站下载一个名字里面带NF的字体，windows下直接安装，其他系统参照网站说明。</p>
 <blockquote>
 <p>下载地址：<a href="https://www.nerdfonts.com/">https://www.nerdfonts.com/</a></p>
 </blockquote>
-<h3 id="2-Themes"><a href="#2-Themes" class="headerlink" title="2.Themes"></a>2.Themes</h3><h4 id="step1：设置字体"><a href="#step1：设置字体" class="headerlink" title="step1：设置字体"></a>step1：设置字体</h4><p>用管理员身份打开Windows Terminal，在界面中按下 ctrl+ shift+，后，会打开一个settings.json<br>在里面找到一段：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">   <span class="string">&quot;profiles&quot;</span>: </span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">&quot;defaults&quot;</span>: &#123;&#125;,</span><br><span class="line">其他代码...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在“defaults”：{}的括号里面写Font.face的内容，假设我们用MesloLGM NF这个字体的话：<br>写出来的结果是这样的：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&quot;profiles&quot;: </span><br><span class="line">&#123;</span><br><span class="line">    &quot;defaults&quot;: </span><br><span class="line">    &#123;</span><br><span class="line">        &quot;<span class="attribute">font</span>&quot;: </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;face&quot;: <span class="string">&quot;MesloLGM NF&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    其他代码...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>记得保存，</p>
-<h4 id="step2-配置启动文件"><a href="#step2-配置启动文件" class="headerlink" title="step2:配置启动文件"></a>step2:配置启动文件</h4><p>在Windows Terminal中输入：</p>
+<p>或者<a href="https://link.zhihu.com/?target=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip">点击下载</a>然后解压全选安装</p>
+<h3 id="2-Themes"><a href="#2-Themes" class="headerlink" title="2.Themes"></a>2.Themes</h3><h4 id="step1：设置字体"><a href="#step1：设置字体" class="headerlink" title="step1：设置字体"></a>step1：设置字体</h4><p>用管理员身份打开Fluent Terminal，在界面中按下 ctrl+ shift+，后，会打开一个界面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img//202402252205681.png" alt="image-20240225215041822"></p>
+<p>选择终端,更改字体</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205721.png" alt="image-20240225215109949"></p>
+<p>记得保存，新开一个窗口,看字体改变.</p>
+<h4 id="step2-更改主题"><a href="#step2-更改主题" class="headerlink" title="step2:更改主题"></a>step2:更改主题</h4><h5 id="启动oh-my-posh"><a href="#启动oh-my-posh" class="headerlink" title="启动oh-my-posh"></a>启动oh-my-posh</h5><p>在Fluent Terminal中输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
 
-<p>在打开的文件中填入以下代码后保存：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">oh</span><span class="literal">-my-posh</span> init pwsh <span class="literal">--config</span> <span class="string">&quot;<span class="variable">$env:POSH_THEMES_PATH</span>\zash.omp.json&quot;</span> | <span class="built_in">Invoke-Expression</span> </span><br></pre></td></tr></table></figure>
+<p>第一次打开该脚本不存在,选择创建,在打开的文件中填入以下代码后保存：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">oh</span><span class="literal">-my-posh</span> init pwsh | <span class="built_in">Invoke-Expression</span> </span><br></pre></td></tr></table></figure>
 
-<p>然后输入下面的命令，来让配置生效：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.<span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
+<p>新开一个窗口,看脚本有无运行.</p>
+<blockquote>
+<p>若出现以下错误:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">无法加载文件C:\Users\xxx\Documents\WindowsPowerShell\profile.ps1，因为在此系统上禁止运行脚本</span><br></pre></td></tr></table></figure>
 
-<p>上面过程中zash是主题的一种，是最简单的主题之一，我需要的稍微让命令行好看一点点就够了，如果要去折腾的话，那么在命令行里面输入：</p>
+<p>解决方案：</p>
+<p>win+x（或右键任务栏的Windows图标），选择以管理员身份运行powershell（Windows终端)&#x2F;Fluent Terminal，输入以下命令，重新打开终端即可成功执行</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span><span class="operator">-</span>ExecutionPolicy <span class="operator">-</span>ExecutionPolicy RemoteSigned</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h5><p>输入以下命令查看主题,会看到噼里啪啦一大堆主题样式都会蹦出来，选一个喜欢的</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Get</span><span class="operator">-</span>PoshThemes</span><br></pre></td></tr></table></figure>
 
-<p>会看到噼里啪啦一大堆主题样式都会蹦出来，选一个喜欢的，比如喜欢jandedobbeleer这个主题，按上面的步骤把$PROFILE里面的”zash.omp.json”改成“jandedobbeleer.omp.json”就行了。<br>在这个过程中很可能会出现一些图标不显示，显示一半，或者各种方框乱码，那都是字体的问题，多重启windows Terminal几次，总会成功的。</p>
-<p>还是期待能像oh-my-zsh里面一样搞一个random，毕竟我比较变态，加油吧，jandedobbeleer！</p>
+<p>最后会得到所有主题的路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205758.png" alt="image-20240225215638983"></p>
+<p>复制路径,在这里比如我想使用<code>catppuccin</code>的主题,那么我就输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
+
+<p>然后更改命令为如下路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img//202402252205792.png" alt="image-20240225215821096"></p>
+<p>新开一个窗口,观察主题有无发生改变,在这个过程中很可能会出现一些图标不显示，显示一半，或者各种方框乱码，那都是字体的问题，多重启windows Terminal几次，总会成功的。</p>
+<h2 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h2><p>少折腾,好看,能用就行</p>
 ]]></content>
       <categories>
         <category>EATPOOP</category>
@@ -1451,6 +1469,9 @@ F:\hexo\blog\source\_data\styles.styl
     <title>配置xv6和csapp</title>
     <url>/EATPOOP/docker_use/2024/01/14/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在折腾Mit6.s081的课程实验环境配置和csapp，在网上搜集了大量资料，整理出了以下教程，不得不说Docker真的是个超级无敌伟大的发明</p>
+<blockquote>
+<p>M系列芯片的macbook还是别考虑做实验了,反正我没折腾好</p>
+</blockquote>
 <h1 id="在WIN10下的WSL2踩坑和安装"><a href="#在WIN10下的WSL2踩坑和安装" class="headerlink" title="在WIN10下的WSL2踩坑和安装"></a>在WIN10下的WSL2踩坑和安装</h1><blockquote>
 <p><a href="https://juejin.cn/post/7099108145825316894#heading-0">参考文章</a></p>
 </blockquote>
