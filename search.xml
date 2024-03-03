@@ -162,7 +162,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Csapp自学指北</title>
+    <title>CSAPP自学指北</title>
     <url>/CSAPP/lab0/2024/02/27/</url>
     <content><![CDATA[<blockquote>
 <p>Csapp真心不好学</p>
@@ -187,7 +187,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Csapp的lab1-datalab的最全详解</title>
+    <title>CSAPP的lab1-datalab的最全详解</title>
     <url>/CSAPP/lab1/2023/12/11/</url>
     <content><![CDATA[<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
 <li>位运算(对!,^,&amp;,~,|,这些符号的准确理解)</li>
@@ -218,7 +218,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Csapp的lab2-bomblab的最全详解</title>
+    <title>CSAPP的lab2-bomblab</title>
     <url>/CSAPP/lab2/2024/01/21/</url>
     <content><![CDATA[<blockquote>
 <p>这个lab2真的做了很久,做的久,解析写的也久,还抽了部分打题的时间写的,这个lab是真的有意思</p>
@@ -491,7 +491,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Csapp的lab3-attacklab</title>
+    <title>CSAPP的lab3-attacklab</title>
     <url>/CSAPP/lab3/2024/02/27/</url>
     <content><![CDATA[<blockquote>
 <p>一个寒假没动,开学了,努努力把Attack Lab开盒了</p>
@@ -821,9 +821,19 @@
     <url>/PLAY/guitar_learn/2024/01/10/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几日学了吉他，试图看到吉他的大门，才恍然间发现自己的音准很差，听不出音，每天也不怎么练琴，断断续续练了十几二十天，勉强把爱的罗曼史弹完，现在脱离了<a href="https://space.bilibili.com/87918598/channel/collectiondetail?sid=185860">吉他大学霸的基础课</a>,转而投向了<a href="https://space.bilibili.com/326251291/channel/collectiondetail?sid=434227&ctype=0">元子弹吉他</a>的基础课,主要是感觉吉他大学霸讲的属实是找不到什么练琴的快感，太枯燥了，练琴是为了开心，就应该去弹曲子，这才是正路，有着强烈的正反馈，而不是天天练基本功折磨自己。目前已经在击弦努力了，预计是每天练会一门课，同时对之前的课程谱子进行复习，争取稳扎稳打，每日都有练习</p>
 <h3 id="会的曲子"><a href="#会的曲子" class="headerlink" title="会的曲子"></a>会的曲子</h3><ol>
-<li><a href="https://www.bilibili.com/video/BV1Vb411c7x5/?spm_id_from=333.337.search-card.all.click">《爱的罗曼史》</a></li>
-<li><a href="https://www.bilibili.com/video/BV1x4411U7n7/?spm_id_from=333.337.search-card.all.click&vd_source=48b7f9b11252cb5ee80182ee9f3745e2">《少年的梦》</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Vb411c7x5/">《爱的罗曼史》</a></li>
+<li><a href="https://www.bilibili.com/video/BV1x4411U7n7/">《少年的梦》</a></li>
+<li>正在练习<a href="https://www.bilibili.com/video/av50052102/">&lt;&lt;无题&gt;&gt;</a></li>
 </ol>
+<p>喜欢的频道</p>
+<ul>
+<li><p><a href="https://space.bilibili.com/28239752/video">苍小天</a></p>
+</li>
+<li><p><a href="https://space.bilibili.com/3546593768770315/video">Marcin</a><del>他终于来b站了!!!</del></p>
+</li>
+<li><p><a href="https://space.bilibili.com/326251291/video">元子弹吉他</a></p>
+</li>
+</ul>
 <h3 id="喜欢的曲子"><a href="#喜欢的曲子" class="headerlink" title="喜欢的曲子"></a>喜欢的曲子</h3><ol>
 <li><p><a href="https://www.bilibili.com/video/BV1Yt411w73S?p=31&vd_source=48b7f9b11252cb5ee80182ee9f3745e2">marcin patrzalek美国达人秀（命运交响曲和toxicity)</a></p>
 </li>
@@ -1445,6 +1455,12 @@ F:\hexo\blog\source\_data\styles.styl
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 圆角设置</span><br><span class="line">$<span class="attribute">border-radius</span>-inner     = <span class="number">30px</span> <span class="number">30px</span> <span class="number">30px</span> <span class="number">30px</span>;</span><br><span class="line">$<span class="attribute">border-radius</span>           = <span class="number">30px</span>;</span><br></pre></td></tr></table></figure>
 
 <p>其中 数值表示圆角的弧度，可以自己设置</p>
+<h2 id="添加代码复制按钮"><a href="#添加代码复制按钮" class="headerlink" title="添加代码复制按钮"></a>添加代码复制按钮</h2><p>修改主题配置文件</p>
+<blockquote>
+<p> 找到copy_button字段：</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"># Add copy button on codeblock</span><br><span class="line">copy_button:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  # Show text copy result.</span><br><span class="line">  show_result: <span class="keyword">default</span></span><br><span class="line">  # Available values: <span class="keyword">default</span> | flat | mac</span><br><span class="line">  style:</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>EATPOOP</category>
