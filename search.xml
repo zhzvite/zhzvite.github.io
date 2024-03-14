@@ -2101,8 +2101,8 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
       </tags>
   </entry>
   <entry>
-    <title>CSAPP的lab4-cachelab</title>
-    <url>/CSAPP/lab4/2024/03/10/</url>
+    <title>CSAPP的lab5-cachelab</title>
+    <url>/CSAPP/lab5/2024/03/10/</url>
     <content><![CDATA[<blockquote>
 <p>前前后后看了一个星期的关于optimization programmer 和cache 方面的知识,虽然没有打开课本,但想直接做做,课本属实有点厚,主要是想快刀斩乱麻</p>
 <p>太难啦!!!!</p>
@@ -2288,7 +2288,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <p>测试结果如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hits:2242, misses:259, evictions:227</span><br></pre></td></tr></table></figure>
 
-<h2 id="Phase-2-64-64"><a href="#Phase-2-64-64" class="headerlink" title="Phase_2:64*64"></a>Phase_2:64*64</h2><p>矩阵长宽各变成32*32的一倍,那简单,我们直接把之前做的矩阵优化丢进去一测试,完蛋!</p>
+<h2 id="Phase-2-64-64"><a href="#Phase-2-64-64" class="headerlink" title="Phase_2:64*64"></a>Phase_2:64*64</h2><h3 id="正常解法"><a href="#正常解法" class="headerlink" title="正常解法"></a>正常解法</h3><p>矩阵长宽各变成32*32的一倍,那简单,我们直接把之前做的矩阵优化丢进去一测试,完蛋!</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">func 0 (Simple row-wise scan transpose): hits:3474, misses:4723, evictions:4691</span><br><span class="line">func 2 (进行8*8的分块,并且优化对角线): hits:3586, misses:4611, evictions:4579</span><br></pre></td></tr></table></figure>
 
 <p>相较于给定的朴素函数竟然只有这么点提升,怎么回事呢?我们直接将把路径跟踪一下,不得了</p>
@@ -2323,6 +2323,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <p>得到的miss数量为</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hits:9066, misses:1179, evictions:1147</span><br></pre></td></tr></table></figure>
 
+<h3 id="最优解法"><a href="#最优解法" class="headerlink" title="最优解法"></a>最优解法</h3><p><a href="https://zhuanlan.zhihu.com/p/387662272">最优解法逼近理论最优1024</a>,这是别人写的,我没尝试,累了.</p>
 <h2 id="Phase-3-61-67"><a href="#Phase-3-61-67" class="headerlink" title="Phase_3:61*67"></a>Phase_3:61*67</h2><p>尝试不同的分块方式</p>
 <p>4*4(以此为例子,在这种方式下测试出不同分块情况下的miss数量,枚举)</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> trans_7_desc[]=<span class="string">&quot;对于61*67在这里尝试各种各样的分块4*4&quot;</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">trans_7</span><span class="params">(<span class="type">int</span> M, <span class="type">int</span> N, <span class="type">int</span> A[N][M], <span class="type">int</span> B[M][N])</span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,x,y;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;N;i+=<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;M;j+=<span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(x=i;x&lt;i+<span class="number">4</span>&amp;&amp;x&lt;N;x++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(y=j;y&lt;j+<span class="number">4</span>&amp;&amp;y&lt;M;y++)</span><br><span class="line">            B[y][x]=A[x][y];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2398,6 +2399,54 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part_2"></a>Part_2</h2><p>Part_2确实是把我恶心坏了,坏透了的那种,从4*4开始就开始困惑,大脑在这几天一直在模拟cache的运行,各种冲突对撞,又因为有好多不知道的,网上的解析也没有说明的小东西,故而越发困惑,当然也在不断的实操中了解加深了Cache的运行(超简单版本),明白了其基本理念,虽然啊,鼠鼠我还是没有写作业(csapp课本上的),也没有看课本,只是听完了教授的课程,对着ppt和pdf和网上的一大堆教程开始硬抗着这恶心的lab.</p>
 <p>不管之后会忘记多少,现在先做了再说,再把这教程敲完,把自己不会的全部补上,供后来人学习.便是鼠鼠我的价值.</p>
 <h2 id="参考链接Par-2"><a href="#参考链接Par-2" class="headerlink" title="参考链接Par_2"></a><a href="https://blog.csdn.net/qq_42241839/article/details/122984159">参考链接Par_2</a></h2>]]></content>
+      <categories>
+        <category>CSAPP</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP的lab4-archlab</title>
+    <url>/CSAPP/lab4/2024/03/10/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CSAPP</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP的lab7-malloclab</title>
+    <url>/CSAPP/lab7/2024/03/10/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CSAPP</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP的lab6-shlab</title>
+    <url>/CSAPP/lab6/2024/03/10/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CSAPP</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP的lab8-proxylab</title>
+    <url>/CSAPP/lab8/2024/03/10/</url>
+    <content><![CDATA[]]></content>
       <categories>
         <category>CSAPP</category>
       </categories>
