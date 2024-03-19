@@ -2601,8 +2601,8 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/uncategorized/cltymynuv0000g40u1inh1i2q/2024/03/17/</url>
+    <title>ACM目录</title>
+    <url>/ACM/contents/2024/03/20/</url>
     <content><![CDATA[<h1 id="ACM主要算法"><a href="#ACM主要算法" class="headerlink" title="ACM主要算法"></a>ACM主要算法</h1><h2 id="一-基本算法-all"><a href="#一-基本算法-all" class="headerlink" title="一.基本算法(all)"></a>一.基本算法(all)</h2><p>(1)枚举(poj1753, poj2965)</p>
 <p>(2)贪心(poj1328, poj2109, poj2586)</p>
 <p>(3)递归和分治法</p>
@@ -2724,5 +2724,11 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <p>(3)点集最小圆覆盖</p>
 <p>(4)对踵点(poj2079)</p>
 ]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
   </entry>
 </search>
