@@ -2399,9 +2399,13 @@ F:\hexo\blog\source\_data\styles.styl
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"># Add copy button on codeblock</span><br><span class="line">copy_button:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  # Show text copy result.</span><br><span class="line">  show_result: <span class="keyword">default</span></span><br><span class="line">  # Available values: <span class="keyword">default</span> | flat | mac</span><br><span class="line">  style:</span><br></pre></td></tr></table></figure>
 
 <h2 id="添加Valine评论"><a href="#添加Valine评论" class="headerlink" title="添加Valine评论"></a>添加Valine评论</h2><p>注册<a href="https://console.leancloud.cn/">leancloud账号</a></p>
-<p>创建开发版应用，找到并记录</p>
-<p>找到next主题中关于valine配置</p>
-<p><img src="/./assets/image-20240326203055324.png" alt="image-20240326203055324"></p>
+<p>创建开发版应用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403262046220.png" alt="image-20240326203810380"></p>
+<p>找到并记录APPID 和APPkey</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403262046242.png" alt="image-20240326203632922"></p>
+<p>找到next主题中关于valine配置,修改appid和appkey，就可以使用评论功能了！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403262046254.png" alt="image-20240326203055324"></p>
+<p>填入appid和appkey，就可以重新部署了！</p>
 ]]></content>
       <categories>
         <category>EATPOOP</category>
