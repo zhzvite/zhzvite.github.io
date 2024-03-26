@@ -2398,6 +2398,10 @@ F:\hexo\blog\source\_data\styles.styl
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"># Add copy button on codeblock</span><br><span class="line">copy_button:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  # Show text copy result.</span><br><span class="line">  show_result: <span class="keyword">default</span></span><br><span class="line">  # Available values: <span class="keyword">default</span> | flat | mac</span><br><span class="line">  style:</span><br></pre></td></tr></table></figure>
 
+<h2 id="添加Valine评论"><a href="#添加Valine评论" class="headerlink" title="添加Valine评论"></a>添加Valine评论</h2><p>注册<a href="https://console.leancloud.cn/">leancloud账号</a></p>
+<p>创建开发版应用，找到并记录</p>
+<p>找到next主题中关于valine配置</p>
+<p><img src="/./assets/image-20240326203055324.png" alt="image-20240326203055324"></p>
 ]]></content>
       <categories>
         <category>EATPOOP</category>
