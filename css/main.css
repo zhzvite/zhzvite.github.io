@@ -1268,7 +1268,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #3d75ff;
+  background: #ff3d29;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2594,7 +2594,7 @@ hr {
   display: inline-block;
 }
 body {
-  background: url("/images/background.png");
+  background: url("https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202403262046264.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -2620,12 +2620,12 @@ body {
   opacity: 0.7;
 }
 .header-inner {
-  background: rgba(255,255,255,0.7);
+  background: #fff;
 }
 .popup {
-  opacity: 0.5;
+  opacity: 1;
 }
 .main-inner {
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.78);
   padding: 0px 40px 40px 40px;
 }
