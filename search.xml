@@ -2225,7 +2225,7 @@
 <p>看书前沐浴更香,保持心静(逃</p>
 <h1 id="链接推荐"><a href="#链接推荐" class="headerlink" title="链接推荐"></a>链接推荐</h1><h2 id="计算机科学速成课"><a href="#计算机科学速成课" class="headerlink" title="计算机科学速成课"></a><a href="https://www.bilibili.com/video/BV1EW411u7th">计算机科学速成课</a></h2><p> 推荐大家在正式学习前花一点时间看完这个,只需要一点点时间,就能够对计算机有一个较为全面的认识</p>
 <h2 id="CSAPP导读"><a href="#CSAPP导读" class="headerlink" title="CSAPP导读"></a><a href="https://fengmuzi2003.gitbook.io/csapp3e/">CSAPP导读</a></h2><p>我主要是以这个为索引阅读的,主要是光啃书真的太困难了,我的bomblab就是光啃书做的,痛苦死了</p>
-<h2 id="中英精校字幕课程"><a href="#中英精校字幕课程" class="headerlink" title="中英精校字幕课程"></a><a href="https://www.bilibili.com/video/BV1iW411d7hd">中英精校字幕课程</a></h2><p>这个课程除了没有助教的补充说明(这个在Csapp导读里面有链接),其余部分还是很不错的,字幕完整精确</p>
+<h2 id="中英精校字幕课程"><a href="#中英精校字幕课程" class="headerlink" title="中英精校字幕课程"></a><a href="https://www.bilibili.com/video/BV1iW411d7hd">中英精校字幕课程</a></h2><p>这个课程除了没有助教的补充说明(这个在Csapp导读里面有链接),其余部分还是很不错的,字幕完整精确(要注意，字幕是由作者谷歌机翻再手动改一点的，所以有些地方可能不是人话)</p>
 <h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><p>整本书思维导图:</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402271948748.png" alt="image-20240227194749494"></p>
 <p>读书做lab的路线:</p>
@@ -2320,228 +2320,6 @@
       <tags>
         <tag>学习笔记</tag>
         <tag>csapp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu配置xv6的可行性措施</title>
-    <url>/EATPOOP/xv6_environment/2023/12/06/</url>
-    <content><![CDATA[<h1 id="Author-师傅-Editor-Vite"><a href="#Author-师傅-Editor-Vite" class="headerlink" title="Author:师傅+Editor:Vite"></a>Author:师傅+Editor:Vite</h1><h3 id="经过无数次尝试和重装，耗时近40个小时，终于探索出一条用vscode调试xv6的可行性道路"><a href="#经过无数次尝试和重装，耗时近40个小时，终于探索出一条用vscode调试xv6的可行性道路" class="headerlink" title="经过无数次尝试和重装，耗时近40个小时，终于探索出一条用vscode调试xv6的可行性道路"></a>经过无数次尝试和重装，耗时近40个小时，终于探索出一条用vscode调试xv6的可行性道路</h3><h1 id="1-重装虚拟机"><a href="#1-重装虚拟机" class="headerlink" title="1.重装虚拟机"></a>1.重装虚拟机</h1><p>按照上一个说明的流程，安装一个新的虚拟机并记住它的名字。记住账户名<strong>在下文统一用username指代账户名</strong></p>
-<h2 id="一、更换-etc-apt-sources-list-文件里的源"><a href="#一、更换-etc-apt-sources-list-文件里的源" class="headerlink" title="一、更换**&#x2F;etc&#x2F;apt&#x2F;sources.list**文件里的源"></a>一、更换**&#x2F;etc&#x2F;apt&#x2F;sources.list**文件里的源</h2><h3 id="1-备份源列表"><a href="#1-备份源列表" class="headerlink" title="1. 备份源列表"></a>1. 备份源列表</h3><p>Ubuntu配置的默认源并不是国内的服务器，下载更新软件都比较慢。首先备份源列表文件<strong>sources.list</strong>：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 首先备份源列表</span><br><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-打开sources-list文件修改"><a href="#2-打开sources-list文件修改" class="headerlink" title="2. 打开sources.list文件修改"></a>2. 打开sources.list文件修改</h3><p>选择合适的源，替换原文件的内容，保存编辑好的文件, 以阿里云更新服务器为例（可以分别测试阿里云、清华、中科大、163源的速度，选择最快的）：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 打开sources.list文件</span><br><span class="line">sudo gedit /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-
-<p>编辑**&#x2F;etc&#x2F;apt&#x2F;sources.list**文件, 在文件最前面添加阿里云镜像源：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#  阿里源</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-刷新列表"><a href="#3-刷新列表" class="headerlink" title="3. 刷新列表"></a>3. 刷新列表</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
-
-<p>下载速度瞬间就起飞了。</p>
-<h1 id="2-配置riscv-qemu-clone的快速方法"><a href="#2-配置riscv-qemu-clone的快速方法" class="headerlink" title="2.配置riscv+qemu+clone的快速方法"></a>2.配置riscv+qemu+clone的快速方法</h1><pre><code>//下载必要组件并解压
-$sudo apt install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu libglib2.0-dev libpixman-1-dev gcc-riscv64-unknown-elf
-$wget https://download.qemu.org/qemu-5.1.0.tar.xz
-$tar xvf qemu-5.1.0.tar.xz
-$cd qemu-5.1.0
-</code></pre>
-<p>接下来运行这条命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$./configure --disable-kvm --disable-werror --prefix=/usr/local --target-list=&quot;riscv64-softmmu&quot;</span><br></pre></td></tr></table></figure>
-
-<p>如果报这个错误:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ERROR: glib-2.48 gthread-2.0 is required to compile QEMU</span><br></pre></td></tr></table></figure>
-
-<p>解决方法为<code>sudo apt install libglib2.0-dev</code></p>
-<p>还可能报这个错误：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ERROR: pixman &gt;= 0.21.8 not present.</span><br><span class="line">       Please install the pixman devel package.</span><br></pre></td></tr></table></figure>
-
-<p>解决方法为<code>sudo apt install libpixman-1-dev</code></p>
-<p>之后编译,克隆源代码并初始运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$make</span><br><span class="line">$sudo make install</span><br><span class="line">$cd ~</span><br><span class="line">$git clone git://g.csail.mit.edu/xv6-labs-2020</span><br><span class="line">$cd xv6-labs-2020</span><br><span class="line">$git checkout util</span><br><span class="line">$make qemu</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-vscode远程调试"><a href="#2-vscode远程调试" class="headerlink" title="2. vscode远程调试"></a>2. vscode远程调试</h1><h4 id="在vscode上安装remote-ssh一系列扩展"><a href="#在vscode上安装remote-ssh一系列扩展" class="headerlink" title="在vscode上安装remote ssh一系列扩展."></a>在vscode上安装remote ssh一系列扩展.</h4><h4 id="在虚拟机终端输入ifconfig-如果报错就按它的指示去做-并获得地址名得到inet值"><a href="#在虚拟机终端输入ifconfig-如果报错就按它的指示去做-并获得地址名得到inet值" class="headerlink" title="在虚拟机终端输入ifconfig(如果报错就按它的指示去做)并获得地址名得到inet值"></a>在虚拟机终端输入ifconfig(如果报错就按它的指示去做)并获得地址名得到<strong>inet值</strong></h4><h4 id="在vscode中的ssh配置文件中加入以下东西：（或者修改）"><a href="#在vscode中的ssh配置文件中加入以下东西：（或者修改）" class="headerlink" title="在vscode中的ssh配置文件中加入以下东西：（或者修改）"></a>在vscode中的ssh配置文件中加入以下东西：（或者修改）</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host 造一个名字(随便取)</span><br><span class="line">    HostName 输入你得到的地址</span><br><span class="line">    User 用户名字(ubuntu的账户名字即为username)</span><br></pre></td></tr></table></figure>
-
-<h4 id="在你的windows终端中跑一遍ssh检验是否能够连接虚拟机"><a href="#在你的windows终端中跑一遍ssh检验是否能够连接虚拟机" class="headerlink" title="在你的windows终端中跑一遍ssh检验是否能够连接虚拟机"></a>在你的windows终端中跑一遍ssh检验是否能够连接虚拟机</h4><p>打开cmd,输入以下命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh username@&lt;inet的地址&gt;</span><br></pre></td></tr></table></figure>
-
-<p>若报以下错误</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh: connect to host XX.XX.XX.XX port 22: Connection refused</span><br></pre></td></tr></table></figure>
-
-<p>需要开启ssh服务,重启ssh服务(这个报错还挺平凡的,重启下ssh服务一般就能解决)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo /etc/init.d/ssh start</span><br><span class="line">sudo /etc/init.d/ssh stop</span><br><span class="line">sudo /etc/init.d/ssh start</span><br></pre></td></tr></table></figure>
-
-<h4 id="在vscode中远程连接虚拟机并输入两次密码-在vscode里面远程连接至主机"><a href="#在vscode中远程连接虚拟机并输入两次密码-在vscode里面远程连接至主机" class="headerlink" title="在vscode中远程连接虚拟机并输入两次密码(在vscode里面远程连接至主机)"></a>在vscode中远程连接虚拟机并输入两次密码(在vscode里面远程连接至主机)</h4><p>用vscode打开xv6-labs-2020文件目录并在目录下创建一个.vscode文件夹</p>
-<p>手动新建一个<strong>launch.json</strong>文件,并把以下内容修改username后粘贴</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;(gdb) 启动&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppdbg&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/home/genesis/xv6-labs-2020/kernel/kernel&quot;</span><span class="punctuation">,</span><span class="comment">//你的kernel所在的目录</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="comment">//可以后续传参</span></span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="comment">//支持断点调试</span></span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;fileDirname&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;miDebuggerServerAddress&quot;</span><span class="punctuation">:</span> <span class="string">&quot;localhost:26000&quot;</span><span class="punctuation">,</span><span class="comment">//这是默认端口</span></span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/gdb-multiarch&quot;</span><span class="punctuation">,</span><span class="comment">//x86环境支持组件</span></span><br><span class="line">        <span class="attr">&quot;environment&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;为 gdb 启用整齐打印&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;-enable-pretty-printing&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;ignoreFailures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;logging&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;engineLogging&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;programOutput&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span>   </span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="修改gdbinit-teml-riscv-最后一句支持更广泛的断点调试-但目前断点调试好像不成功2023-12-8"><a href="#修改gdbinit-teml-riscv-最后一句支持更广泛的断点调试-但目前断点调试好像不成功2023-12-8" class="headerlink" title="修改gdbinit.teml.riscv:(最后一句支持更广泛的断点调试)(**但目前断点调试好像不成功2023.12.8)"></a>修改gdbinit.teml.riscv:(最后一句支持更广泛的断点调试)(**但目前断点调试好像不成功2023.12.8)</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set confirm off</span><br><span class="line">set architecture riscv:rv64</span><br><span class="line">target remote 127.0.0.1:1234</span><br><span class="line">symbol-file kernel/kernel</span><br><span class="line">set disassemble-next-line auto</span><br><span class="line">set riscv use-compressed-breakpoints yes</span><br></pre></td></tr></table></figure>
-
-<h4 id="在vscode终端启动qemu"><a href="#在vscode终端启动qemu" class="headerlink" title="在vscode终端启动qemu:"></a>在vscode终端启动qemu:</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$make qemu-gdb</span><br></pre></td></tr></table></figure>
-
-<h4 id="注释gdbinit文件-每次启动qemu都要修改，可以尝试优化-："><a href="#注释gdbinit文件-每次启动qemu都要修改，可以尝试优化-：" class="headerlink" title="注释gdbinit文件(每次启动qemu都要修改，可以尝试优化)："></a>注释gdbinit文件(每次启动qemu都要修改，可以尝试优化)：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set confirm off</span><br><span class="line">set architecture riscv:rv64</span><br><span class="line">#target remote 127.0.0.1:26000</span><br><span class="line">symbol-file kernel/kernel</span><br><span class="line">set disassemble-next-line auto</span><br><span class="line">set riscv use-compressed-breakpoints yes</span><br></pre></td></tr></table></figure>
-
-<h3 id="按下两次f5并祈祷"><a href="#按下两次f5并祈祷" class="headerlink" title="按下两次f5并祈祷"></a>按下两次f5并祈祷</h3><h3 id="参考教程："><a href="#参考教程：" class="headerlink" title="参考教程："></a>参考教程：</h3><ol>
-<li><p><a href="https://www.bilibili.com/video/BV11K4y127Qk/?spm_id_from=333.337.search-card.all.click&vd_source=48b7f9b11252cb5ee80182ee9f3745e2">MIT 6S081 环境搭建指南 保姆级教学</a></p>
-</li>
-<li><p><a href="https://www.bilibili.com/video/BV1Lv411g7EV/?spm_id_from=333.788&vd_source=48b7f9b11252cb5ee80182ee9f3745e2">mit6s081 通过vscode来debug kernel</a></p>
-</li>
-</ol>
-<h1 id="3-打分"><a href="#3-打分" class="headerlink" title="3.打分"></a>3.打分</h1><p>如果make grade失败并报错‘</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;python&#x27;: No such file or directory，</span><br></pre></td></tr></table></figure>
-
-<p>可以进行如下操作</p>
-<pre><code>//查看已安装的python版本
-python3 --version
-
-//查找python3的位置
-whereis python3
-
-//为其创建连接符号(注意观察路径,自己调整)
-sudo ln -s /usr/bin/python3 /usr/bin/python
-</code></pre>
-<h2 id="参考学习资料"><a href="#参考学习资料" class="headerlink" title="参考学习资料"></a>参考学习资料</h2><ol>
-<li><a href="https://tarplkpqsm.feishu.cn/docs/doccnBFsXFMsAr1oXEVsaT9E3Jg">一起来学MIT6.S081呀～ - 飞书云文档 (feishu.cn)</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/624091268">MIT 6.S081 Operating System  - 知乎 (zhihu.com)</a></li>
-<li><a href="https://pdos.csail.mit.edu/6.S081/2020/tools.html">6.S081 &#x2F; Fall 2020 (mit.edu)</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>EATPOOP</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>配置xv6和csapp</title>
-    <url>/EATPOOP/docker_use/2024/01/14/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在折腾Mit6.s081的课程实验环境配置和csapp，在网上搜集了大量资料，整理出了以下教程，不得不说Docker真的是个超级无敌伟大的发明</p>
-<blockquote>
-<p>M系列芯片的macbook还是别考虑做实验了,反正我没折腾好</p>
-</blockquote>
-<h1 id="在WIN10-11下的WSL2踩坑和安装"><a href="#在WIN10-11下的WSL2踩坑和安装" class="headerlink" title="在WIN10&#x2F;11下的WSL2踩坑和安装"></a>在WIN10&#x2F;11下的WSL2踩坑和安装</h1><blockquote>
-<p><a href="https://juejin.cn/post/7099108145825316894#heading-0">参考文章</a></p>
-</blockquote>
-<p>如果使用的是家庭版win10，先win+R输入winver看看操作系统版本号是不是</p>
-<ul>
-<li>Windows 10 64-bit: 家庭版 or 专业版 21H1 (build 19043)及以上, or 企业版 or 教育版 20H2 (build 19042)及以上. 不是的话本篇文章无效</li>
-</ul>
-<h2 id="1-安装Hyper-V"><a href="#1-安装Hyper-V" class="headerlink" title="1.安装Hyper-V"></a>1.安装Hyper-V</h2><p>这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
-<p>首先右键开始菜单，选择应用与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp" alt="1513668234-4363-20171206211136409-1609350099.png"></p>
-<p>然后点击程序与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315168.awebp" alt="1513668234-4368-20171206211345066-1430601107.png"></p>
-<p>选择启用或关闭Windows功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315176.awebp" alt="1513668234-9748-20171206211435534-1499766232.png"></p>
-<p>这是第一种情况<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315190.awebp" alt="1513668234-6433-20171206211858191-1177002365.png"></p>
-<p>如果你的界面是这样的，且没有下列选项中的Hyper-V，则先选中打钩的下面三个，然后确定，再参考<a href="https://link.juejin.cn/?target=https://blog.csdn.net/lanxingxing666666/article/details/111354089">win10没有Hyper-v的解决方法</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315198.awebp" alt="Snipaste_2022-05-18_00-26-50.png"></p>
-<h2 id="2-将WSL版本升级为WSL2"><a href="#2-将WSL版本升级为WSL2" class="headerlink" title="2.将WSL版本升级为WSL2"></a>2.将WSL版本升级为WSL2</h2><p>首先看看版本号是否为2</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
-
-<p>若已有发行版且版本为1，使用命令 </p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">wsl --set-<span class="keyword">default</span>-version <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>发现版本还没改过来</p>
-<p>管理员权限打开终端，输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
-
-<p>然后下载Linux的内核更新包并安装 x64：<a href="https://link.juejin.cn/?target=https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">wslstorestorage.blob.core.windows.net&#x2F;wslblob&#x2F;wsl…</a></p>
-<p>仍然是管理员权限下打开终端，先查看更新前的WSL版本：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
-
-<p>输入更新的命令：</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">wsl.exe --set-version Ubuntu <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>更新命令有的用的：<code>wsl --set-version Ubuntu 2</code>，但是在我的电脑上报错：不存在具有提供的名称的分布。 解决方法就是把wsl改成wsl.exe.</p>
-<p>如果未安装Linux发行版，也可以上Microsoft Store上直接安装</p>
-<p>最后看看版本号是否为2</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h1><blockquote>
-<p>建议直接官网下载</p>
-</blockquote>
-<p><a href="https://docs.docker.com/desktop/install/windows-install/">DOCKER FOR WINDOWS</a></p>
-<p><a href="https://docs.docker.com/desktop/install/mac-install/">DOCKER FOR LINUX</a></p>
-<p><a href="https://docs.docker.com/desktop/install/mac-install/">DOCKER FOR MAC</a></p>
-<p><strong>对于mac用户而言，直接去官网上下载docker，注意intel和apple版本</strong></p>
-<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="Docker-Csapp环境安装"><a href="#Docker-Csapp环境安装" class="headerlink" title="Docker+Csapp环境安装"></a>Docker+Csapp环境安装</h2><ol>
-<li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 下载镜像</span><br><span class="line">docker pull linxi177229/csapp:latest</span><br><span class="line"># 查看</span><br><span class="line">docker images</span><br><span class="line"># 启动容器（里面有配置好的环境 和 PDF 资料）</span><br><span class="line">docker run --name csapp -itd linxi177229/csapp</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>打开VScode，在扩展市场安装Docker插件，然后进入，右键对应容器，选择<strong>附加VisualStudioCode</strong>，然后vscode会自动挂载容器，会弹出一个新的窗口。</p>
-</li>
-<li><p>开始愉快的实验吧！</p>
-</li>
-<li><p>测试环境</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>GDB安装</p>
-</li>
-</ol>
-<p>在这个doker中默认是没有安装gdb的,所以为了在bomblab中进行gdb的使用,我们需要在doker中安装gdb,该doker镜像是基于ubuntu20.04的,故我们直接在终端使用命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install  gdb</span><br></pre></td></tr></table></figure>
-
-<p>安装好后,cd到bomb的文件夹内,输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gdb bomb</span><br></pre></td></tr></table></figure>
-
-<p>然后开始实验吧!<del>这个点废了我一个晚上才弄明白</del></p>
-<h2 id="Ubuntu虚拟机安装CSAPP环境"><a href="#Ubuntu虚拟机安装CSAPP环境" class="headerlink" title="Ubuntu虚拟机安装CSAPP环境"></a>Ubuntu虚拟机安装CSAPP环境</h2><ol>
-<li><p>虚拟机 安装 Ubuntu20.04，这个比较简单，找一篇博客就行，<strong>不过记得用 VMware pro 16，很方便 ssh，如果电脑配置不高，记得 Ubuntu 用 server版本。而不是 desktop</strong></p>
-</li>
-<li><p>CSAPP 环境配置，首先如果你用的是 Ubuntu20.04 及以下，那么你可以直接运行下面的脚本，就可以安装好 操作都很简单，就几行命令而已，Docker 方法适用性更加广，目前大多数操作系统都支持。</p>
-</li>
-</ol>
-<p>这个脚本是 20.04 及以下都可以完全配置好的，并且有附带的 PDF，如果是 Ubuntu 21及 以上需要在 lab4 的时候降低 gcc 版本。</p>
-<p>选择自己想要做项目的文件夹,cd到文件夹中</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://gitee.com/lin-xi-269/csapplab/raw/origin/installAll.sh <span class="comment"># 下载脚本</span></span><br><span class="line">bash installAll.sh <span class="comment"># 运行脚本</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>运行完 这个脚本之后，<strong>会在 当前目录下创建一个 csapp 文件夹，里面包含 8个 lab 按照 PDF 开始做即可以开始做了。</strong></li>
-</ol>
-<p>然后可以用vscode远程链接ubuntu,通过ssh,然后测试环境</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Docker-XV6环境安装"><a href="#Docker-XV6环境安装" class="headerlink" title="Docker+XV6环境安装"></a>Docker+XV6环境安装</h2><ol>
-<li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。这个 images （400多MB）开箱即用,环境已经配置好了。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载镜像</span><br><span class="line">docker pull linxi177229/mit6.s081:latest</span><br><span class="line"># 查看</span><br><span class="line">docker images</span><br><span class="line"># 启动容器（里面有配置好的环境 和 PDF 资料）</span><br><span class="line">docker run --name xv6 -itd linxi177229/mit6.s081:latest</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>打开VScode，在扩展市场安装Docker插件，然后进入，右键对应容器，选择<strong>附加VisualStudioCode</strong>，然后vscode会自动挂载容器，会弹出一个新的窗口。</li>
-<li>开始愉快的实验吧！</li>
-<li>测试环境</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd xv6-labs-2020</span><br><span class="line"></span><br><span class="line">make qemu # 开启一个 shell 手动运行那些 usr/ 下的程序来测试</span><br><span class="line"></span><br><span class="line"> #看目录下的各级目录</span><br><span class="line"> ls</span><br><span class="line"> </span><br><span class="line"># 自动化测试：make grade 可以获得得分情况</span><br><span class="line">make grade</span><br><span class="line"></span><br><span class="line"># 或者可以使用 进行单个测试</span><br><span class="line">./grade-具体lab名字 part名字</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>退出方式</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在另一个新开的终端执行 </span></span><br><span class="line">pkill -f qemu  </span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>调试方法 GDB</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line"><span class="comment"># 第一次执行 gdb 需要 执行 下面条语句 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;add-auto-load-safe-path <span class="subst">$(pwd)</span>/.gdbinit &quot;</span> &gt;&gt; ~/.gdbinit </span><br><span class="line"><span class="comment"># 第一次执行</span></span><br><span class="line">make CPUS=1 qemu-gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">gdb-multiarch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来就和使用 平常的 gdb 一样了， layout split 是一个很棒的用法</span></span><br><span class="line"><span class="comment"># 在 gdb 中输入 kill 即可 退出</span></span><br><span class="line"><span class="comment"># 或者 在第三个 teminal 中输入 pkill -f qemu 也可以退出</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://pic.imgdb.cn/item/65a3b3dd871b83018aa931bf.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315207.jpg"></a></p>
-<h2 id="环境安装时的截图"><a href="#环境安装时的截图" class="headerlink" title="环境安装时的截图"></a>环境安装时的截图</h2><h3 id="CMD截图"><a href="#CMD截图" class="headerlink" title="CMD截图"></a>CMD截图</h3><p><a href="https://pic.imgdb.cn/item/65a3b395871b83018aa824cd.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315215.jpg"></a></p>
-<h3 id="Docker截图"><a href="#Docker截图" class="headerlink" title="Docker截图"></a>Docker截图</h3><p><a href="https://pic.imgdb.cn/item/65a3b5d3871b83018aafffff.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315227.jpg"></a></p>
-<h3 id="Vscode截图"><a href="#Vscode截图" class="headerlink" title="Vscode截图"></a>Vscode截图</h3><p><a href="https://pic.imgdb.cn/item/65a3b64c871b83018ab1ab98.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315236.jpg"></a></p>
-<blockquote>
-<p>配置环境主打一个能用就好，不要过多的纠结。</p>
-</blockquote>
-<h1 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h1><blockquote>
-<p>菜就多练，输不起就别玩</p>
-<p><a href="https://pic.imgdb.cn/item/65a3b50a871b83018aad5026.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg"></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>EATPOOP</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2796,6 +2574,267 @@ F:\hexo\blog\source\_data\styles.styl
       </categories>
       <tags>
         <tag>gdb</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker安装和踩坑</title>
+    <url>/EATPOOP/Docker_use/2023/12/06/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在折腾Mit6.s081的课程实验环境配置和csapp，在网上搜集了大量资料，整理出了以下教程，不得不说Docker真的是个超级无敌伟大的发明</p>
+<blockquote>
+<p>M系列芯片的macbook还是别考虑做实验了,反正我没折腾好</p>
+</blockquote>
+<p>众所周知，Win11&#x2F;10下有个子linux系统叫wsl，他比虚拟机更加方便快捷。</p>
+<h1 id="WSL2安装"><a href="#WSL2安装" class="headerlink" title="WSL2安装"></a>WSL2安装</h1><blockquote>
+<p>在WIN10&#x2F;11下的wsl2踩坑和安装<a href="https://juejin.cn/post/7099108145825316894#heading-0">参考文章</a></p>
+</blockquote>
+<h2 id="1-安装-打开Hyper-V"><a href="#1-安装-打开Hyper-V" class="headerlink" title="1.安装&#x2F;打开Hyper-V"></a>1.安装&#x2F;打开Hyper-V</h2><p>这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
+<p>首先右键开始菜单，选择应用与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp" alt="1513668234-4363-20171206211136409-1609350099.png"></p>
+<p>然后点击程序与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315168.awebp" alt="1513668234-4368-20171206211345066-1430601107.png"></p>
+<p>选择启用或关闭Windows功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315176.awebp" alt="1513668234-9748-20171206211435534-1499766232.png"></p>
+<p>这是第一种情况<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315190.awebp" alt="1513668234-6433-20171206211858191-1177002365.png"></p>
+<p>如果你的界面是这样的，且没有下列选项中的Hyper-V，则先选中打钩的下面三个，然后确定，再参考<a href="https://link.juejin.cn/?target=https://blog.csdn.net/lanxingxing666666/article/details/111354089">win10没有Hyper-v的解决方法</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315198.awebp" alt="Snipaste_2022-05-18_00-26-50.png"></p>
+<h2 id="2-将WSL版本升级为WSL2"><a href="#2-将WSL版本升级为WSL2" class="headerlink" title="2.将WSL版本升级为WSL2"></a>2.将WSL版本升级为WSL2</h2><p>首先看看版本号是否为2</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="没有发行版"><a href="#没有发行版" class="headerlink" title="没有发行版"></a>没有发行版</h3><p>输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl --install</span><br></pre></td></tr></table></figure>
+
+<h3 id="已有发行版"><a href="#已有发行版" class="headerlink" title="已有发行版"></a>已有发行版</h3><p>若版本为1，使用命令 </p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">wsl --set-<span class="keyword">default</span>-version <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>发现版本还没改过来</p>
+<p>管理员权限打开终端，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p>然后下载Linux的内核更新包并安装 x64：<a href="https://link.juejin.cn/?target=https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">wslstorestorage.blob.core.windows.net&#x2F;wslblob&#x2F;wsl…</a></p>
+<p>仍然是管理员权限下打开终端，先查看更新前的WSL版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
+
+<p>输入更新的命令：</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">wsl.exe --set-version Ubuntu <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>更新命令有的用的：<code>wsl --set-version Ubuntu 2</code>，但是在我的电脑上报错：不存在具有提供的名称的分布。 解决方法就是把wsl改成wsl.exe.</p>
+<h3 id="版本号为2"><a href="#版本号为2" class="headerlink" title="版本号为2"></a>版本号为2</h3><p>这步完成，开始安装docker</p>
+<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><blockquote>
+<p>建议直接官网下载</p>
+</blockquote>
+<p><a href="https://docs.docker.com/desktop/install/windows-install/">DOCKER FOR WINDOWS</a></p>
+<p><a href="https://docs.docker.com/desktop/install/mac-install/">DOCKER FOR LINUX</a></p>
+<p><a href="https://docs.docker.com/desktop/install/mac-install/">DOCKER FOR MAC</a></p>
+<p><strong>对于mac用户而言，直接去官网上下载docker，注意intel和apple版本</strong></p>
+<p>一通安装，等它转完圈圈，就算是成功安装，可以开始环境配置了！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202404232129489.png" alt="image-20240423211431827"></p>
+<p>进入到这个界面就算是成功了。</p>
+<p>下面是docker安装成功后cmd的界面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202404232128758.png" alt="image-20240423211517826"></p>
+]]></content>
+      <categories>
+        <category>EATPOOP</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu配置xv6环境</title>
+    <url>/EATPOOP/xv6_environment/2023/12/06/</url>
+    <content><![CDATA[<blockquote>
+<p>Author:师傅 </p>
+<p>Editor:Vite</p>
+<p>经过无数次尝试和重装，耗时近40个小时，终于探索出一条用vscode调试xv6的可行性道路</p>
+</blockquote>
+<h1 id="Docker安装XV6环境"><a href="#Docker安装XV6环境" class="headerlink" title="Docker安装XV6环境"></a>Docker安装XV6环境</h1><ol>
+<li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。这个 images （400多MB）开箱即用,环境已经配置好了。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载镜像</span><br><span class="line">docker pull linxi177229/mit6.s081:latest</span><br><span class="line"># 查看</span><br><span class="line">docker images</span><br><span class="line"># 启动容器（里面有配置好的环境 和 PDF 资料）</span><br><span class="line">docker run --name xv6 -itd linxi177229/mit6.s081:latest</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>打开VScode，在扩展市场安装Docker插件，然后进入，右键对应容器，选择<strong>附加VisualStudioCode</strong>，然后vscode会自动挂载容器，会弹出一个新的窗口。</li>
+<li>开始愉快的实验吧！</li>
+<li>测试环境</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd xv6-labs-2020</span><br><span class="line"># 开启一个 shell 手动运行那些 usr/ 下的程序来测试</span><br><span class="line">make qemu </span><br><span class="line"></span><br><span class="line"> #看目录下的各级目录</span><br><span class="line"> ls</span><br><span class="line"> </span><br><span class="line"># 自动化测试：make grade 可以获得得分情况</span><br><span class="line">make grade</span><br><span class="line"></span><br><span class="line"># 或者可以使用 进行单个测试</span><br><span class="line">./grade-具体lab名字 part名字</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>退出方式</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在另一个新开的终端执行 </span></span><br><span class="line">pkill -f qemu  </span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>调试方法 GDB</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line"><span class="comment"># 第一次执行 gdb 需要 执行 下面条语句 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;add-auto-load-safe-path <span class="subst">$(pwd)</span>/.gdbinit &quot;</span> &gt;&gt; ~/.gdbinit </span><br><span class="line"><span class="comment"># 第一次执行</span></span><br><span class="line">make CPUS=1 qemu-gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">gdb-multiarch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来就和使用 平常的 gdb 一样了， layout split 是一个很棒的用法</span></span><br><span class="line"><span class="comment"># 在 gdb 中输入 kill 即可 退出</span></span><br><span class="line"><span class="comment"># 或者 在第三个 teminal 中输入 pkill -f qemu 也可以退出</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://pic.imgdb.cn/item/65a3b3dd871b83018aa931bf.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315207.jpg"></a></p>
+<h1 id="Ubuntu安装XV6环境"><a href="#Ubuntu安装XV6环境" class="headerlink" title="Ubuntu安装XV6环境"></a>Ubuntu安装XV6环境</h1><h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><p>按照上一个说明的流程，安装一个新的虚拟机并记住它的名字。记住<strong>账户名在下文统一用username指代账户名</strong>，下面要更新下载源。</p>
+<ol>
+<li>备份源列表</li>
+</ol>
+<p>Ubuntu配置的默认源并不是国内的服务器，下载更新软件都比较慢。首先备份源列表文件<strong>sources.list</strong>：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 首先备份源列表</span><br><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>打开sources.list文件修改</li>
+</ol>
+<p>选择合适的源，替换原文件的内容，保存编辑好的文件, 以阿里云更新服务器为例（可以分别测试阿里云、清华、中科大、163源的速度，选择最快的）：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 打开sources.list文件</span><br><span class="line">sudo gedit /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>编辑**&#x2F;etc&#x2F;apt&#x2F;sources.list**文件, 在文件最前面添加阿里云镜像源：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#  阿里源</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>刷新列表</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+
+<p>下载速度瞬间就起飞了。</p>
+<h2 id="配置riscv-qemu-clone"><a href="#配置riscv-qemu-clone" class="headerlink" title="配置riscv+qemu+clone"></a>配置riscv+qemu+clone</h2><pre><code>//下载必要组件并解压
+sudo apt install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu libglib2.0-dev libpixman-1-dev gcc-riscv64-unknown-elf
+
+wget https://download.qemu.org/qemu-5.1.0.tar.xz
+
+tar xvf qemu-5.1.0.tar.xz
+
+cd qemu-5.1.0
+</code></pre>
+<p>接下来运行这条命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./configure --disable-kvm --disable-werror --prefix=/usr/local --target-list=&quot;riscv64-softmmu&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果报这个错误:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ERROR: glib-2.48 gthread-2.0 is required to compile QEMU</span><br></pre></td></tr></table></figure>
+
+<p>解决方法为<code>sudo apt install libglib2.0-dev</code></p>
+<p>还可能报这个错误：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ERROR: pixman &gt;= 0.21.8 not present.</span><br><span class="line">       Please install the pixman devel package.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法为<code>sudo apt install libpixman-1-dev</code></p>
+<p>之后编译,克隆源代码并初始运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">cd ~</span><br><span class="line">git clone git://g.csail.mit.edu/xv6-labs-2020</span><br><span class="line">cd xv6-labs-2020</span><br><span class="line">git checkout util</span><br><span class="line">make qemu</span><br></pre></td></tr></table></figure>
+
+<h2 id="vscode远程调试"><a href="#vscode远程调试" class="headerlink" title="vscode远程调试"></a>vscode远程调试</h2><p>在vscode上安装remote ssh一系列扩展.</p>
+<p>在虚拟机终端输入ifconfig(如果报错就按它的指示去做)并获得地址名得到<strong>inet值</strong></p>
+<p>在vscode中的ssh配置文件中加入以下东西：（或者修改）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host	 #造一个名字(随便取)</span><br><span class="line">HostName 	# 输入你得到的地址</span><br><span class="line">User 用户名字	#(ubuntu的账户名字即为username)</span><br></pre></td></tr></table></figure>
+
+<p>在你的windows终端中跑一遍ssh检验是否能够连接虚拟机</p>
+<p>打开cmd,输入以下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh username@&lt;inet的地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>若报以下错误</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh: connect to host XX.XX.XX.XX port 22: Connection refused</span><br></pre></td></tr></table></figure>
+
+<p>需要开启ssh服务,重启ssh服务(这个报错还挺平凡的,重启下ssh服务一般就能解决)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo /etc/init.d/ssh start</span><br><span class="line">sudo /etc/init.d/ssh stop</span><br><span class="line">sudo /etc/init.d/ssh start</span><br></pre></td></tr></table></figure>
+
+<p>在vscode中远程连接虚拟机并输入两次密码(在vscode里面远程连接至主机)</p>
+<p>用vscode打开xv6-labs-2020文件目录并在目录下创建一个.vscode文件夹</p>
+<p>手动新建一个<strong>launch.json</strong>文件,并把以下内容修改username后粘贴</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;(gdb) 启动&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppdbg&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/home/genesis/xv6-labs-2020/kernel/kernel&quot;</span><span class="punctuation">,</span><span class="comment">//你的kernel所在的目录</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="comment">//可以后续传参</span></span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="comment">//支持断点调试</span></span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;fileDirname&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;miDebuggerServerAddress&quot;</span><span class="punctuation">:</span> <span class="string">&quot;localhost:26000&quot;</span><span class="punctuation">,</span><span class="comment">//这是默认端口</span></span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/gdb-multiarch&quot;</span><span class="punctuation">,</span><span class="comment">//x86环境支持组件</span></span><br><span class="line">        <span class="attr">&quot;environment&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;为 gdb 启用整齐打印&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;-enable-pretty-printing&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;ignoreFailures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;logging&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;engineLogging&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;programOutput&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span>   </span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>修改gdbinit.teml.riscv:(最后一句支持更广泛的断点调试)(<strong>但目前断点调试好像不成功2023.12.8</strong>)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set confirm off</span><br><span class="line">set architecture riscv:rv64</span><br><span class="line">target remote 127.0.0.1:1234</span><br><span class="line">symbol-file kernel/kernel</span><br><span class="line">set disassemble-next-line auto</span><br><span class="line">set riscv use-compressed-breakpoints yes</span><br></pre></td></tr></table></figure>
+
+<p>在vscode终端启动qemu:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make qemu-gdb</span><br></pre></td></tr></table></figure>
+
+<p>注释gdbinit文件(每次启动qemu都要修改，可以尝试优化)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set confirm off</span><br><span class="line">set architecture riscv:rv64</span><br><span class="line">#target remote 127.0.0.1:26000</span><br><span class="line">symbol-file kernel/kernel</span><br><span class="line">set disassemble-next-line auto</span><br><span class="line">set riscv use-compressed-breakpoints yes</span><br></pre></td></tr></table></figure>
+
+<p>按下两次f5并祈祷</p>
+<blockquote>
+<p>参考教程：</p>
+<ol>
+<li><p><a href="https://www.bilibili.com/video/BV11K4y127Qk/?spm_id_from=333.337.search-card.all.click&vd_source=48b7f9b11252cb5ee80182ee9f3745e2">MIT 6S081 环境搭建指南 保姆级教学</a></p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV1Lv411g7EV/?spm_id_from=333.788&vd_source=48b7f9b11252cb5ee80182ee9f3745e2">mit6s081 通过vscode来debug kernel</a></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Grade"><a href="#Grade" class="headerlink" title="Grade"></a>Grade</h1><p>如果make grade失败并报错‘</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;python&#x27;: No such file or directory，</span><br></pre></td></tr></table></figure>
+
+<p>可以进行如下操作</p>
+<pre><code>//查看已安装的python版本
+python3 --version
+
+//查找python3的位置
+whereis python3
+
+//为其创建连接符号(注意观察路径,自己调整)
+sudo ln -s /usr/bin/python3 /usr/bin/python
+</code></pre>
+<h2 id="参考学习资料"><a href="#参考学习资料" class="headerlink" title="参考学习资料"></a>参考学习资料</h2><ol>
+<li><a href="https://tarplkpqsm.feishu.cn/docs/doccnBFsXFMsAr1oXEVsaT9E3Jg">一起来学MIT6.S081呀～ - 飞书云文档 (feishu.cn)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/624091268">MIT 6.S081 Operating System  - 知乎 (zhihu.com)</a></li>
+<li><a href="https://pdos.csail.mit.edu/6.S081/2020/tools.html">6.S081 &#x2F; Fall 2020 (mit.edu)</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>EATPOOP</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP环境配置</title>
+    <url>/CSAPP/csapp_environment/2024/01/14/</url>
+    <content><![CDATA[<h1 id="Docker安装Csapp环境"><a href="#Docker安装Csapp环境" class="headerlink" title="Docker安装Csapp环境"></a>Docker安装Csapp环境</h1><ol>
+<li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载镜像</span></span><br><span class="line">docker pull linxi177229/csapp:latest</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment"># 启动容器（里面有配置好的环境 和 PDF 资料）</span></span><br><span class="line">docker run --name csapp -itd linxi177229/csapp</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>打开VsCode，在扩展市场安装Docker插件，然后进入，右键对应容器，选择<strong>附加VisualStudioCode</strong>，然后vscode会自动挂载容器，会弹出一个新的窗口。</p>
+</li>
+<li><p>开始愉快的实验吧！</p>
+</li>
+<li><p>测试环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>GDB安装（bomblab需要使用）</p>
+</li>
+</ol>
+<p>在这个doker中默认是没有安装gdb的,所以为了在bomblab中进行gdb的使用,我们需要在doker中安装gdb,该doker镜像是基于ubuntu20.04的,故我们直接在终端使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install  gdb</span><br></pre></td></tr></table></figure>
+
+<p>安装好后,cd到bomb的文件夹内,输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gdb bomb</span><br></pre></td></tr></table></figure>
+
+<p>然后开始实验吧!<del>这个点废了我一个晚上才弄明白</del></p>
+<h1 id="Ubuntu安装CSAPP环境"><a href="#Ubuntu安装CSAPP环境" class="headerlink" title="Ubuntu安装CSAPP环境"></a>Ubuntu安装CSAPP环境</h1><ol>
+<li><p>虚拟机 安装 Ubuntu20.04，这个比较简单，找一篇博客就行，**不过记得用 VMware pro 16，很方便 ssh，</p>
+</li>
+<li><p>CSAPP 环境配置，首先如果你用的是 Ubuntu20.04 及以下，那么你可以直接运行下面的脚本，就可以安装好 操作都很简单，就几行命令而已，Docker 方法适用性更加广，目前大多数操作系统都支持。</p>
+</li>
+</ol>
+<p>这个脚本是 20.04 及以下都可以完全配置好的，并且有附带的 PDF，如果是 Ubuntu 21及 以上需要在 lab4 的时候降低 gcc 版本。</p>
+<p>选择自己想要做项目的文件夹,cd到文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载脚本</span></span><br><span class="line">wget https://gitee.com/lin-xi-269/csapplab/raw/origin/installAll.sh </span><br><span class="line"><span class="comment"># 运行脚本</span></span><br><span class="line">bash installAll.sh </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>运行完 这个脚本之后，<strong>会在 当前目录下创建一个 csapp 文件夹，里面包含 8个 lab 按照 PDF 开始做即可以开始做了。</strong></li>
+</ol>
+<p>然后可以用vscode远程链接ubuntu,通过ssh,然后测试环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
+
+<h1 id="环境安装时的截图"><a href="#环境安装时的截图" class="headerlink" title="环境安装时的截图"></a>环境安装时的截图</h1><p>~~下面的截图是包括了用docker配置xv6环境</p>
+<h2 id="CMD截图"><a href="#CMD截图" class="headerlink" title="CMD截图"></a>CMD截图</h2><p><a href="https://pic.imgdb.cn/item/65a3b395871b83018aa824cd.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315215.jpg"></a></p>
+<h2 id="Docker截图"><a href="#Docker截图" class="headerlink" title="Docker截图"></a>Docker截图</h2><p><a href="https://pic.imgdb.cn/item/65a3b5d3871b83018aafffff.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315227.jpg"></a></p>
+<h2 id="Vscode截图"><a href="#Vscode截图" class="headerlink" title="Vscode截图"></a>Vscode截图</h2><p><a href="https://pic.imgdb.cn/item/65a3b64c871b83018ab1ab98.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315236.jpg"></a></p>
+<blockquote>
+<p>配置环境主打一个能用就好，不要过多的纠结。</p>
+</blockquote>
+<h1 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h1><blockquote>
+<p>菜就多练，输不起就别玩</p>
+<p><a href="https://pic.imgdb.cn/item/65a3b50a871b83018aad5026.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg"></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CSAPP</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
 </search>
