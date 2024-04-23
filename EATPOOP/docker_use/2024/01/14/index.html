@@ -298,14 +298,14 @@
 <blockquote>
 <p>M系列芯片的macbook还是别考虑做实验了,反正我没折腾好</p>
 </blockquote>
-<h1 id="在WIN10下的WSL2踩坑和安装"><a href="#在WIN10下的WSL2踩坑和安装" class="headerlink" title="在WIN10下的WSL2踩坑和安装"></a>在WIN10下的WSL2踩坑和安装</h1><blockquote>
+<h1 id="在WIN10-11下的WSL2踩坑和安装"><a href="#在WIN10-11下的WSL2踩坑和安装" class="headerlink" title="在WIN10&#x2F;11下的WSL2踩坑和安装"></a>在WIN10&#x2F;11下的WSL2踩坑和安装</h1><blockquote>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7099108145825316894#heading-0">参考文章</a></p>
 </blockquote>
 <p>如果使用的是家庭版win10，先win+R输入winver看看操作系统版本号是不是</p>
 <ul>
 <li>Windows 10 64-bit: 家庭版 or 专业版 21H1 (build 19043)及以上, or 企业版 or 教育版 20H2 (build 19042)及以上. 不是的话本篇文章无效</li>
 </ul>
-<h2 id="1-安装Hyper-V"><a href="#1-安装Hyper-V" class="headerlink" title="1.安装Hyper-V"></a>1.安装Hyper-V</h2><p>这个是Windows10内置的，不用去特地下载安装，这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
+<h2 id="1-安装Hyper-V"><a href="#1-安装Hyper-V" class="headerlink" title="1.安装Hyper-V"></a>1.安装Hyper-V</h2><p>这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
 <p>首先右键开始菜单，选择应用与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp" alt="1513668234-4363-20171206211136409-1609350099.png"></p>
 <p>然后点击程序与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315168.awebp" alt="1513668234-4368-20171206211345066-1430601107.png"></p>
 <p>选择启用或关闭Windows功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315176.awebp" alt="1513668234-9748-20171206211435534-1499766232.png"></p>
@@ -313,26 +313,26 @@
 <p>如果你的界面是这样的，且没有下列选项中的Hyper-V，则先选中打钩的下面三个，然后确定，再参考<a href="https://link.juejin.cn/?target=https://blog.csdn.net/lanxingxing666666/article/details/111354089">win10没有Hyper-v的解决方法</a></p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315198.awebp" alt="Snipaste_2022-05-18_00-26-50.png"></p>
 <h2 id="2-将WSL版本升级为WSL2"><a href="#2-将WSL版本升级为WSL2" class="headerlink" title="2.将WSL版本升级为WSL2"></a>2.将WSL版本升级为WSL2</h2><p>首先看看版本号是否为2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码wsl -l -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
 
 <p>若已有发行版且版本为1，使用命令 </p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arduino</span><br><span class="line">复制代码wsl --set-<span class="keyword">default</span>-version <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-<span class="keyword">default</span>-version <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
 <p>发现版本还没改过来</p>
 <p>管理员权限打开终端，输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line">复制代码dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
 
 <p>然后下载Linux的内核更新包并安装 x64：<a href="https://link.juejin.cn/?target=https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">wslstorestorage.blob.core.windows.net&#x2F;wslblob&#x2F;wsl…</a></p>
 <p>仍然是管理员权限下打开终端，先查看更新前的WSL版本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码wsl -l -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
 
 <p>输入更新的命令：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arduino</span><br><span class="line">复制代码wsl.exe --set-version Ubuntu <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl.exe --set-version Ubuntu <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
 <p>更新命令有的用的：<code>wsl --set-version Ubuntu 2</code>，但是在我的电脑上报错：不存在具有提供的名称的分布。 解决方法就是把wsl改成wsl.exe.</p>
 <p>如果未安装Linux发行版，也可以上Microsoft Store上直接安装</p>
 <p>最后看看版本号是否为2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码wsl -l -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
 
 
 
@@ -501,7 +501,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8WIN10%E4%B8%8B%E7%9A%84WSL2%E8%B8%A9%E5%9D%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">在WIN10下的WSL2踩坑和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85Hyper-V"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Hyper-V</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%86WSL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E4%B8%BAWSL2"><span class="nav-number">2.2.</span> <span class="nav-text">2.将WSL版本升级为WSL2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Csapp%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.1.</span> <span class="nav-text">Docker+Csapp环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85CSAPP%E7%8E%AF%E5%A2%83"><span class="nav-number">4.2.</span> <span class="nav-text">Ubuntu虚拟机安装CSAPP环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-XV6%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.3.</span> <span class="nav-text">Docker+XV6环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%97%B6%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.</span> <span class="nav-text">环境安装时的截图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.1.</span> <span class="nav-text">CMD截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.2.</span> <span class="nav-text">Docker截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vscode%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.3.</span> <span class="nav-text">Vscode截图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Good-Luck"><span class="nav-number">5.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8WIN10-11%E4%B8%8B%E7%9A%84WSL2%E8%B8%A9%E5%9D%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">在WIN10&#x2F;11下的WSL2踩坑和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85Hyper-V"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Hyper-V</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%86WSL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E4%B8%BAWSL2"><span class="nav-number">2.2.</span> <span class="nav-text">2.将WSL版本升级为WSL2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Csapp%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.1.</span> <span class="nav-text">Docker+Csapp环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85CSAPP%E7%8E%AF%E5%A2%83"><span class="nav-number">4.2.</span> <span class="nav-text">Ubuntu虚拟机安装CSAPP环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-XV6%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">4.3.</span> <span class="nav-text">Docker+XV6环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%97%B6%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.</span> <span class="nav-text">环境安装时的截图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.1.</span> <span class="nav-text">CMD截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.2.</span> <span class="nav-text">Docker截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vscode%E6%88%AA%E5%9B%BE"><span class="nav-number">4.4.3.</span> <span class="nav-text">Vscode截图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Good-Luck"><span class="nav-number">5.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -517,7 +517,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -572,12 +572,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">306k</span>
+    <span title="站点总字数">292k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:16</span>
+    <span title="站点阅读时长">8:51</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
