@@ -2401,7 +2401,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
   </entry>
   <entry>
     <title>Docker安装和踩坑</title>
-    <url>/EATPOOP/Docker_use/2023/12/06/</url>
+    <url>/EATPOOP/docker_use/2023/12/06/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在折腾Mit6.s081的课程实验环境配置和csapp，在网上搜集了大量资料，整理出了以下教程，不得不说Docker真的是个超级无敌伟大的发明</p>
 <blockquote>
 <p>M系列芯片的macbook还是别考虑做实验了,反正我没折腾好。2024.5.26:折腾好了xv6的实验环境。</p>
