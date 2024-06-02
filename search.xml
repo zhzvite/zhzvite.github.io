@@ -443,7 +443,10 @@
   <entry>
     <title>CSAPP环境配置</title>
     <url>/CSAPP/csapp_environment/2024/01/14/</url>
-    <content><![CDATA[<h1 id="Docker安装Csapp环境"><a href="#Docker安装Csapp环境" class="headerlink" title="Docker安装Csapp环境"></a>Docker安装Csapp环境</h1><ol>
+    <content><![CDATA[<h1 id="Docker安装Csapp环境"><a href="#Docker安装Csapp环境" class="headerlink" title="Docker安装Csapp环境"></a>Docker安装Csapp环境</h1><blockquote>
+<p>注意：arm64架构的cpu使用docker会安装arm 64 架构的ubuntu，而有论文表明arm64架构的ubuntu不支持gcc -m32的参数编译，建议使用m系列芯片的macbook放弃配置csapp环境或者使用Vmware box安装虚拟机尝试配置!</p>
+</blockquote>
+<ol>
 <li>打开Docker，打开CMD（windows）或者终端（mac），刷入以下命令拉取镜像。</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载镜像</span></span><br><span class="line">docker pull linxi177229/csapp:latest</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment"># 启动容器（里面有配置好的环境 和 PDF 资料）</span></span><br><span class="line">docker run --name csapp -itd linxi177229/csapp</span><br></pre></td></tr></table></figure>
