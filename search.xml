@@ -2919,4 +2919,21 @@ F:\hexo\blog\source\_data\styles.styl
         <tag>TED</tag>
       </tags>
   </entry>
+  <entry>
+    <title>配置CS61B环境</title>
+    <url>/CS61B/environment/2024/06/02/</url>
+    <content><![CDATA[<p>配置cs61B环境需要以下部件：</p>
+<ul>
+<li>python</li>
+<li>java</li>
+<li>git</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CS61B</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
 </search>
