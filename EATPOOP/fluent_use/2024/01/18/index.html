@@ -271,7 +271,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -297,6 +297,7 @@
 <h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><blockquote>
 <p>官方文档：<a target="_blank" rel="noopener" href="https://ohmyposh.dev/">https://ohmyposh.dev/</a></p>
 </blockquote>
+<p>安装oh-my-posh和fluent terminal。在微软商店安装，多试几次就成功了！</p>
 <p>现在的oh-my-posh可以直接从Microsoft Store下载exe文件安装了，别去折腾命令行的命令了，速度太慢了。<br>安装完成后，如果是windows系统，推荐Windows Terminal（没有的话在Microsoft Store里安装）下启动powershell,推荐在商店中下载安装<code>fluent terminal</code>。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205681.png" alt="image-20240225214958894"></p>
 <h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>配置oh-my-posh过程中比较复杂的点就是Nerd Font和Themes这两点：</p>
@@ -310,11 +311,20 @@
 <p>选择终端,更改字体</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205721.png" alt="image-20240225215109949"></p>
 <p>记得保存，新开一个窗口,看字体改变.</p>
-<h4 id="step2-更改主题"><a href="#step2-更改主题" class="headerlink" title="step2:更改主题"></a>step2:更改主题</h4><h5 id="启动oh-my-posh"><a href="#启动oh-my-posh" class="headerlink" title="启动oh-my-posh"></a>启动oh-my-posh</h5><p>输入如下命令，下面的命令会先检查配置文件存不存在，如果不存在才创建：</p>
+<h4 id="step2-更改主题"><a href="#step2-更改主题" class="headerlink" title="step2:更改主题"></a>step2:更改主题</h4><ol>
+<li>启动oh-my-posh</li>
+</ol>
+<p>输入如下命令，下面的命令会先检查配置文件存不存在，如果不存在才创建：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="operator">-not</span> (<span class="built_in">Test-Path</span> <span class="variable">$PROFILE</span>)) &#123;</span><br><span class="line">    <span class="built_in">New-Item</span> <span class="literal">-Path</span> <span class="variable">$PROFILE</span> <span class="literal">-Type</span> File <span class="literal">-Force</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>接下来，打开配置文件（以下示例展示的是使用记事本进行操作）。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
+
+<p>先试着输入以下命令：</p>
+<p>记得将用户名替换为自己的用户名。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oh-my-posh init pwsh --config C:\Users\用户名\AppData\Local\Programs\oh-my-posh\themes\catppuccin.omp.json |Invoke-Expression</span><br></pre></td></tr></table></figure>
+
+
 
 <p>新开一个窗口,看脚本有无运行.</p>
 <blockquote>
@@ -325,7 +335,10 @@
 <p>win+x（或右键任务栏的Windows图标），选择以管理员身份运行powershell（Windows终端)&#x2F;Fluent Terminal，输入以下命令，重新打开终端即可成功执行</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Set</span><span class="operator">-</span>ExecutionPolicy <span class="operator">-</span>ExecutionPolicy RemoteSigned</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h5 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h5><p>输入以下命令查看主题,会看到噼里啪啦一大堆主题样式都会蹦出来，选一个喜欢的</p>
+<ol start="2">
+<li>更换主题</li>
+</ol>
+<p>输入以下命令查看主题,会看到噼里啪啦一大堆主题样式都会蹦出来，选一个喜欢的</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Get</span><span class="operator">-</span>PoshThemes</span><br></pre></td></tr></table></figure>
 
 <p>最后会得到所有主题的路径</p>
@@ -337,7 +350,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img//202402252205792.png" alt="image-20240225215821096"></p>
 <p>新开一个窗口,观察主题有无发生改变,在这个过程中很可能会出现一些图标不显示，显示一半，或者各种方框乱码，那都是字体的问题，多重启windows Terminal几次，总会成功的。</p>
 <h3 id="3-方向键补全-tab"><a href="#3-方向键补全-tab" class="headerlink" title="3.方向键补全+tab"></a>3.方向键补全+tab</h3><p>用管理员身份打开终端输入</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install-Module PSReadLine </span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install-Module PSReadLine  </span><br></pre></td></tr></table></figure>
 
 <p>若出现如下提示：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202404212306425.png" alt="image-20240421230608222"></p>
@@ -437,7 +450,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">二、配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Nerd-Font"><span class="nav-number">2.1.</span> <span class="nav-text">1.Nerd Font</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Themes"><span class="nav-number">2.2.</span> <span class="nav-text">2.Themes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1%EF%BC%9A%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93"><span class="nav-number">2.2.1.</span> <span class="nav-text">step1：设置字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2-%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.</span> <span class="nav-text">step2:更改主题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8oh-my-posh"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">启动oh-my-posh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">更换主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%B9%E5%90%91%E9%94%AE%E8%A1%A5%E5%85%A8-tab"><span class="nav-number">2.3.</span> <span class="nav-text">3.方向键补全+tab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-Luck"><span class="nav-number">3.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">二、配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Nerd-Font"><span class="nav-number">2.1.</span> <span class="nav-text">1.Nerd Font</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Themes"><span class="nav-number">2.2.</span> <span class="nav-text">2.Themes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1%EF%BC%9A%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93"><span class="nav-number">2.2.1.</span> <span class="nav-text">step1：设置字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2-%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">2.2.2.</span> <span class="nav-text">step2:更改主题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%B9%E5%90%91%E9%94%AE%E8%A1%A5%E5%85%A8-tab"><span class="nav-number">2.3.</span> <span class="nav-text">3.方向键补全+tab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-Luck"><span class="nav-number">3.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -453,7 +466,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -464,7 +477,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -508,12 +521,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">291k</span>
+    <span title="站点总字数">295k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:50</span>
+    <span title="站点阅读时长">8:57</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>

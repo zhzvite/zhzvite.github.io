@@ -492,10 +492,8 @@
 <blockquote>
 <p>配置环境主打一个能用就好，不要过多的纠结。</p>
 </blockquote>
-<h1 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h1><blockquote>
-<p>菜就多练，输不起就别玩</p>
-<p><a href="https://pic.imgdb.cn/item/65a3b50a871b83018aad5026.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg"></a></p>
-</blockquote>
+<h1 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h1><p>菜就多练，输不起就别玩</p>
+<p><a href="1"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg"></a></p>
 ]]></content>
       <categories>
         <category>CSAPP</category>
@@ -512,6 +510,29 @@
 </blockquote>
 <h1 id="总体原则"><a href="#总体原则" class="headerlink" title="总体原则"></a>总体原则</h1><p>尽量做完所有的exercise,做了一部分,感觉出的不错</p>
 <p>看书前沐浴更香,保持心静(逃</p>
+<h2 id="实验资料"><a href="#实验资料" class="headerlink" title="实验资料"></a>实验资料</h2><p>这里包含目前(2021.07.02)所有的CSAPP实验文件，一共11个，其中有3个实验是同一实验的不同版本，所以真正需要做的就是8个实验。</p>
+<p>以下是CMU官网对于各个实验的介绍：</p>
+<h3 id="1-Data-Lab"><a href="#1-Data-Lab" class="headerlink" title="1. Data Lab"></a>1. Data Lab</h3><p>该实验让学生们在一个使用C语言的高度限制的子集中对无符号整数、补码整数和浮点数进行一些操作。 例如，他们可能会被要求只能使用位级运算和顺序控制代码来计算一个数字的绝对值。 这个实验通过让学生们操作各种二进制的位级行为，来帮助理解C数据类型的位级表示。</p>
+<h3 id="2-Bomb-Lab"><a href="#2-Bomb-Lab" class="headerlink" title="2. Bomb Lab"></a>2. Bomb Lab</h3><p>“二进制炸弹”是向学生们提供操作的可执行文件。 当该程序运行时，它会逐个提示用户输入总共6个不同的字符串。如果其中任何一个是不正确的，则炸弹就会“爆炸”，在界面上打印错误消息并在计分系统上记录该次错误。 学生们必须通过反汇编以及逆向工程来“拆除”自己所独有的炸弹，以确定这6个字符串应该是什么。 该实验将会让学生们去理解什么是汇编语言，并迫使他们去学习如何使用调试器。该实验非常有趣，且这个实验也是CMU本科中的一个传奇实验。</p>
+<p>我们所提供的二进制炸弹是一个Linux&#x2F;x86-64的可执行文件，你可以自己尝试运行一下。现在，计分系统已禁用，因此可以随意引爆此炸弹而不会受到惩罚。</p>
+<h3 id="3-Attack-Lab"><a href="#3-Attack-Lab" class="headerlink" title="3. Attack Lab"></a>3. Attack Lab</h3><p>注意：这个实验是Buffer Lab(IA32)的64位改进版本。</p>
+<p>我们提供了学生们一对独特的X86-64的二进制可执行文件，这对文件也被称为攻击目标，它们都具有缓冲区溢出漏洞。它们中的一个容易受到代码注入(CI)攻击；而另一个容易受到面向返回编程(ROP)攻击。 我们要求学生通过基于CI或者ROP来修改攻击目标的一些行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。</p>
+<h3 id="4-Buffer-Lab-IA32"><a href="#4-Buffer-Lab-IA32" class="headerlink" title="4. Buffer Lab (IA32)"></a>4. Buffer Lab (IA32)</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Attack Lab所代替。所以如果需要练习缓冲区溢出相关知识，请进行Attack Lab实验。</p>
+<p>在该实验中，学生们通过利用缓冲区溢出漏洞来修改x86-32位的二进制可执行文件的行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。</p>
+<h3 id="5-Architecture-Lab"><a href="#5-Architecture-Lab" class="headerlink" title="5. Architecture Lab"></a>5. Architecture Lab</h3><p>注意：该实验是Architecture Lab(Y86)的64位改进版本。</p>
+<p>给学生们一个基于Y86-64处理器的数组复制函数和一个流水线架构的Y86-64处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86-64处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
+<p>提示：本次实验的材料包括Y86-64处理器模拟器的发行源码和Y86-64模拟器的指南。</p>
+<h3 id="6-Architecture-Lab-Y86"><a href="#6-Architecture-Lab-Y86" class="headerlink" title="6. Architecture Lab (Y86)"></a>6. Architecture Lab (Y86)</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Architecture Lab所代替。所以如果需要练习处理器架构相关知识，请进行Architecture Lab实验。</p>
+<p>给学生们一个基于Y86处理器的数组复制函数和一个流水线架构的Y86处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
+<p>提示：本次实验的材料包括Y86处理器模拟器的发行源码和Y86模拟器的指南。</p>
+<h3 id="7-Cache-Lab"><a href="#7-Cache-Lab" class="headerlink" title="7. Cache Lab"></a>7. Cache Lab</h3><p>注意：该实验是Performance Lab的64位改进版本。</p>
+<p>学生需要编写一个通用的高速缓存模拟器，然后再优化一个矩阵转置算法，使其在高速缓存中的未命中次数最小。 该实验使用Valgrind工具来生成内存操作记录。</p>
+<p>注意：此实验必须在X86-64系统上才能运行。</p>
+<h3 id="8-Performance-Lab"><a href="#8-Performance-Lab" class="headerlink" title="8. Performance Lab"></a>8. Performance Lab</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Cache Lab所代替。所以如果需要练习高速缓存存储器的相关知识，请进行Cache Lab实验。</p>
+<p>学生需要优化一个矩阵转置或者卷积算法来提高运行性能。 本实验清晰的演示了缓存存储器的相关特性，从而使学生们在低级程序优化上有了一定的经验。</p>
+<h3 id="9-Shell-Lab"><a href="#9-Shell-Lab" class="headerlink" title="9. Shell Lab"></a>9. Shell Lab</h3><p>这次实验让学生们实现自己的一个简单Unix Shell程序，该程序包括作业控制、ctrl-c和ctrl-z击键控制、fg、bg和jobs指令。 这次是第一次对学生们引入应用级并发的概念，这些让他们对Unix的进程控制和信号处理方面有了一个清晰的认识。</p>
+<h3 id="10-Malloc-Lab"><a href="#10-Malloc-Lab" class="headerlink" title="10. Malloc Lab"></a>10. Malloc Lab</h3><p>本次实验让学生们实现他们自己版本的<code>malloc</code>、<code>free</code>和<code>realloc</code>函数。 该实验让学生清楚地理解了数据的布局和组织，并要求他们对于空间和时间效率之间进行权衡和折中。 这个实验是我们最喜欢的实验之一，当学生们完成这个实验时，他们真正的理解了指针的含义！</p>
+<h3 id="11-Proxy-Lab"><a href="#11-Proxy-Lab" class="headerlink" title="11. Proxy Lab"></a>11. Proxy Lab</h3><p>实现一个位于浏览器和万维网其他部分之间的并行Web代理。这个实验向学生们揭示了Web客户端和服务器这样的主题，并且把课程中的许多概念联系起来，比如字节排序、文件IO、进程控制、信号、信号处理、内存映射、套接字和并发。学生很高兴能够看到他们的程序在真实的Web浏览器和Web服务器之间起到的作用。</p>
 <h1 id="链接推荐"><a href="#链接推荐" class="headerlink" title="链接推荐"></a>链接推荐</h1><h2 id="计算机科学速成课"><a href="#计算机科学速成课" class="headerlink" title="计算机科学速成课"></a><a href="https://www.bilibili.com/video/BV1EW411u7th">计算机科学速成课</a></h2><p> 推荐大家在正式学习前花一点时间看完这个,只需要一点点时间,就能够对计算机有一个较为全面的认识</p>
 <h2 id="CSAPP导读"><a href="#CSAPP导读" class="headerlink" title="CSAPP导读"></a><a href="https://fengmuzi2003.gitbook.io/csapp3e/">CSAPP导读</a></h2><p>我主要是以这个为索引阅读的,主要是光啃书真的太困难了,我的bomblab就是光啃书做的,痛苦死了</p>
 <h2 id="中英精校字幕课程"><a href="#中英精校字幕课程" class="headerlink" title="中英精校字幕课程"></a><a href="https://www.bilibili.com/video/BV1iW411d7hd">中英精校字幕课程</a></h2><p>这个课程除了没有助教的补充说明(这个在Csapp导读里面有链接),其余部分还是很不错的,字幕完整精确(要注意，字幕是由作者谷歌机翻再手动改一点的，所以有些地方可能不是人话)</p>
@@ -1177,20 +1198,38 @@
 <p>External fragmentation:难以被量化,因为其还要考虑未来的请求</p>
 <p>需要解决问题:</p>
 <ul>
-<li>空闲块组织free_list</li>
-<li>放置:<ul>
+<li><p>空闲块组织free_list</p>
+</li>
+<li><p>放置:</p>
+<ul>
 <li>first fit:在靠近链表起始处留下碎片</li>
-<li>next fit:经过研究发现其比上不足比下也不足</li>
-<li>best fit:需要耗费大量的时间,因为其要进行彻底的堆搜索</li>
+<li>next fit:经过研究发现其比上不足比下也不足,所以一般情况下不用</li>
+<li>best fit:需要耗费较多的时间,因为其要进行彻底的堆搜索,但是能做出更优秀的决策(在当前状态下)</li>
 </ul>
 </li>
-<li>分割</li>
-<li>合并coalescing:即存在多个fragmentation靠在一起,可以合并成为一个大的块<ol>
+<li><p>分割</p>
+</li>
+<li><p>合并coalescing:即存在多个fragmentation靠在一起,可以合并成为一个大的块</p>
+<ol>
 <li>immediate coalescing</li>
+</ol>
+<p>每次都进行合并相邻块</p>
+<ol start="2">
 <li>deferred coalescing</li>
 </ol>
+<p> 分配失败的时候再选择合并,扫描整个堆</p>
 </li>
 </ul>
+<p>带边界标记进行合并:(boundary tag)</p>
+<p>预处理:每个块的头部生成一个脚部,脚部为头部的副本,便于下面的子块往上快速的识别上面的块是否空闲.</p>
+<p><strong>看不懂以下部分:空闲块,已分配,</strong></p>
+<blockquote>
+<p>幸运的是，有一种非常聪明的边界标记的优化方法，能够使得在已分配块中不再需要脚部 。回想一下，当我们试图在内存中合并当前块以及前面的块和后面的块时，只有在前面的块是空闲时，才会需要用到它的脚部。如果我们把前面块的已分配／空闲位存放在当前块中多出来的低位中，那么已分配的块就不需要脚部了，这样我们就可以将这个多出来的空间用作有效载荷了。不过请注意，空闲块仍然需要脚部 。</p>
+</blockquote>
+<p>最小块大小可以在不同时刻被分配或者被释放,故最小块大小是max(最小分配块大小,最小空闲块大小)</p>
+<p>LAB介绍:</p>
+<p>我们将基于隐式空闲链表，使用立即边界标记合并方式，从头至尾地讲述一个简单分配器的实现。最大的块大小为2^32^ &#x3D;4GB。代码是 64 位干净的，即代码能不加修改地运行在 32 位 (gcc -m32) 或 64 位 (gcc -m64) 的进程中。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202406110118910.png" alt="image-20240605020233247"><br>一个块包含了头部，有效载荷，空闲块，和脚部（可能会有），块大小即为整个块的大小，脚部是头部的副本，和头部一样，头部中分为块大小和填充位两个信息，</p>
 ]]></content>
       <categories>
         <category>CSAPP</category>
@@ -2267,7 +2306,10 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line"><span class="comment"># 第一次执行 gdb 需要 执行 下面条语句 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;add-auto-load-safe-path <span class="subst">$(pwd)</span>/.gdbinit &quot;</span> &gt;&gt; ~/.gdbinit </span><br><span class="line"><span class="comment"># 第一次执行</span></span><br><span class="line">make CPUS=1 qemu-gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">gdb-multiarch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来就和使用 平常的 gdb 一样了， layout split 是一个很棒的用法</span></span><br><span class="line"><span class="comment"># 在 gdb 中输入 kill 即可 退出</span></span><br><span class="line"><span class="comment"># 或者 在第三个 teminal 中输入 pkill -f qemu 也可以退出</span></span><br></pre></td></tr></table></figure>
 
 <p><a href="https://pic.imgdb.cn/item/65a3b3dd871b83018aa931bf.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315207.jpg"></a></p>
-<h2 id="Apple-Chip"><a href="#Apple-Chip" class="headerlink" title="Apple Chip"></a>Apple Chip</h2><p>在docker中先拉取ubuntu 20.04的镜像，即如下命令，输入：</p>
+<h2 id="Apple-Chip"><a href="#Apple-Chip" class="headerlink" title="Apple Chip"></a>Apple Chip</h2><blockquote>
+<p>自己ubuntu容器中也可以这样子一键下载。</p>
+</blockquote>
+<p>在docker中先拉取ubuntu 20.04的镜像，即如下命令，输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu:20.04</span><br></pre></td></tr></table></figure>
 
 <p>在联网状态下，docker会拉取ubuntu：20。04image,可以输入<code>docker images</code>查看images</p>
@@ -2290,8 +2332,8 @@
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202405271417061.png" alt="image-20240527141209510"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202405271417070.png" alt="image-20240527141221053"></p>
 <p>若是以上则可以认为是tesh成功了！</p>
-<h2 id="如何退出xv6kernel"><a href="#如何退出xv6kernel" class="headerlink" title="如何退出xv6kernel"></a>如何退出xv6kernel</h2><p>回到 monitor 界面：ctrl + a，然后按 c ，即可退出 xv6 的 shell 界面，进入 QEMU 的 monitor 界面，输入 q 按回车即可退出 QEMU。</p>
-<p>终止 QEMU 进程：ctrl + a，然后按 x，即可终止 QEMU 进程，回到 Shell 界面。</p>
+<h2 id="如何退出xv6kernel"><a href="#如何退出xv6kernel" class="headerlink" title="如何退出xv6kernel"></a>如何退出xv6kernel</h2><p>回到 monitor 界面：<strong>ctrl + a</strong>，然后按 <strong>c</strong> ，即可退出 xv6 的 shell 界面，进入 QEMU 的 monitor 界面，输入 <strong>q</strong> 按回车即可退出 QEMU。</p>
+<p>终止 QEMU 进程：<strong>ctrl + a</strong>，然后按 <strong>x</strong>，即可终止 QEMU 进程，回到 Shell 界面。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202405271417078.png" alt="image-20240527141731298"></p>
 <h1 id="Ubuntu安装XV6环境"><a href="#Ubuntu安装XV6环境" class="headerlink" title="Ubuntu安装XV6环境"></a>Ubuntu安装XV6环境</h1><h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><p>按照上一个说明的流程，安装一个新的虚拟机并记住它的名字。记住<strong>账户名在下文统一用username指代账户名</strong>，下面要更新下载源。</p>
 <ol>
@@ -2413,13 +2455,50 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <h1 id="WSL2安装"><a href="#WSL2安装" class="headerlink" title="WSL2安装"></a>WSL2安装</h1><blockquote>
 <p>在WIN10&#x2F;11下的wsl2踩坑和安装<a href="https://juejin.cn/post/7099108145825316894#heading-0">参考文章</a></p>
 </blockquote>
-<h2 id="1-安装-打开Hyper-V"><a href="#1-安装-打开Hyper-V" class="headerlink" title="1.安装&#x2F;打开Hyper-V"></a>1.安装&#x2F;打开Hyper-V</h2><p>这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
+<h2 id="安装WSL2"><a href="#安装WSL2" class="headerlink" title="安装WSL2"></a>安装WSL2</h2><p>打开终端，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
+
+<p>若出现以下情况：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202406191423190.png" alt="image-20240619133933862"></p>
+<p>则输入命令安装wsl</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl --install</span><br></pre></td></tr></table></figure>
+
+<p><code>wsl install</code> 报错</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WslRegisterDistribution failed with error: 0x80370102</span><br></pre></td></tr></table></figure>
+
+<p>出现这个问题是因为VMware16、Hyper-v、WSL2、Docker之间出现了兼容性的问题导致报错</p>
+<p>官方解决方法：</p>
+<h2 id="win11解决办法"><a href="#win11解决办法" class="headerlink" title="win11解决办法"></a>win11解决办法</h2><p>具体也就是以下步骤,检查配置</p>
+<ol>
+<li>检查系统版本</li>
+</ol>
+<p>对于 x64 系统：版本 1903 或更高版本，采用 内部版本 18362 或更高版本<br>对于 ARM64 系统：版本 2004 或更高版本，采用 内部版本 19041 或更高版本<br>低于 18362 的版本不支持 WSL 2。 使用 Windows Update 助手更新 Windows 版本</p>
+<ol start="2">
+<li>检查是否开启VT虚拟化</li>
+</ol>
+<p>在任务管理器-&gt;性能中查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202406191423217.png" alt="image-20240619135711599"></p>
+<p>如果没有启用需要更改BIOS设置,具体设置方法可以百度。</p>
+<ol start="3">
+<li>检查相关Windows功能是否开启</li>
+</ol>
+<p>win+Q键搜索-&gt;启用或关闭windows功能</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202406191423245.png" alt="image-20240619135748168"></p>
+<p>win11需要检查是用与Linux的Windows子系统选项是否开启</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202406191423268.png" alt="image-20240619135840558"></p>
+<h2 id="win10解决办法"><a href="#win10解决办法" class="headerlink" title="win10解决办法"></a>win10解决办法</h2><p><strong>1.安装&#x2F;打开Hyper-V</strong></p>
+<p>这是 Docker Desktop for Windows 所使用的虚拟机。 但是这个虚拟机一旦启用，QEMU、VirtualBox 或 VMWare Workstation 15 及以下版本将无法使用！（所以更新到VMWare Workstation 16就万事大吉了）</p>
 <p>首先右键开始菜单，选择应用与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315138.awebp" alt="1513668234-4363-20171206211136409-1609350099.png"></p>
 <p>然后点击程序与功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315168.awebp" alt="1513668234-4368-20171206211345066-1430601107.png"></p>
 <p>选择启用或关闭Windows功能<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315176.awebp" alt="1513668234-9748-20171206211435534-1499766232.png"></p>
 <p>这是第一种情况<br> <img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315190.awebp" alt="1513668234-6433-20171206211858191-1177002365.png"></p>
 <p>如果你的界面是这样的，且没有下列选项中的Hyper-V，则先选中打钩的下面三个，然后确定，再参考<a href="https://link.juejin.cn/?target=https://blog.csdn.net/lanxingxing666666/article/details/111354089">win10没有Hyper-v的解决方法</a></p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315198.awebp" alt="Snipaste_2022-05-18_00-26-50.png"></p>
+<p>在管理员权限下打开powershell，执行以下命令后重启电脑</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"># 启用适用于 Linux 的 Windows 子系统</span><br><span class="line"></span><br><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br><span class="line"></span><br><span class="line"># 启用虚拟机功能</span><br><span class="line"></span><br><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br><span class="line"></span><br><span class="line"># 下载 Linux 内核更新包</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="2-将WSL版本升级为WSL2"><a href="#2-将WSL版本升级为WSL2" class="headerlink" title="2.将WSL版本升级为WSL2"></a>2.将WSL版本升级为WSL2</h2><p>首先看看版本号是否为2</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
 
@@ -2472,7 +2551,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <ol start="4">
 <li>开始，附加，停止容器</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start Mit_6.s081</span><br><span class="line">docker stop Mit_6.s081</span><br><span class="line">docker stop Mit_6.s081</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start Mit_6.s081</span><br><span class="line">docker attach Mit_6.s081</span><br><span class="line">docker stop Mit_6.s081</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
 <li>查看容器信息</li>
@@ -2503,6 +2582,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><blockquote>
 <p>官方文档：<a href="https://ohmyposh.dev/">https://ohmyposh.dev/</a></p>
 </blockquote>
+<p>安装oh-my-posh和fluent terminal。在微软商店安装，多试几次就成功了！</p>
 <p>现在的oh-my-posh可以直接从Microsoft Store下载exe文件安装了，别去折腾命令行的命令了，速度太慢了。<br>安装完成后，如果是windows系统，推荐Windows Terminal（没有的话在Microsoft Store里安装）下启动powershell,推荐在商店中下载安装<code>fluent terminal</code>。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205681.png" alt="image-20240225214958894"></p>
 <h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>配置oh-my-posh过程中比较复杂的点就是Nerd Font和Themes这两点：</p>
@@ -2516,11 +2596,20 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <p>选择终端,更改字体</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402252205721.png" alt="image-20240225215109949"></p>
 <p>记得保存，新开一个窗口,看字体改变.</p>
-<h4 id="step2-更改主题"><a href="#step2-更改主题" class="headerlink" title="step2:更改主题"></a>step2:更改主题</h4><h5 id="启动oh-my-posh"><a href="#启动oh-my-posh" class="headerlink" title="启动oh-my-posh"></a>启动oh-my-posh</h5><p>输入如下命令，下面的命令会先检查配置文件存不存在，如果不存在才创建：</p>
+<h4 id="step2-更改主题"><a href="#step2-更改主题" class="headerlink" title="step2:更改主题"></a>step2:更改主题</h4><ol>
+<li>启动oh-my-posh</li>
+</ol>
+<p>输入如下命令，下面的命令会先检查配置文件存不存在，如果不存在才创建：</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="operator">-not</span> (<span class="built_in">Test-Path</span> <span class="variable">$PROFILE</span>)) &#123;</span><br><span class="line">    <span class="built_in">New-Item</span> <span class="literal">-Path</span> <span class="variable">$PROFILE</span> <span class="literal">-Type</span> File <span class="literal">-Force</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>接下来，打开配置文件（以下示例展示的是使用记事本进行操作）。</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
+
+<p>先试着输入以下命令：</p>
+<p>记得将用户名替换为自己的用户名。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh init pwsh --config C:\Users\用户名\AppData\Local\Programs\oh-my-posh\themes\catppuccin.omp.json |Invoke-Expression</span><br></pre></td></tr></table></figure>
+
+
 
 <p>新开一个窗口,看脚本有无运行.</p>
 <blockquote>
@@ -2531,7 +2620,10 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <p>win+x（或右键任务栏的Windows图标），选择以管理员身份运行powershell（Windows终端)&#x2F;Fluent Terminal，输入以下命令，重新打开终端即可成功执行</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span><span class="operator">-</span>ExecutionPolicy <span class="operator">-</span>ExecutionPolicy RemoteSigned</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h5 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h5><p>输入以下命令查看主题,会看到噼里啪啦一大堆主题样式都会蹦出来，选一个喜欢的</p>
+<ol start="2">
+<li>更换主题</li>
+</ol>
+<p>输入以下命令查看主题,会看到噼里啪啦一大堆主题样式都会蹦出来，选一个喜欢的</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Get</span><span class="operator">-</span>PoshThemes</span><br></pre></td></tr></table></figure>
 
 <p>最后会得到所有主题的路径</p>
@@ -2543,7 +2635,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img//202402252205792.png" alt="image-20240225215821096"></p>
 <p>新开一个窗口,观察主题有无发生改变,在这个过程中很可能会出现一些图标不显示，显示一半，或者各种方框乱码，那都是字体的问题，多重启windows Terminal几次，总会成功的。</p>
 <h3 id="3-方向键补全-tab"><a href="#3-方向键补全-tab" class="headerlink" title="3.方向键补全+tab"></a>3.方向键补全+tab</h3><p>用管理员身份打开终端输入</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Install-Module PSReadLine </span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Install-Module PSReadLine  </span><br></pre></td></tr></table></figure>
 
 <p>若出现如下提示：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202404212306425.png" alt="image-20240421230608222"></p>
@@ -2934,6 +3026,24 @@ F:\hexo\blog\source\_data\styles.styl
       </categories>
       <tags>
         <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【镜花水月】人之惰性</title>
+    <url>/PASTFUTURE/relaxation/2024/06/19/</url>
+    <content><![CDATA[<blockquote>
+<p>我是什么人?</p>
+</blockquote>
+<p><strong>间歇性奋起</strong>，反复性思考，<strong>持续性摆烂</strong>，<strong>周期式后悔</strong>。</p>
+<p>感觉这四个词就可以概括我的一生了。</p>
+]]></content>
+      <categories>
+        <category>PASTFUTURE</category>
+      </categories>
+      <tags>
+        <tag>思考</tag>
+        <tag>镜花水月</tag>
+        <tag>自律</tag>
       </tags>
   </entry>
 </search>

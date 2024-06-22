@@ -312,7 +312,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line"><span class="comment"># 第一次执行 gdb 需要 执行 下面条语句 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;add-auto-load-safe-path <span class="subst">$(pwd)</span>/.gdbinit &quot;</span> &gt;&gt; ~/.gdbinit </span><br><span class="line"><span class="comment"># 第一次执行</span></span><br><span class="line">make CPUS=1 qemu-gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个 terminal</span></span><br><span class="line"><span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">gdb-multiarch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来就和使用 平常的 gdb 一样了， layout split 是一个很棒的用法</span></span><br><span class="line"><span class="comment"># 在 gdb 中输入 kill 即可 退出</span></span><br><span class="line"><span class="comment"># 或者 在第三个 teminal 中输入 pkill -f qemu 也可以退出</span></span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b3dd871b83018aa931bf.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315207.jpg"></a></p>
-<h2 id="Apple-Chip"><a href="#Apple-Chip" class="headerlink" title="Apple Chip"></a>Apple Chip</h2><p>在docker中先拉取ubuntu 20.04的镜像，即如下命令，输入：</p>
+<h2 id="Apple-Chip"><a href="#Apple-Chip" class="headerlink" title="Apple Chip"></a>Apple Chip</h2><blockquote>
+<p>自己ubuntu容器中也可以这样子一键下载。</p>
+</blockquote>
+<p>在docker中先拉取ubuntu 20.04的镜像，即如下命令，输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:20.04</span><br></pre></td></tr></table></figure>
 
 <p>在联网状态下，docker会拉取ubuntu：20。04image,可以输入<code>docker images</code>查看images</p>
@@ -335,8 +338,8 @@
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202405271417061.png" alt="image-20240527141209510"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202405271417070.png" alt="image-20240527141221053"></p>
 <p>若是以上则可以认为是tesh成功了！</p>
-<h2 id="如何退出xv6kernel"><a href="#如何退出xv6kernel" class="headerlink" title="如何退出xv6kernel"></a>如何退出xv6kernel</h2><p>回到 monitor 界面：ctrl + a，然后按 c ，即可退出 xv6 的 shell 界面，进入 QEMU 的 monitor 界面，输入 q 按回车即可退出 QEMU。</p>
-<p>终止 QEMU 进程：ctrl + a，然后按 x，即可终止 QEMU 进程，回到 Shell 界面。</p>
+<h2 id="如何退出xv6kernel"><a href="#如何退出xv6kernel" class="headerlink" title="如何退出xv6kernel"></a>如何退出xv6kernel</h2><p>回到 monitor 界面：<strong>ctrl + a</strong>，然后按 <strong>c</strong> ，即可退出 xv6 的 shell 界面，进入 QEMU 的 monitor 界面，输入 <strong>q</strong> 按回车即可退出 QEMU。</p>
+<p>终止 QEMU 进程：<strong>ctrl + a</strong>，然后按 <strong>x</strong>，即可终止 QEMU 进程，回到 Shell 界面。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202405271417078.png" alt="image-20240527141731298"></p>
 <h1 id="Ubuntu安装XV6环境"><a href="#Ubuntu安装XV6环境" class="headerlink" title="Ubuntu安装XV6环境"></a>Ubuntu安装XV6环境</h1><h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><p>按照上一个说明的流程，安装一个新的虚拟机并记住它的名字。记住<strong>账户名在下文统一用username指代账户名</strong>，下面要更新下载源。</p>
 <ol>
@@ -539,7 +542,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -550,7 +553,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -594,12 +597,12 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">291k</span>
+    <span title="站点总字数">295k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:50</span>
+    <span title="站点阅读时长">8:57</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
