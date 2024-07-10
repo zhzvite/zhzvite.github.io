@@ -268,14 +268,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
             <div class="post-description">分别用ubuntu虚拟机和docker两种方式配置csapp环境</div>
 
@@ -330,7 +330,47 @@
 <p>然后可以用vscode远程链接ubuntu,通过ssh,然后测试环境</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 接下来就和使用 平常的 Ubuntu：20.04 一样了</span><br><span class="line"># 进入 lab1 进行一个简单的测试</span><br><span class="line">cd ~</span><br><span class="line">ls</span><br><span class="line">cd csapplab</span><br><span class="line">cd datalab/datalab-handout</span><br><span class="line">make clean &amp;&amp; make &amp;&amp; ./btest</span><br></pre></td></tr></table></figure>
 
-<h1 id="环境安装时的截图"><a href="#环境安装时的截图" class="headerlink" title="环境安装时的截图"></a>环境安装时的截图</h1><p>~~下面的截图是包括了用docker配置xv6环境</p>
+<h1 id="Mac-Chip-安装CSAPP环境"><a href="#Mac-Chip-安装CSAPP环境" class="headerlink" title="Mac Chip 安装CSAPP环境"></a>Mac Chip 安装CSAPP环境</h1><h2 id="拉取Ubuntu18-04"><a href="#拉取Ubuntu18-04" class="headerlink" title="拉取Ubuntu18.04"></a>拉取Ubuntu18.04</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建Ubuntu-x86-容器"><a href="#创建Ubuntu-x86-容器" class="headerlink" title="创建Ubuntu(x86)容器"></a>创建Ubuntu(x86)容器</h2><p>Docker默认创建的是arm架构的Ubuntu，如果没有指定为amd64，将无法安装gcc -m32</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run  -it --platform linux/amd64 --name=csapp ubuntu:18.04</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>-v</code> 或 <code>--volume</code> 参数用于挂载宿主机上的目录或文件到容器内。但是，在您的命令中，<code>-v</code> 后面没有直接跟任何值，这是不正确的。您应该指定要挂载的宿主机路径和容器内路径，例如 <code>-v /host/path:/container/path</code>。</li>
+<li>**<code>--platform linux/amd64</code>**：<br>这个参数指定了容器运行的平台架构。如果您的 Docker 主机支持多平台，并且您想确保在 AMD64 架构上运行容器，这个参数是正确的。但是，如果 Docker 主机本身就是 AMD64 架构，这个参数通常是可选的，因为 Docker 默认会在与主机相同的架构上运行容器。</li>
+<li><strong>命令的其余部分</strong>：<br><code>-it</code> 用于以交互模式运行容器，并分配一个伪终端。<code>--name csapp</code> 指定了容器的名称。<code>ubuntu:18.04</code> 是您要运行的镜像名称。</li>
+</ol>
+<p>我用VSC进行附加，所以就不挂载本地容器了。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ol>
+<li>更新apt软件源</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装sudo</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install sudo</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装c&#x2F;c++编译环境</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>补充gcc的完整环境(gcc-multilib)</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>安装gdb</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gdb</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>据说GDB还使用不了，但我这十天是在家里面使用mac完成任务，所以会尽力克服问题，速通malloclab然后转战区块链！</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52693116/article/details/133149517">MacOS(M1)下创建Docker Ubuntu容器搭建CSAPP实验环境并运行_docker配置csapp环境-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/502375486?utm_id=0">Mac M1配置Docker CentOS（x86）的CSAPP实验环境 - 知乎 (zhihu.com)</a></p>
+<h1 id="环境安装时的截图"><a href="#环境安装时的截图" class="headerlink" title="环境安装时的截图"></a>环境安装时的截图</h1><p>下面的截图是包括了用docker配置xv6环境</p>
 <h2 id="CMD截图"><a href="#CMD截图" class="headerlink" title="CMD截图"></a>CMD截图</h2><p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b395871b83018aa824cd.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315215.jpg"></a></p>
 <h2 id="Docker截图"><a href="#Docker截图" class="headerlink" title="Docker截图"></a>Docker截图</h2><p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b5d3871b83018aafffff.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315227.jpg"></a></p>
 <h2 id="Vscode截图"><a href="#Vscode截图" class="headerlink" title="Vscode截图"></a>Vscode截图</h2><p><a target="_blank" rel="noopener" href="https://pic.imgdb.cn/item/65a3b64c871b83018ab1ab98.jpg"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315236.jpg"></a></p>
@@ -423,7 +463,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E5%AE%89%E8%A3%85Csapp%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">Docker安装Csapp环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu%E5%AE%89%E8%A3%85CSAPP%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu安装CSAPP环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%97%B6%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">环境安装时的截图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CMD%E6%88%AA%E5%9B%BE"><span class="nav-number">3.1.</span> <span class="nav-text">CMD截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E6%88%AA%E5%9B%BE"><span class="nav-number">3.2.</span> <span class="nav-text">Docker截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vscode%E6%88%AA%E5%9B%BE"><span class="nav-number">3.3.</span> <span class="nav-text">Vscode截图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Good-Luck"><span class="nav-number">4.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E5%AE%89%E8%A3%85Csapp%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">Docker安装Csapp环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu%E5%AE%89%E8%A3%85CSAPP%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu安装CSAPP环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-Chip-%E5%AE%89%E8%A3%85CSAPP%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text">Mac Chip 安装CSAPP环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E5%8F%96Ubuntu18-04"><span class="nav-number">3.1.</span> <span class="nav-text">拉取Ubuntu18.04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAUbuntu-x86-%E5%AE%B9%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">创建Ubuntu(x86)容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="nav-number">3.3.</span> <span class="nav-text">安装环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.3.1.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%97%B6%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="nav-number">4.</span> <span class="nav-text">环境安装时的截图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CMD%E6%88%AA%E5%9B%BE"><span class="nav-number">4.1.</span> <span class="nav-text">CMD截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E6%88%AA%E5%9B%BE"><span class="nav-number">4.2.</span> <span class="nav-text">Docker截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vscode%E6%88%AA%E5%9B%BE"><span class="nav-number">4.3.</span> <span class="nav-text">Vscode截图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Good-Luck"><span class="nav-number">5.</span> <span class="nav-text">Good Luck</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -494,12 +534,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">295k</span>
+    <span title="站点总字数">328k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:57</span>
+    <span title="站点阅读时长">9:55</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
