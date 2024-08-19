@@ -258,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.9k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>16 分钟</span>
+              <span>21 分钟</span>
             </span>
             <div class="post-description">字符串专题,为字符串题目做出点贡献!</div>
 
@@ -278,7 +278,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="最小表示法"><a href="#最小表示法" class="headerlink" title="最小表示法"></a>最小表示法</h2><p>在一个旋转字符串中，要确定其中字符串序列最小的字符串，最小表示法是挨个挨个比较。</p>
+        <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="字符串基础"><a href="#字符串基础" class="headerlink" title="字符串基础"></a>字符串基础</h2><p>定义：</p>
+<p>字符集$\sum$为一个建立了全序关系的集合。</p>
+<p>前缀：包括本身这个字符。</p>
+<p>真前缀：指出了本身的前缀。</p>
+<h2 id="标准库："><a href="#标准库：" class="headerlink" title="标准库："></a>标准库：</h2><ul>
+<li><code>strlen(const char *str)</code>：返回从 <code>str[0]</code> 开始直到 <code>&#39;\0&#39;</code> 的字符数。注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="\Theta(N)"> 的。</li>
+<li><code>strcmp(const char *str1, const char *str2)</code>：按照字典序比较 <code>str1 str2</code> 若 <code>str1</code> 字典序小返回负值，两者一样返回 <code>0</code>，<code>str1</code> 字典序更大则返回正值。请注意，不要简单的认为返回值只有 <code>0</code>、<code>1</code>、<code>-1</code> 三种，在不同平台下的返回值都遵循正负，但并非都是 <code>0</code>、<code>1</code>、<code>-1</code>。</li>
+<li><code>strcpy(char *str, const char *src)</code>: 把 <code>src</code> 中的字符复制到 <code>str</code> 中，<code>str</code> <code>src</code> 均为字符数组头指针，返回值为 <code>str</code> 包含空终止符号 <code>&#39;\0&#39;</code>。</li>
+<li><code>strncpy(char *str, const char *src, int cnt)</code>：复制至多 <code>cnt</code> 个字符到 <code>str</code> 中，若 <code>src</code> 终止而数量未达 <code>cnt</code> 则写入空字符到 <code>str</code> 直至写入总共 <code>cnt</code> 个字符。</li>
+<li><code>strcat(char *str1, const char *str2)</code>: 将 <code>str2</code> 接到 <code>str1</code> 的结尾，用 <code>*str2</code> 替换 <code>str1</code> 末尾的 <code>&#39;\0&#39;</code> 返回 <code>str1</code>。</li>
+<li><code>strstr(char *str1, const char *str2)</code>：若 <code>str2</code> 是 <code>str1</code> 的子串，则返回 <code>str2</code> 在 <code>str1</code> 的首次出现的地址；如果 <code>str2</code> 不是 <code>str1</code> 的子串，则返回 <code>NULL</code>。</li>
+<li><code>strchr(const char *str, int c)</code>：找到在字符串 <code>str</code> 中第一次出现字符 <code>c</code> 的位置，并返回这个位置的地址。如果未找到该字符则返回 <code>NULL</code>。</li>
+<li><code>strrchr(const char *str, int c)</code>：找到在字符串 <code>str</code> 中最后一次出现字符 <code>c</code> 的位置，并返回这个位置的地址。如果未找到该字符则返回 <code>NULL</code>。</li>
+</ul>
+<p>String类型</p>
+<ul>
+<li><code>append(s)</code> 将 <code>s</code> 添加到字符串末尾。<code>str1.append(&quot;s&quot;);</code></li>
+<li><code>append(s, pos, n)</code> 将字符串 <code>s</code> 中，从 <code>pos</code> 开始的 <code>n</code> 个字符连接到当前字符串结尾。</li>
+<li><code>replace(pos, n, s)</code> 删除从 <code>pos</code> 开始的 <code>n</code> 个字符，然后在 <code>pos</code> 处插入串 <code>s</code>。</li>
+<li><code>erase(pos, n)</code> 删除从 <code>pos</code> 开始的 <code>n</code> 个字符。</li>
+<li><code>insert(pos, s)</code> 在 <code>pos</code> 位置插入字符串 <code>s</code>。</li>
+<li><code>std::string</code> 重载了比较逻辑运算符，复杂度是$\Theta(N)$的</li>
+</ul>
+<h2 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h2><p>计算哈希方式:类似于一个b进制数</p>
+<h3 id="hash错误分析"><a href="#hash错误分析" class="headerlink" title="hash错误分析"></a>hash错误分析</h3><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/string/hash/">字符串哈希 - OI Wiki (oi-wiki.org)</a>，<del>不会，看不懂，过</del>。</p>
+<p>双值哈希：分别求不同模数下的哈希以解决问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ull <span class="title">get_hash</span><span class="params">(std::string s,ull mod)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> len = s.<span class="built_in">size</span>();</span><br><span class="line">    ull ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len;i++)</span><br><span class="line">        ans = (ans * base + (ull)s[i]) % mod;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="允许k次失配的字符串匹配"><a href="#允许k次失配的字符串匹配" class="headerlink" title="允许k次失配的字符串匹配"></a>允许k次失配的字符串匹配</h3><p>哈希+二分</p>
+<h3 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h3><h3 id="确定字符串中不同子字符串的数量"><a href="#确定字符串中不同子字符串的数量" class="headerlink" title="确定字符串中不同子字符串的数量"></a>确定字符串中不同子字符串的数量</h3><p>知道每个前缀的hash值，就可以$\Theta(1)$的求出所有子串的值，类似前缀和思想</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">count_unique_substring</span><span class="params">(string s)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> b = <span class="number">23</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> mod = <span class="number">1e9</span> + <span class="number">9</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">b_pow</span><span class="params">(n)</span></span>;</span><br><span class="line">    b_pow[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n;i++)</span><br><span class="line">        b_pow[i] = (b_pow[i - <span class="number">1</span>] * b) % mod;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">h</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n;i++)</span><br><span class="line">        h[i + <span class="number">1</span>] = (h[i] + (s[i] - <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>) * b_pow[i]) % mod;</span><br><span class="line">    <span class="comment">//h[i]存真前缀的hash值，以进制方式</span></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>; l &lt;= n;l++)&#123;</span><br><span class="line">        set&lt;<span class="type">long</span> <span class="type">long</span>&gt; hs;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n - l;i++)&#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> cur_h = (h[i + l] + mod - h[i]) % mod;<span class="comment">//保证结果正数</span></span><br><span class="line">            cur_h = (cur_h * b_pow[n - i - <span class="number">1</span>]) % mod;</span><br><span class="line">            hs.<span class="built_in">insert</span>(cur_h);</span><br><span class="line">        &#125;</span><br><span class="line">        cnt += hs.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">count_unique_substring</span>(s)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>$$</p>
+<p>$$</p>
+<h2 id="最小表示法"><a href="#最小表示法" class="headerlink" title="最小表示法"></a>最小表示法</h2><p>在一个旋转字符串中，要确定其中字符串序列最小的字符串，最小表示法是挨个挨个比较。</p>
 <p>每当两个相等的话就增加k，又不等的话就跳跃i或者j，遍历完后返回i和j中的min值。</p>
 <p>例如这个字符串</p>
 <p><code>d a b c</code></p>
@@ -481,7 +516,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">最小表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">kmp算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trie%E5%AD%97%E5%85%B8%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">trie字典树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manacher"><span class="nav-number">1.4.</span> <span class="nav-text">Manacher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.5.</span> <span class="nav-text">AC自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAM"><span class="nav-number">1.6.</span> <span class="nav-text">SAM</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">字符串基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%BA%93%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">标准库：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C"><span class="nav-number">1.3.</span> <span class="nav-text">字符串哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90"><span class="nav-number">1.3.1.</span> <span class="nav-text">hash错误分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%81%E8%AE%B8k%E6%AC%A1%E5%A4%B1%E9%85%8D%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D"><span class="nav-number">1.3.2.</span> <span class="nav-text">允许k次失配的字符串匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2"><span class="nav-number">1.3.3.</span> <span class="nav-text">最长回文子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E4%B8%8D%E5%90%8C%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%95%B0%E9%87%8F"><span class="nav-number">1.3.4.</span> <span class="nav-text">确定字符串中不同子字符串的数量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">最小表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">kmp算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trie%E5%AD%97%E5%85%B8%E6%A0%91"><span class="nav-number">1.6.</span> <span class="nav-text">trie字典树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manacher"><span class="nav-number">1.7.</span> <span class="nav-text">Manacher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.8.</span> <span class="nav-text">AC自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAM"><span class="nav-number">1.9.</span> <span class="nav-text">SAM</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -497,7 +532,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -552,12 +587,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">334k</span>
+    <span title="站点总字数">405k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">10:08</span>
+    <span title="站点阅读时长">12:16</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
