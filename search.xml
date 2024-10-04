@@ -3475,31 +3475,6 @@ F:\hexo\blog\source\_data\styles.styl
       </tags>
   </entry>
   <entry>
-    <title>区块链研究</title>
-    <url>/BLOCKCHAIN/introduction/2024/07/08/</url>
-    <content><![CDATA[<h1 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h1><h2 id="了解体系结构"><a href="#了解体系结构" class="headerlink" title="了解体系结构"></a>了解体系结构</h2><h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><p>这个故事可以比较形象化的对比特币有一个粗浅的了解，知道什么是去中心化，知道基本的工作原理，但是舍去了许多专业名词的介绍，科普文章。</p>
-<p><a href="https://blog.codinglabs.org/articles/bitcoin-mechanism-make-easy.html">CodingLabs - 一个故事告诉你比特币的原理及运作机制</a></p>
-<p>中本聪的比特币白皮书</p>
-<p><a href="https://bitcoin.org/bitcoin.pdf">英文原版</a></p>
-<p><a href="https://bitcoin.org/files/bitcoin-paper/bitcoin_zh_cn.pdf">中文翻译版</a></p>
-<p><a href="https://github.com/vaquarkhan/awesome-blockchain-Guide/blob/master/%E7%99%BD%E7%9A%AE%E4%B9%A6/%E6%AF%94%E7%89%B9%E5%B8%81%EF%BC%9A%E4%B8%80%E7%A7%8D%E7%82%B9%E5%AF%B9%E7%82%B9%E7%9A%84%E7%94%B5%E5%AD%90%E7%8E%B0%E9%87%91%E7%B3%BB%E7%BB%9F.pdf">我觉得更好的中英结合版本</a></p>
-<h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>书籍推荐</p>
-<p><a href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/BOOK.md">Mastering Bitcoin 3rd</a>(2023年12月出版)</p>
-<p>精通比特币，作者真的很好，说服出版社答应公开Mastering Bitcoin 3rd 的github book 版本，传播开源文化，在这里感谢作者对币圈做的贡献，引领更多求学之人入门！</p>
-<p>课程</p>
-<p>普林斯顿大学的公开课(在全球最大的在线教学平台上免费分享)：</p>
-<p><a href="https://www.coursera.org/learn/cryptocurrency/">Bitcoin and Cryptocurrency Technologies | Coursera</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://www.zhihu.com/question/51047975?write=">知乎提问之如何学习区块链技术？</a></p>
-]]></content>
-      <categories>
-        <category>BLOCKCHAIN</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>区块链</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>guitar_learn</title>
     <url>/PLAY/guitar_learn/2024/01/10/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几日学了吉他，试图看到吉他的大门，才恍然间发现自己的音准很差，听不出音，每天也不怎么练琴，断断续续练了十几二十天，勉强把爱的罗曼史弹完，现在脱离了<a href="https://space.bilibili.com/87918598/channel/collectiondetail?sid=185860">吉他大学霸的基础课</a>,转而投向了<a href="https://space.bilibili.com/326251291/channel/collectiondetail?sid=434227&ctype=0">元子弹吉他</a>的基础课,主要是感觉吉他大学霸讲的属实是找不到什么练琴的快感，太枯燥了，练琴是为了开心，就应该去弹曲子，这才是正路，有着强烈的正反馈，而不是天天练基本功折磨自己。目前已经在击弦努力了，预计是每天练会一门课，同时对之前的课程谱子进行复习，争取稳扎稳打，每日都有练习</p>
@@ -3508,6 +3483,8 @@ F:\hexo\blog\source\_data\styles.styl
 <li><a href="https://www.bilibili.com/video/BV1x4411U7n7/">《少年的梦》</a></li>
 <li>正在练习<a href="https://www.bilibili.com/video/av50052102/">&lt;&lt;无题&gt;&gt;</a></li>
 </ol>
+<p>10.4更新：</p>
+<p>服气了，从3月初到现在10月份还是没有搞定无题，中途中断了好长的一段时间，这两天才偶尔弹一弹，小问题，呸，大问题！</p>
 <p>喜欢的频道</p>
 <ul>
 <li><p><a href="https://space.bilibili.com/28239752/video">苍小天</a></p>
