@@ -212,7 +212,6 @@
 <p>配置环境主打一个能用就好，不要过多的纠结。</p>
 </blockquote>
 <h1 id="Good-Luck"><a href="#Good-Luck" class="headerlink" title="Good Luck"></a>Good Luck</h1><p>菜就多练，输不起就别玩</p>
-<p><a href="1"><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402071315248.jpg"></a></p>
 ]]></content>
       <categories>
         <category>CSAPP</category>
@@ -228,67 +227,27 @@
 <p>Csapp真心不好学</p>
 </blockquote>
 <h1 id="总体原则"><a href="#总体原则" class="headerlink" title="总体原则"></a>总体原则</h1><p>尽量做完所有的exercise,做了一部分,感觉出的不错</p>
-<p>看书前沐浴更香,保持心静(逃</p>
-<h2 id="实验资料"><a href="#实验资料" class="headerlink" title="实验资料"></a>实验资料</h2><p>这里包含目前(2021.07.02)所有的CSAPP实验文件，一共11个，其中有3个实验是同一实验的不同版本，所以真正需要做的就是8个实验。</p>
-<p>以下是CMU官网对于各个实验的介绍：</p>
-<h3 id="1-Data-Lab"><a href="#1-Data-Lab" class="headerlink" title="1. Data Lab"></a>1. Data Lab</h3><p>该实验让学生们在一个使用C语言的高度限制的子集中对无符号整数、补码整数和浮点数进行一些操作。 例如，他们可能会被要求只能使用位级运算和顺序控制代码来计算一个数字的绝对值。 这个实验通过让学生们操作各种二进制的位级行为，来帮助理解C数据类型的位级表示。</p>
-<h3 id="2-Bomb-Lab"><a href="#2-Bomb-Lab" class="headerlink" title="2. Bomb Lab"></a>2. Bomb Lab</h3><p>“二进制炸弹”是向学生们提供操作的可执行文件。 当该程序运行时，它会逐个提示用户输入总共6个不同的字符串。如果其中任何一个是不正确的，则炸弹就会“爆炸”，在界面上打印错误消息并在计分系统上记录该次错误。 学生们必须通过反汇编以及逆向工程来“拆除”自己所独有的炸弹，以确定这6个字符串应该是什么。 该实验将会让学生们去理解什么是汇编语言，并迫使他们去学习如何使用调试器。该实验非常有趣，且这个实验也是CMU本科中的一个传奇实验。</p>
-<p>我们所提供的二进制炸弹是一个Linux&#x2F;x86-64的可执行文件，你可以自己尝试运行一下。现在，计分系统已禁用，因此可以随意引爆此炸弹而不会受到惩罚。</p>
-<h3 id="3-Attack-Lab"><a href="#3-Attack-Lab" class="headerlink" title="3. Attack Lab"></a>3. Attack Lab</h3><p>注意：这个实验是Buffer Lab(IA32)的64位改进版本。</p>
-<p>我们提供了学生们一对独特的X86-64的二进制可执行文件，这对文件也被称为攻击目标，它们都具有缓冲区溢出漏洞。它们中的一个容易受到代码注入(CI)攻击；而另一个容易受到面向返回编程(ROP)攻击。 我们要求学生通过基于CI或者ROP来修改攻击目标的一些行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。</p>
-<h3 id="4-Buffer-Lab-IA32"><a href="#4-Buffer-Lab-IA32" class="headerlink" title="4. Buffer Lab (IA32)"></a>4. Buffer Lab (IA32)</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Attack Lab所代替。所以如果需要练习缓冲区溢出相关知识，请进行Attack Lab实验。</p>
-<p>在该实验中，学生们通过利用缓冲区溢出漏洞来修改x86-32位的二进制可执行文件的行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。</p>
-<h3 id="5-Architecture-Lab"><a href="#5-Architecture-Lab" class="headerlink" title="5. Architecture Lab"></a>5. Architecture Lab</h3><p>注意：该实验是Architecture Lab(Y86)的64位改进版本。</p>
-<p>给学生们一个基于Y86-64处理器的数组复制函数和一个流水线架构的Y86-64处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86-64处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
-<p>提示：本次实验的材料包括Y86-64处理器模拟器的发行源码和Y86-64模拟器的指南。</p>
-<h3 id="6-Architecture-Lab-Y86"><a href="#6-Architecture-Lab-Y86" class="headerlink" title="6. Architecture Lab (Y86)"></a>6. Architecture Lab (Y86)</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Architecture Lab所代替。所以如果需要练习处理器架构相关知识，请进行Architecture Lab实验。</p>
-<p>给学生们一个基于Y86处理器的数组复制函数和一个流水线架构的Y86处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
-<p>提示：本次实验的材料包括Y86处理器模拟器的发行源码和Y86模拟器的指南。</p>
-<h3 id="7-Cache-Lab"><a href="#7-Cache-Lab" class="headerlink" title="7. Cache Lab"></a>7. Cache Lab</h3><p>注意：该实验是Performance Lab的64位改进版本。</p>
-<p>学生需要编写一个通用的高速缓存模拟器，然后再优化一个矩阵转置算法，使其在高速缓存中的未命中次数最小。 该实验使用Valgrind工具来生成内存操作记录。</p>
-<p>注意：此实验必须在X86-64系统上才能运行。</p>
-<h3 id="8-Performance-Lab"><a href="#8-Performance-Lab" class="headerlink" title="8. Performance Lab"></a>8. Performance Lab</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Cache Lab所代替。所以如果需要练习高速缓存存储器的相关知识，请进行Cache Lab实验。</p>
-<p>学生需要优化一个矩阵转置或者卷积算法来提高运行性能。 本实验清晰的演示了缓存存储器的相关特性，从而使学生们在低级程序优化上有了一定的经验。</p>
-<h3 id="9-Shell-Lab"><a href="#9-Shell-Lab" class="headerlink" title="9. Shell Lab"></a>9. Shell Lab</h3><p>这次实验让学生们实现自己的一个简单Unix Shell程序，该程序包括作业控制、ctrl-c和ctrl-z击键控制、fg、bg和jobs指令。 这次是第一次对学生们引入应用级并发的概念，这些让他们对Unix的进程控制和信号处理方面有了一个清晰的认识。</p>
-<h3 id="10-Malloc-Lab"><a href="#10-Malloc-Lab" class="headerlink" title="10. Malloc Lab"></a>10. Malloc Lab</h3><p>本次实验让学生们实现他们自己版本的<code>malloc</code>、<code>free</code>和<code>realloc</code>函数。 该实验让学生清楚地理解了数据的布局和组织，并要求他们对于空间和时间效率之间进行权衡和折中。 这个实验是我们最喜欢的实验之一，当学生们完成这个实验时，他们真正的理解了指针的含义！</p>
-<h3 id="11-Proxy-Lab"><a href="#11-Proxy-Lab" class="headerlink" title="11. Proxy Lab"></a>11. Proxy Lab</h3><p>实现一个位于浏览器和万维网其他部分之间的并行Web代理。这个实验向学生们揭示了Web客户端和服务器这样的主题，并且把课程中的许多概念联系起来，比如字节排序、文件IO、进程控制、信号、信号处理、内存映射、套接字和并发。学生很高兴能够看到他们的程序在真实的Web浏览器和Web服务器之间起到的作用。</p>
+<p>看书前沐浴更香,保持心静(逃)</p>
 <h1 id="链接推荐"><a href="#链接推荐" class="headerlink" title="链接推荐"></a>链接推荐</h1><h2 id="计算机科学速成课"><a href="#计算机科学速成课" class="headerlink" title="计算机科学速成课"></a><a href="https://www.bilibili.com/video/BV1EW411u7th">计算机科学速成课</a></h2><p> 推荐大家在正式学习前花一点时间看完这个,只需要一点点时间,就能够对计算机有一个较为全面的认识</p>
 <h2 id="CSAPP导读"><a href="#CSAPP导读" class="headerlink" title="CSAPP导读"></a><a href="https://fengmuzi2003.gitbook.io/csapp3e/">CSAPP导读</a></h2><p>我主要是以这个为索引阅读的,主要是光啃书真的太困难了,我的bomblab就是光啃书做的,痛苦死了</p>
 <h2 id="中英精校字幕课程"><a href="#中英精校字幕课程" class="headerlink" title="中英精校字幕课程"></a><a href="https://www.bilibili.com/video/BV1iW411d7hd">中英精校字幕课程</a></h2><p>这个课程除了没有助教的补充说明(这个在Csapp导读里面有链接),其余部分还是很不错的,字幕完整精确(要注意，字幕是由作者谷歌机翻再手动改一点的，所以有些地方可能不是人话)</p>
-<h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><p>整本书思维导图:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402271948748.png" alt="image-20240227194749494"></p>
-<p>读书做lab的路线:</p>
-<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>略读</p>
-<h2 id="第二章-信息表示和处理"><a href="#第二章-信息表示和处理" class="headerlink" title="第二章:信息表示和处理"></a>第二章:信息表示和处理</h2><p>lab1</p>
-<h2 id="第三章程序的机器级表示"><a href="#第三章程序的机器级表示" class="headerlink" title="第三章程序的机器级表示"></a>第三章程序的机器级表示</h2><p>推荐书目<a href="https://www.zhihu.com/search?q=%E7%8E%8B%E7%88%BD&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2655186100%7D">王爽</a>的<strong>《汇编语言》</strong>,可以做lab2_bomblab和lab3_attacklab</p>
-<h2 id="第四章-处理器体系结构"><a href="#第四章-处理器体系结构" class="headerlink" title="第四章:处理器体系结构"></a>第四章:处理器体系结构</h2><p>看书的时候看的很懵,包括且不限于中文版和英文版,然后去查csapp的课程视频,发现教授也没讲,在导读页面看见这么一段话</p>
-<blockquote>
-<p>CMU的教授没有给出对应的视频，我也不推荐大家阅读原书第4章，原因：Y86-64 不是一个商业可用的指令集架构，意味着你学了之后基本上没有实用价值，另外，Y86-64 的设计并不优雅，不是特别值得学习。</p>
-<p><strong>推荐教材</strong>：计算机组成与设计: 硬件&#x2F;软件接口：MIPS版本 或者 RISC-V版本，以下简称P&amp;H Book。</p>
-</blockquote>
-<p>竟然如此,贯彻减负宗旨,先跳过,之后再学!(hhh,主要是我懒)</p>
-<h2 id="第五章-优化程序处理"><a href="#第五章-优化程序处理" class="headerlink" title="第五章:优化程序处理"></a>第五章:优化程序处理</h2><p><a href="https://www.bilibili.com/video/BV1iW411d7hd?p=10">课程视频</a></p>
-<blockquote>
-<p>每一个离谱的规定后面都有离谱的事件</p>
-</blockquote>
-<p><a href="https://www.bilibili.com/video/BV1iW411d7hd">课程视频</a>听完这个课后,我的心情belike:好像听了什么,又没听懂</p>
-<p>重点关键词:</p>
-<p>聪明且保守的compiler,有时你写的程序会阻止他做优化:</p>
-<ul>
-<li>precedure side-effects</li>
-<li>memory alising</li>
-</ul>
-<p>优化方式:</p>
-<ol>
-<li><p>code motion</p>
-</li>
-<li><p>loop unrolling</p>
-</li>
-<li><p>auto vectorization</p>
-</li>
-</ol>
-<h2 id="第六章-存储器层次结构"><a href="#第六章-存储器层次结构" class="headerlink" title="第六章:存储器层次结构"></a>第六章:存储器层次结构</h2><p><a href="https://www.bilibili.com/video/BV1iW411d7hd?p=11">课程视频</a></p>
-<h2 id="第十章-系统级I-O"><a href="#第十章-系统级I-O" class="headerlink" title="第十章:系统级I&#x2F;O"></a>第十章:系统级I&#x2F;O</h2><h2 id="第十一章：网络编程"><a href="#第十一章：网络编程" class="headerlink" title="第十一章：网络编程"></a>第十一章：网络编程</h2><h2 id="第十二章：-并发编程"><a href="#第十二章：-并发编程" class="headerlink" title="第十二章： 并发编程"></a>第十二章： 并发编程</h2><p>读完10，11，12章后可以做最后一个proxy lab</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><p>[[CSAPP环境配置]]</p>
+<h1 id="实验资料"><a href="#实验资料" class="headerlink" title="实验资料"></a>实验资料</h1><p>这里包含目前(2021.07.02)所有的CSAPP实验文件，一共11个，其中有3个实验是同一实验的不同版本，所以真正需要做的就是8个实验。</p>
+<p>以下是CMU官网对于各个实验的介绍：</p>
+<h2 id="1-Data-Lab"><a href="#1-Data-Lab" class="headerlink" title="1. Data Lab"></a>1. Data Lab</h2><p>该实验让学生们在一个使用C语言的高度限制的子集中对无符号整数、补码整数和浮点数进行一些操作。 例如，他们可能会被要求只能使用位级运算和顺序控制代码来计算一个数字的绝对值。 这个实验通过让学生们操作各种二进制的位级行为，来帮助理解C数据类型的位级表示。<br>[[lab1_datalab]]</p>
+<h2 id="2-Bomb-Lab"><a href="#2-Bomb-Lab" class="headerlink" title="2. Bomb Lab"></a>2. Bomb Lab</h2><p>“二进制炸弹”是向学生们提供操作的可执行文件。 当该程序运行时，它会逐个提示用户输入总共6个不同的字符串。如果其中任何一个是不正确的，则炸弹就会“爆炸”，在界面上打印错误消息并在计分系统上记录该次错误。 学生们必须通过反汇编以及逆向工程来“拆除”自己所独有的炸弹，以确定这6个字符串应该是什么。 该实验将会让学生们去理解什么是汇编语言，并迫使他们去学习如何使用调试器。该实验非常有趣，且这个实验也是CMU本科中的一个传奇实验。</p>
+<p>我们所提供的二进制炸弹是一个Linux&#x2F;x86-64的可执行文件，你可以自己尝试运行一下。现在，计分系统已禁用，因此可以随意引爆此炸弹而不会受到惩罚。<br>[[lab2_bomblab]]</p>
+<h2 id="3-Attack-Lab"><a href="#3-Attack-Lab" class="headerlink" title="3. Attack Lab"></a>3. Attack Lab</h2><p>注意：这个实验是Buffer Lab(IA32)的64位改进版本。</p>
+<p>我们提供了学生们一对独特的X86-64的二进制可执行文件，这对文件也被称为攻击目标，它们都具有缓冲区溢出漏洞。它们中的一个容易受到代码注入(CI)攻击；而另一个容易受到面向返回编程(ROP)攻击。 我们要求学生通过基于CI或者ROP来修改攻击目标的一些行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。<br>[[lab3_attacklab]]</p>
+<h2 id="4-Architecture-Lab"><a href="#4-Architecture-Lab" class="headerlink" title="4. Architecture Lab"></a>4. Architecture Lab</h2><p>注意：该实验是Architecture Lab(Y86)的64位改进版本。</p>
+<p>给学生们一个基于Y86-64处理器的数组复制函数和一个流水线架构的Y86-64处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86-64处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
+<p>提示：本次实验的材料包括Y86-64处理器模拟器的发行源码和Y86-64模拟器的指南。<br>[[lab4_archlab]]</p>
+<h2 id="5-Cache-Lab"><a href="#5-Cache-Lab" class="headerlink" title="5. Cache Lab"></a>5. Cache Lab</h2><p>注意：该实验是Performance Lab的64位改进版本。</p>
+<p>学生需要编写一个通用的高速缓存模拟器，然后再优化一个矩阵转置算法，使其在高速缓存中的未命中次数最小。 该实验使用Valgrind工具来生成内存操作记录。</p>
+<p>注意：此实验必须在X86-64系统上才能运行。<br>[[lab5_cachelab]]</p>
+<h2 id="6-Shell-Lab"><a href="#6-Shell-Lab" class="headerlink" title="6. Shell Lab"></a>6. Shell Lab</h2><p>这次实验让学生们实现自己的一个简单Unix Shell程序，该程序包括作业控制、ctrl-c和ctrl-z击键控制、fg、bg和jobs指令。 这次是第一次对学生们引入应用级并发的概念，这些让他们对Unix的进程控制和信号处理方面有了一个清晰的认识。<br>[[lab6_shlab]]</p>
+<h2 id="7-Malloc-Lab"><a href="#7-Malloc-Lab" class="headerlink" title="7. Malloc Lab"></a>7. Malloc Lab</h2><p>本次实验让学生们实现他们自己版本的<code>malloc</code>、<code>free</code>和<code>realloc</code>函数。 该实验让学生清楚地理解了数据的布局和组织，并要求他们对于空间和时间效率之间进行权衡和折中。 这个实验是我们最喜欢的实验之一，当学生们完成这个实验时，他们真正的理解了指针的含义！<br>[[lab7_malloclab]]</p>
+<h2 id="8-Proxy-Lab"><a href="#8-Proxy-Lab" class="headerlink" title="8. Proxy Lab"></a>8. Proxy Lab</h2><p>实现一个位于浏览器和万维网其他部分之间的并行Web代理。这个实验向学生们揭示了Web客户端和服务器这样的主题，并且把课程中的许多概念联系起来，比如字节排序、文件IO、进程控制、信号、信号处理、内存映射、套接字和并发。学生很高兴能够看到他们的程序在真实的Web浏览器和Web服务器之间起到的作用。<br>[[lab8_proxylab]]</p>
 ]]></content>
       <categories>
         <category>CSAPP</category>
@@ -3088,7 +3047,7 @@ F:\hexo\blog\source\_data\styles.styl
   <entry>
     <title>ACM目录</title>
     <url>/ACM/contents/2024/03/20/</url>
-    <content><![CDATA[<h1 id="ACM主要算法"><a href="#ACM主要算法" class="headerlink" title="ACM主要算法"></a>ACM主要算法</h1><h2 id="一-基本算法-all"><a href="#一-基本算法-all" class="headerlink" title="一.基本算法(all)"></a>一.基本算法(all)</h2><p>(1)枚举(poj1753, poj2965)</p>
+    <content><![CDATA[<h1 id="ACM主要算法"><a href="#ACM主要算法" class="headerlink" title="ACM主要算法"></a>ACM主要算法</h1><h2 id="一-基础算法"><a href="#一-基础算法" class="headerlink" title="一.[基础算法]"></a>一.<a href="all">[基础算法]</a></h2><p>(1)枚举(poj1753, poj2965)</p>
 <p>(2)贪心(poj1328, poj2109, poj2586)</p>
 <p>(3)递归和分治法</p>
 <p>(4)递推</p>
@@ -3113,7 +3072,7 @@ F:\hexo\blog\source\_data\styles.styl
 <p>(1)较麻烦的搜索题目训练(poj1069, poj3322, poj1475, poj1924, poj2049, poj3426)</p>
 <p>(2)广搜的状态优化：利用M进制数存储状态、转化为串用hash表判重、按位压缩存储状态、双向广搜、A*算法(poj1768, poj1184, poj1872, poj1324, poj2046, poj1482)</p>
 <p>(3)深搜的优化：尽量用位运算、一定要加剪枝、函数参数尽可能少、层数不易过大、可以考虑双向搜索或者是轮换搜索、IDA*算法(poj3131, poj2870, poj2286)</p>
-<h2 id="三-图论-wsy-zhz"><a href="#三-图论-wsy-zhz" class="headerlink" title="三.图论(wsy|zhz)"></a>三.图论(wsy|zhz)</h2><p>(1)图的深度优先遍历和广度优先遍历</p>
+<h2 id="三-图论"><a href="#三-图论" class="headerlink" title="三.[图论]"></a>三.<a href="wsy%7Czhz">[图论]</a></h2><p>(1)图的深度优先遍历和广度优先遍历</p>
 <p>(2)最短路径算法(dijkstra, bellman-ford, floyd, heap+dijkstra)(poj1860, poj3259, poj1062, poj2253, poj1125, poj2240)</p>
 <p>(3)最小生成树算法(prim, kruskal)(poj1789, poj2485, poj1258, poj3026)</p>
 <p>(4)拓扑排序(poj1094)</p>
@@ -3131,7 +3090,7 @@ F:\hexo\blog\source\_data\styles.styl
 <p>(4)最小树形图(poj3164)</p>
 <p>(5)次小生成树</p>
 <p>(6)无向图、有向图的最小环</p>
-<h2 id="四-数据结构-wsy-wty"><a href="#四-数据结构-wsy-wty" class="headerlink" title="四.数据结构(wsy|wty)"></a>四.数据结构(wsy|wty)</h2><p>(2)排序(快排、归并排(与逆序数有关)、堆排)(poj2388, poj2299)</p>
+<h2 id="四-数据结构"><a href="#四-数据结构" class="headerlink" title="四.[数据结构]"></a>四.<a href="wsy%7Cwty">[数据结构]</a></h2><p>(2)排序(快排、归并排(与逆序数有关)、堆排)(poj2388, poj2299)</p>
 <p>(3)简单并查集的应用</p>
 <p>(4)哈希表和二分查找等高效查找法(数的Hash, 串的Hash)(poj3349, poj3274, POJ2151, poj1840, poj2002, poj2503)</p>
 <p>(5)哈夫曼树(poj3253)</p>
@@ -3147,7 +3106,7 @@ F:\hexo\blog\source\_data\styles.styl
 <p>(3)双端队列和它的应用(维护一个单调的队列，常常在动态规划中起到优化状态转移的目的)(poj2823)</p>
 <p>(4)左偏树(可合并堆)</p>
 <p>(5)后缀树(非常有用的数据结构，也是赛区考题的热点)(poj3415,poj3294)</p>
-<h2 id="五-字符串-zhz-wty"><a href="#五-字符串-zhz-wty" class="headerlink" title="五.字符串(zhz|wty)"></a>五.字符串(zhz|wty)</h2><ol>
+<h2 id="五-字符串"><a href="#五-字符串" class="headerlink" title="五.[字符串]"></a>五.<a href="zhz%7Cwty">[字符串]</a></h2><ol>
 <li>常用STL方法</li>
 <li>manacher算法</li>
 <li>字符串<a href="https://so.csdn.net/so/search?q=Hash&spm=1001.2101.3001.7020">Hash</a></li>
@@ -3155,7 +3114,7 @@ F:\hexo\blog\source\_data\styles.styl
 <li>Trie(字典树)<br>5.1 字典树<br>5.1 01字典树</li>
 <li>自动机<br>6.1 AC自动机<br>6.2 AC自动机上的动态规划<br>6.3 回文自动机(回文树)</li>
 </ol>
-<h2 id="六-动态规划-wty-zhz"><a href="#六-动态规划-wty-zhz" class="headerlink" title="六.动态规划(wty|zhz)"></a>六.动态规划(wty|zhz)</h2><p>(1)背包问题(poj1837, poj1276)</p>
+<h2 id="六-动态规划"><a href="#六-动态规划" class="headerlink" title="六[动态规划]"></a>六<a href="wty%7Czhz">[动态规划]</a></h2><p>(1)背包问题(poj1837, poj1276)</p>
 <p>(2)型如下表的简单DP(可参考lrj的书page149)：</p>
 <p>1.E[j]&#x3D;opt{D+w(i,j)} (poj3267, poj1836, poj1260, poj2533)</p>
 <p>2.E[i,j]&#x3D;opt{D[i-1,j]+xi,D[i,j-1]+yj,D[i-1][j-1]+zij} (最长公共子序列)(poj3176, poj1080, poj1159)</p>
@@ -3166,7 +3125,7 @@ F:\hexo\blog\source\_data\styles.styl
 <p>(1)需要用数据结构优化的动态规划(poj2754, poj3378, poj3017)</p>
 <p>(2)四边形不等式理论</p>
 <p>(3)较难的状态DP(poj3133)</p>
-<h2 id="七-数学-wsy-wty"><a href="#七-数学-wsy-wty" class="headerlink" title="七.数学(wsy|wty)"></a>七.数学(wsy|wty)</h2><p>(1)组合数学</p>
+<h2 id="七-数学"><a href="#七-数学" class="headerlink" title="七.[数学]"></a>七.<a href="wsy%7Cwty">[数学]</a></h2><p>(1)组合数学</p>
 <p>1.加法原理和乘法原理</p>
 <p>2.排列组合</p>
 <p>3.递推关系(poj3252, poj1850, poj1019, poj1942)</p>
@@ -3200,7 +3159,7 @@ F:\hexo\blog\source\_data\styles.styl
 <p>(2)博奕论</p>
 <p>1.极大极小过程(poj3317, poj1085)</p>
 <p>2.Nim问题</p>
-<h2 id="八-计算几何学-none"><a href="#八-计算几何学-none" class="headerlink" title="八.计算几何学(none)"></a>八.计算几何学(none)</h2><p>(1)坐标离散化</p>
+<h2 id="八-计算几何-none"><a href="#八-计算几何-none" class="headerlink" title="八.计算几何(none)"></a>八.计算几何(none)</h2><p>(1)坐标离散化</p>
 <p>(2)扫描线算法(例如求矩形的面积和周长，并常和线段树或堆一起使用)(poj1765, poj1177, poj1151, poj3277, poj2280, poj3004)</p>
 <p>(3)多边形的内核(半平面交)(poj3130, poj3335)</p>
 <p>(4)几何工具的综合应用(poj1819, poj1066, poj2043, poj3227, poj2165, poj3429)</p>

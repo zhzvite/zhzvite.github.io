@@ -27,14 +27,12 @@
 <meta property="og:site_name" content="Vite">
 <meta property="og:description" content="被csapp按着打">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402271948748.png">
 <meta property="article:published_time" content="2024-02-27T11:48:00.000Z">
 <meta property="article:modified_time" content="2024-02-27T11:48:00.000Z">
 <meta property="article:author" content="zhz_vite">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402271948748.png">
 
 <link rel="canonical" href="http://example.com/CSAPP/lab0/2024/02/27/">
 
@@ -259,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.1k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>4 分钟</span>
             </span>
             <div class="post-description">被csapp按着打</div>
 
@@ -283,67 +281,27 @@
 <p>Csapp真心不好学</p>
 </blockquote>
 <h1 id="总体原则"><a href="#总体原则" class="headerlink" title="总体原则"></a>总体原则</h1><p>尽量做完所有的exercise,做了一部分,感觉出的不错</p>
-<p>看书前沐浴更香,保持心静(逃</p>
-<h2 id="实验资料"><a href="#实验资料" class="headerlink" title="实验资料"></a>实验资料</h2><p>这里包含目前(2021.07.02)所有的CSAPP实验文件，一共11个，其中有3个实验是同一实验的不同版本，所以真正需要做的就是8个实验。</p>
-<p>以下是CMU官网对于各个实验的介绍：</p>
-<h3 id="1-Data-Lab"><a href="#1-Data-Lab" class="headerlink" title="1. Data Lab"></a>1. Data Lab</h3><p>该实验让学生们在一个使用C语言的高度限制的子集中对无符号整数、补码整数和浮点数进行一些操作。 例如，他们可能会被要求只能使用位级运算和顺序控制代码来计算一个数字的绝对值。 这个实验通过让学生们操作各种二进制的位级行为，来帮助理解C数据类型的位级表示。</p>
-<h3 id="2-Bomb-Lab"><a href="#2-Bomb-Lab" class="headerlink" title="2. Bomb Lab"></a>2. Bomb Lab</h3><p>“二进制炸弹”是向学生们提供操作的可执行文件。 当该程序运行时，它会逐个提示用户输入总共6个不同的字符串。如果其中任何一个是不正确的，则炸弹就会“爆炸”，在界面上打印错误消息并在计分系统上记录该次错误。 学生们必须通过反汇编以及逆向工程来“拆除”自己所独有的炸弹，以确定这6个字符串应该是什么。 该实验将会让学生们去理解什么是汇编语言，并迫使他们去学习如何使用调试器。该实验非常有趣，且这个实验也是CMU本科中的一个传奇实验。</p>
-<p>我们所提供的二进制炸弹是一个Linux&#x2F;x86-64的可执行文件，你可以自己尝试运行一下。现在，计分系统已禁用，因此可以随意引爆此炸弹而不会受到惩罚。</p>
-<h3 id="3-Attack-Lab"><a href="#3-Attack-Lab" class="headerlink" title="3. Attack Lab"></a>3. Attack Lab</h3><p>注意：这个实验是Buffer Lab(IA32)的64位改进版本。</p>
-<p>我们提供了学生们一对独特的X86-64的二进制可执行文件，这对文件也被称为攻击目标，它们都具有缓冲区溢出漏洞。它们中的一个容易受到代码注入(CI)攻击；而另一个容易受到面向返回编程(ROP)攻击。 我们要求学生通过基于CI或者ROP来修改攻击目标的一些行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。</p>
-<h3 id="4-Buffer-Lab-IA32"><a href="#4-Buffer-Lab-IA32" class="headerlink" title="4. Buffer Lab (IA32)"></a>4. Buffer Lab (IA32)</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Attack Lab所代替。所以如果需要练习缓冲区溢出相关知识，请进行Attack Lab实验。</p>
-<p>在该实验中，学生们通过利用缓冲区溢出漏洞来修改x86-32位的二进制可执行文件的行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。</p>
-<h3 id="5-Architecture-Lab"><a href="#5-Architecture-Lab" class="headerlink" title="5. Architecture Lab"></a>5. Architecture Lab</h3><p>注意：该实验是Architecture Lab(Y86)的64位改进版本。</p>
-<p>给学生们一个基于Y86-64处理器的数组复制函数和一个流水线架构的Y86-64处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86-64处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
-<p>提示：本次实验的材料包括Y86-64处理器模拟器的发行源码和Y86-64模拟器的指南。</p>
-<h3 id="6-Architecture-Lab-Y86"><a href="#6-Architecture-Lab-Y86" class="headerlink" title="6. Architecture Lab (Y86)"></a>6. Architecture Lab (Y86)</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Architecture Lab所代替。所以如果需要练习处理器架构相关知识，请进行Architecture Lab实验。</p>
-<p>给学生们一个基于Y86处理器的数组复制函数和一个流水线架构的Y86处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
-<p>提示：本次实验的材料包括Y86处理器模拟器的发行源码和Y86模拟器的指南。</p>
-<h3 id="7-Cache-Lab"><a href="#7-Cache-Lab" class="headerlink" title="7. Cache Lab"></a>7. Cache Lab</h3><p>注意：该实验是Performance Lab的64位改进版本。</p>
-<p>学生需要编写一个通用的高速缓存模拟器，然后再优化一个矩阵转置算法，使其在高速缓存中的未命中次数最小。 该实验使用Valgrind工具来生成内存操作记录。</p>
-<p>注意：此实验必须在X86-64系统上才能运行。</p>
-<h3 id="8-Performance-Lab"><a href="#8-Performance-Lab" class="headerlink" title="8. Performance Lab"></a>8. Performance Lab</h3><p>注意：这个实验曾经是为CSAPP第二版所提供的32位实验，现已被Cache Lab所代替。所以如果需要练习高速缓存存储器的相关知识，请进行Cache Lab实验。</p>
-<p>学生需要优化一个矩阵转置或者卷积算法来提高运行性能。 本实验清晰的演示了缓存存储器的相关特性，从而使学生们在低级程序优化上有了一定的经验。</p>
-<h3 id="9-Shell-Lab"><a href="#9-Shell-Lab" class="headerlink" title="9. Shell Lab"></a>9. Shell Lab</h3><p>这次实验让学生们实现自己的一个简单Unix Shell程序，该程序包括作业控制、ctrl-c和ctrl-z击键控制、fg、bg和jobs指令。 这次是第一次对学生们引入应用级并发的概念，这些让他们对Unix的进程控制和信号处理方面有了一个清晰的认识。</p>
-<h3 id="10-Malloc-Lab"><a href="#10-Malloc-Lab" class="headerlink" title="10. Malloc Lab"></a>10. Malloc Lab</h3><p>本次实验让学生们实现他们自己版本的<code>malloc</code>、<code>free</code>和<code>realloc</code>函数。 该实验让学生清楚地理解了数据的布局和组织，并要求他们对于空间和时间效率之间进行权衡和折中。 这个实验是我们最喜欢的实验之一，当学生们完成这个实验时，他们真正的理解了指针的含义！</p>
-<h3 id="11-Proxy-Lab"><a href="#11-Proxy-Lab" class="headerlink" title="11. Proxy Lab"></a>11. Proxy Lab</h3><p>实现一个位于浏览器和万维网其他部分之间的并行Web代理。这个实验向学生们揭示了Web客户端和服务器这样的主题，并且把课程中的许多概念联系起来，比如字节排序、文件IO、进程控制、信号、信号处理、内存映射、套接字和并发。学生很高兴能够看到他们的程序在真实的Web浏览器和Web服务器之间起到的作用。</p>
+<p>看书前沐浴更香,保持心静(逃)</p>
 <h1 id="链接推荐"><a href="#链接推荐" class="headerlink" title="链接推荐"></a>链接推荐</h1><h2 id="计算机科学速成课"><a href="#计算机科学速成课" class="headerlink" title="计算机科学速成课"></a><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EW411u7th">计算机科学速成课</a></h2><p> 推荐大家在正式学习前花一点时间看完这个,只需要一点点时间,就能够对计算机有一个较为全面的认识</p>
 <h2 id="CSAPP导读"><a href="#CSAPP导读" class="headerlink" title="CSAPP导读"></a><a target="_blank" rel="noopener" href="https://fengmuzi2003.gitbook.io/csapp3e/">CSAPP导读</a></h2><p>我主要是以这个为索引阅读的,主要是光啃书真的太困难了,我的bomblab就是光啃书做的,痛苦死了</p>
 <h2 id="中英精校字幕课程"><a href="#中英精校字幕课程" class="headerlink" title="中英精校字幕课程"></a><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iW411d7hd">中英精校字幕课程</a></h2><p>这个课程除了没有助教的补充说明(这个在Csapp导读里面有链接),其余部分还是很不错的,字幕完整精确(要注意，字幕是由作者谷歌机翻再手动改一点的，所以有些地方可能不是人话)</p>
-<h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><p>整本书思维导图:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhzvite/picgoroom@img/img/202402271948748.png" alt="image-20240227194749494"></p>
-<p>读书做lab的路线:</p>
-<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>略读</p>
-<h2 id="第二章-信息表示和处理"><a href="#第二章-信息表示和处理" class="headerlink" title="第二章:信息表示和处理"></a>第二章:信息表示和处理</h2><p>lab1</p>
-<h2 id="第三章程序的机器级表示"><a href="#第三章程序的机器级表示" class="headerlink" title="第三章程序的机器级表示"></a>第三章程序的机器级表示</h2><p>推荐书目<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E7%8E%8B%E7%88%BD&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2655186100%7D">王爽</a>的<strong>《汇编语言》</strong>,可以做lab2_bomblab和lab3_attacklab</p>
-<h2 id="第四章-处理器体系结构"><a href="#第四章-处理器体系结构" class="headerlink" title="第四章:处理器体系结构"></a>第四章:处理器体系结构</h2><p>看书的时候看的很懵,包括且不限于中文版和英文版,然后去查csapp的课程视频,发现教授也没讲,在导读页面看见这么一段话</p>
-<blockquote>
-<p>CMU的教授没有给出对应的视频，我也不推荐大家阅读原书第4章，原因：Y86-64 不是一个商业可用的指令集架构，意味着你学了之后基本上没有实用价值，另外，Y86-64 的设计并不优雅，不是特别值得学习。</p>
-<p><strong>推荐教材</strong>：计算机组成与设计: 硬件&#x2F;软件接口：MIPS版本 或者 RISC-V版本，以下简称P&amp;H Book。</p>
-</blockquote>
-<p>竟然如此,贯彻减负宗旨,先跳过,之后再学!(hhh,主要是我懒)</p>
-<h2 id="第五章-优化程序处理"><a href="#第五章-优化程序处理" class="headerlink" title="第五章:优化程序处理"></a>第五章:优化程序处理</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iW411d7hd?p=10">课程视频</a></p>
-<blockquote>
-<p>每一个离谱的规定后面都有离谱的事件</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iW411d7hd">课程视频</a>听完这个课后,我的心情belike:好像听了什么,又没听懂</p>
-<p>重点关键词:</p>
-<p>聪明且保守的compiler,有时你写的程序会阻止他做优化:</p>
-<ul>
-<li>precedure side-effects</li>
-<li>memory alising</li>
-</ul>
-<p>优化方式:</p>
-<ol>
-<li><p>code motion</p>
-</li>
-<li><p>loop unrolling</p>
-</li>
-<li><p>auto vectorization</p>
-</li>
-</ol>
-<h2 id="第六章-存储器层次结构"><a href="#第六章-存储器层次结构" class="headerlink" title="第六章:存储器层次结构"></a>第六章:存储器层次结构</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iW411d7hd?p=11">课程视频</a></p>
-<h2 id="第十章-系统级I-O"><a href="#第十章-系统级I-O" class="headerlink" title="第十章:系统级I&#x2F;O"></a>第十章:系统级I&#x2F;O</h2><h2 id="第十一章：网络编程"><a href="#第十一章：网络编程" class="headerlink" title="第十一章：网络编程"></a>第十一章：网络编程</h2><h2 id="第十二章：-并发编程"><a href="#第十二章：-并发编程" class="headerlink" title="第十二章： 并发编程"></a>第十二章： 并发编程</h2><p>读完10，11，12章后可以做最后一个proxy lab</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><p>[[CSAPP环境配置]]</p>
+<h1 id="实验资料"><a href="#实验资料" class="headerlink" title="实验资料"></a>实验资料</h1><p>这里包含目前(2021.07.02)所有的CSAPP实验文件，一共11个，其中有3个实验是同一实验的不同版本，所以真正需要做的就是8个实验。</p>
+<p>以下是CMU官网对于各个实验的介绍：</p>
+<h2 id="1-Data-Lab"><a href="#1-Data-Lab" class="headerlink" title="1. Data Lab"></a>1. Data Lab</h2><p>该实验让学生们在一个使用C语言的高度限制的子集中对无符号整数、补码整数和浮点数进行一些操作。 例如，他们可能会被要求只能使用位级运算和顺序控制代码来计算一个数字的绝对值。 这个实验通过让学生们操作各种二进制的位级行为，来帮助理解C数据类型的位级表示。<br>[[lab1_datalab]]</p>
+<h2 id="2-Bomb-Lab"><a href="#2-Bomb-Lab" class="headerlink" title="2. Bomb Lab"></a>2. Bomb Lab</h2><p>“二进制炸弹”是向学生们提供操作的可执行文件。 当该程序运行时，它会逐个提示用户输入总共6个不同的字符串。如果其中任何一个是不正确的，则炸弹就会“爆炸”，在界面上打印错误消息并在计分系统上记录该次错误。 学生们必须通过反汇编以及逆向工程来“拆除”自己所独有的炸弹，以确定这6个字符串应该是什么。 该实验将会让学生们去理解什么是汇编语言，并迫使他们去学习如何使用调试器。该实验非常有趣，且这个实验也是CMU本科中的一个传奇实验。</p>
+<p>我们所提供的二进制炸弹是一个Linux&#x2F;x86-64的可执行文件，你可以自己尝试运行一下。现在，计分系统已禁用，因此可以随意引爆此炸弹而不会受到惩罚。<br>[[lab2_bomblab]]</p>
+<h2 id="3-Attack-Lab"><a href="#3-Attack-Lab" class="headerlink" title="3. Attack Lab"></a>3. Attack Lab</h2><p>注意：这个实验是Buffer Lab(IA32)的64位改进版本。</p>
+<p>我们提供了学生们一对独特的X86-64的二进制可执行文件，这对文件也被称为攻击目标，它们都具有缓冲区溢出漏洞。它们中的一个容易受到代码注入(CI)攻击；而另一个容易受到面向返回编程(ROP)攻击。 我们要求学生通过基于CI或者ROP来修改攻击目标的一些行为。此实验会让学生们了解一些堆栈的使用规则，并指导他们编写出能够防范缓冲区溢出攻击的代码。<br>[[lab3_attacklab]]</p>
+<h2 id="4-Architecture-Lab"><a href="#4-Architecture-Lab" class="headerlink" title="4. Architecture Lab"></a>4. Architecture Lab</h2><p>注意：该实验是Architecture Lab(Y86)的64位改进版本。</p>
+<p>给学生们一个基于Y86-64处理器的数组复制函数和一个流水线架构的Y86-64处理器，用于计算复制每个元素所需要的时钟周期(CPE)。学生们需要通过修改该函数的实现和Y86-64处理器的设计来使该函数的CPE最小化。该实验能够让学生对于硬件与软件的交互有一个深刻的理解。</p>
+<p>提示：本次实验的材料包括Y86-64处理器模拟器的发行源码和Y86-64模拟器的指南。<br>[[lab4_archlab]]</p>
+<h2 id="5-Cache-Lab"><a href="#5-Cache-Lab" class="headerlink" title="5. Cache Lab"></a>5. Cache Lab</h2><p>注意：该实验是Performance Lab的64位改进版本。</p>
+<p>学生需要编写一个通用的高速缓存模拟器，然后再优化一个矩阵转置算法，使其在高速缓存中的未命中次数最小。 该实验使用Valgrind工具来生成内存操作记录。</p>
+<p>注意：此实验必须在X86-64系统上才能运行。<br>[[lab5_cachelab]]</p>
+<h2 id="6-Shell-Lab"><a href="#6-Shell-Lab" class="headerlink" title="6. Shell Lab"></a>6. Shell Lab</h2><p>这次实验让学生们实现自己的一个简单Unix Shell程序，该程序包括作业控制、ctrl-c和ctrl-z击键控制、fg、bg和jobs指令。 这次是第一次对学生们引入应用级并发的概念，这些让他们对Unix的进程控制和信号处理方面有了一个清晰的认识。<br>[[lab6_shlab]]</p>
+<h2 id="7-Malloc-Lab"><a href="#7-Malloc-Lab" class="headerlink" title="7. Malloc Lab"></a>7. Malloc Lab</h2><p>本次实验让学生们实现他们自己版本的<code>malloc</code>、<code>free</code>和<code>realloc</code>函数。 该实验让学生清楚地理解了数据的布局和组织，并要求他们对于空间和时间效率之间进行权衡和折中。 这个实验是我们最喜欢的实验之一，当学生们完成这个实验时，他们真正的理解了指针的含义！<br>[[lab7_malloclab]]</p>
+<h2 id="8-Proxy-Lab"><a href="#8-Proxy-Lab" class="headerlink" title="8. Proxy Lab"></a>8. Proxy Lab</h2><p>实现一个位于浏览器和万维网其他部分之间的并行Web代理。这个实验向学生们揭示了Web客户端和服务器这样的主题，并且把课程中的许多概念联系起来，比如字节排序、文件IO、进程控制、信号、信号处理、内存映射、套接字和并发。学生很高兴能够看到他们的程序在真实的Web浏览器和Web服务器之间起到的作用。<br>[[lab8_proxylab]]</p>
 
     </div>
 
@@ -429,7 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">总体原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">实验资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Data-Lab"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. Data Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Bomb-Lab"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. Bomb Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Attack-Lab"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. Attack Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Buffer-Lab-IA32"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. Buffer Lab (IA32)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Architecture-Lab"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. Architecture Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Architecture-Lab-Y86"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. Architecture Lab (Y86)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Cache-Lab"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. Cache Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-Performance-Lab"><span class="nav-number">1.1.8.</span> <span class="nav-text">8. Performance Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Shell-Lab"><span class="nav-number">1.1.9.</span> <span class="nav-text">9. Shell Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Malloc-Lab"><span class="nav-number">1.1.10.</span> <span class="nav-text">10. Malloc Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-Proxy-Lab"><span class="nav-number">1.1.11.</span> <span class="nav-text">11. Proxy Lab</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E6%8E%A8%E8%8D%90"><span class="nav-number">2.</span> <span class="nav-text">链接推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%80%9F%E6%88%90%E8%AF%BE"><span class="nav-number">2.1.</span> <span class="nav-text">计算机科学速成课</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSAPP%E5%AF%BC%E8%AF%BB"><span class="nav-number">2.2.</span> <span class="nav-text">CSAPP导读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E8%8B%B1%E7%B2%BE%E6%A0%A1%E5%AD%97%E5%B9%95%E8%AF%BE%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">中英精校字幕课程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E8%A7%88"><span class="nav-number">3.</span> <span class="nav-text">总览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="nav-number">3.1.</span> <span class="nav-text">第一章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">第二章:信息表示和处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.3.</span> <span class="nav-text">第三章程序的机器级表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">第四章:处理器体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E4%BC%98%E5%8C%96%E7%A8%8B%E5%BA%8F%E5%A4%84%E7%90%86"><span class="nav-number">3.5.</span> <span class="nav-text">第五章:优化程序处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">3.6.</span> <span class="nav-text">第六章:存储器层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O"><span class="nav-number">3.7.</span> <span class="nav-text">第十章:系统级I&#x2F;O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">3.8.</span> <span class="nav-text">第十一章：网络编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%EF%BC%9A-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="nav-number">3.9.</span> <span class="nav-text">第十二章： 并发编程</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">总体原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E6%8E%A8%E8%8D%90"><span class="nav-number">2.</span> <span class="nav-text">链接推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%80%9F%E6%88%90%E8%AF%BE"><span class="nav-number">2.1.</span> <span class="nav-text">计算机科学速成课</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSAPP%E5%AF%BC%E8%AF%BB"><span class="nav-number">2.2.</span> <span class="nav-text">CSAPP导读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E8%8B%B1%E7%B2%BE%E6%A0%A1%E5%AD%97%E5%B9%95%E8%AF%BE%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">中英精校字幕课程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">实验资料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Data-Lab"><span class="nav-number">4.1.</span> <span class="nav-text">1. Data Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Bomb-Lab"><span class="nav-number">4.2.</span> <span class="nav-text">2. Bomb Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Attack-Lab"><span class="nav-number">4.3.</span> <span class="nav-text">3. Attack Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Architecture-Lab"><span class="nav-number">4.4.</span> <span class="nav-text">4. Architecture Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Cache-Lab"><span class="nav-number">4.5.</span> <span class="nav-text">5. Cache Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Shell-Lab"><span class="nav-number">4.6.</span> <span class="nav-text">6. Shell Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Malloc-Lab"><span class="nav-number">4.7.</span> <span class="nav-text">7. Malloc Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Proxy-Lab"><span class="nav-number">4.8.</span> <span class="nav-text">8. Proxy Lab</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -500,12 +458,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">416k</span>
+    <span title="站点总字数">414k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:36</span>
+    <span title="站点阅读时长">12:33</span>
 </div>
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
